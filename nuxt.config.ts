@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-// import vuetify from "vite-plugin-vuetify";
+import vuetify from "vite-plugin-vuetify";
+import {ViteConfig} from "@nuxt/schema";
 
 export default defineNuxtConfig({
   // @ts-ignore
@@ -9,7 +10,7 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   // @ts-ignore
-  css: [],
+  css: ['@/public/main.scss'],
   build: {
     transpile: ['vuetify'],
   },
@@ -22,22 +23,15 @@ export default defineNuxtConfig({
     ssr: {
       noExternal: ['vuetify'],
     },
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: `@use './public/overrides.scss' as *;`,
-        },
-      },
+    hooks: {
+      'vite:extendConfig': (config: ViteConfig) => {
+        config.plugins!.push(
+            // @ts-ignore
+            vuetify({
+              styles: {configFile: 'public/variables.scss'},
+            })
+        )
+      }
     },
-    // hooks: {
-    //   'vite:extendConfig': (config: ViteConfig) => {
-    //     config.plugins!.push(
-    //         // @ts-ignore
-    //         vuetify({
-    //           styles: {configFile: resolve('./public/overrides.scss')},
-    //         })
-    //     )
-    //   }
-    // },
   }
 })
