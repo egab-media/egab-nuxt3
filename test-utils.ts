@@ -22,6 +22,14 @@ export const addVuetify = (context: any) => {
 //     context.vueTestUtils.config.global.plugins.push(createTestingPinia())
 // }
 
+export const addRouter = (context: any) => {
+    context.vueRouter = require('vue-router')
+    console.log(context.vue.use)
+    context.vue!.use(context.vueRouter)
+    // eslint-disable-next-line new-cap
+    context.routerInstance = new context.vueRouter()
+}
+
 export const compositeConfiguration = (...configs: any[]): any => {
     return (context: any) => configs.forEach((config) => config(context));
 };
@@ -75,7 +83,7 @@ const div = document.createElement('div');
 div.id = 'app';
 document.body.appendChild(div);
 
-export const customWrapper = (component: any, context: any) => {
+export const shallowMount = (component: any, context: any) => {
     return context.vueTestUtils.shallowMount(component, {
         localVue: context.localVue,
         store: context.store,

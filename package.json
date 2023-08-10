@@ -12,6 +12,7 @@
     "vitest-preview": "vitest-preview"
   },
   "devDependencies": {
+    "@leanera/nuxt-i18n": "^0.5.0",
     "@mdi/js": "^7.2.96",
     "@nuxt/devtools": "latest",
     "@types/node": "^18.17.3",
@@ -23,6 +24,8 @@
     "vitest-preview": "^0.0.1"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.4.11",
+    "pinia": "^2.1.6",
     "sass": "^1.64.2",
     "vite-plugin-vuetify": "^1.0.2",
     "vuetify": "^3.3.12"

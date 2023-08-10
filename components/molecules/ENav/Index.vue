@@ -7,18 +7,26 @@
       <v-app-bar-title>
         Logo here
       </v-app-bar-title>
+
+      <template v-slot:append>
+        <e-lang-switcher />
+      </template>
     </v-app-bar>
   </client-only>
 </template>
 
 <script lang="ts">
 export default {
-  name: "ENav"
+  name: "ENav",
+  components: {
+
+  }
 }
 </script>
 
 <script lang="ts" setup>
 import { VAppBar, VAppBarTitle } from 'vuetify/components/VAppBar'
+import ELangSwitcher from "./partials/ELangSwitcher.vue";
 </script>
 
 <style scoped>

@@ -1,5 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import vuetify from "vite-plugin-vuetify";
+import en from './locales/en-US.json'
+import ar from './locales/ar-SA.json'
 
 export default defineNuxtConfig({
   // @ts-ignore
@@ -18,6 +20,8 @@ export default defineNuxtConfig({
     server: false,
   },
   modules: [
+    '@pinia/nuxt',
+    '@leanera/nuxt-i18n',
     async (options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) =>
         // @ts-ignore
@@ -29,6 +33,15 @@ export default defineNuxtConfig({
       );
     },
   ],
+
+  i18n: {
+    locales: ['en', 'ar'],
+    defaultLocale: 'en',
+    messages: {
+      en,
+      ar
+    }
+  },
 
   vite: {
     define: {

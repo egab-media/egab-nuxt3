@@ -1,6 +1,6 @@
 import { VueWrapper } from '@vue/test-utils';
 import { describe, beforeEach, afterEach, it, expect } from 'vitest'
-import {addVuetify, bootstrapVueContext, compositeConfiguration, customWrapper} from "@/test-utils";
+import {addVuetify, bootstrapVueContext, compositeConfiguration, shallowMount} from "@/test-utils";
 import { debug } from 'vitest-preview';
 import ENav from './Index.vue'
 
@@ -10,9 +10,9 @@ let vueContext: any;
 describe('ENav', () => {
     vueContext = bootstrapVueContext(compositeConfiguration(addVuetify))
     beforeEach(() => {
-        // vueContext.stubs = []
+        vueContext.stubs = ['client-only']
         // vueContext.attachTo = '#app'
-        wrapper = customWrapper(ENav, vueContext)
+        wrapper = shallowMount(ENav, vueContext)
     })
     afterEach(() => {
         vueContext.teardownVueContext()
