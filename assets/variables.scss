@@ -1,0 +1,7 @@
+$font-family: 'Panton';
+
+@forward 'vuetify' with (
+  $typography: (
+    'h1': ('font-family': $font-family,)
+  )
+);

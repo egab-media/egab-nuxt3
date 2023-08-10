@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import vuetify from "vite-plugin-vuetify";
-import {ViteConfig} from "@nuxt/schema";
 
 export default defineNuxtConfig({
   // @ts-ignore
@@ -10,11 +9,26 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   // @ts-ignore
-  css: ['@/public/main.scss'],
+  css: ['@/assets/main.scss'],
   build: {
     transpile: ['vuetify'],
   },
-  modules: [],
+  sourcemap: {
+    client: false,
+    server: false,
+  },
+  modules: [
+    async (options, nuxt) => {
+      nuxt.hooks.hook("vite:extendConfig", (config) =>
+        // @ts-ignore
+        config.plugins.push(
+          vuetify({
+            styles: { configFile: "assets/variables.scss" },
+          })
+        )
+      );
+    },
+  ],
 
   vite: {
     define: {
@@ -22,16 +36,6 @@ export default defineNuxtConfig({
     },
     ssr: {
       noExternal: ['vuetify'],
-    },
-    hooks: {
-      'vite:extendConfig': (config: ViteConfig) => {
-        config.plugins!.push(
-            // @ts-ignore
-            vuetify({
-              styles: {configFile: 'public/variables.scss'},
-            })
-        )
-      }
-    },
+    }
   }
 })
