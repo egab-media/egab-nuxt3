@@ -23,15 +23,15 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@nuxtjs/i18n',
-    // async (options, nuxt) => {
-    //   nuxt.hooks.hook("vite:extendConfig", (config) =>
-    //     config.plugins?.push(
-    //       vuetify({
-    //         styles: { configFile: "assets/variables.scss" },
-    //       })
-    //     ) as any
-    //   );
-    // },
+    process.env.NODE_ENV === 'production' ? async (options, nuxt) => {
+      nuxt.hooks.hook("vite:extendConfig", (config) =>
+        config.plugins?.push(
+          vuetify({
+            styles: { configFile: "assets/variables.scss" },
+          })
+        ) as any
+      );
+    }: undefined,
   ],
   experimental: {
     inlineSSRStyles: false,
