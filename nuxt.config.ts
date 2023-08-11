@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import vuetify from "vite-plugin-vuetify";
-import en from './locales/en-US.json'
-import ar from './locales/ar-SA.json'
+import {langs} from "./utils/languages";
+import {ViteConfig} from "@nuxt/schema";
 
 export default defineNuxtConfig({
   // @ts-ignore
@@ -9,38 +9,37 @@ export default defineNuxtConfig({
   nitro: {
     compressPublicAssets: true
   },
-  devtools: { enabled: true },
+  devtools: { enabled: false },
+  components: true,
   // @ts-ignore
   css: ['@/assets/main.scss'],
   build: {
     transpile: ['vuetify'],
   },
-  sourcemap: {
-    client: false,
-    server: false,
-  },
+  // sourcemap: {
+  //   client: false,
+  //   server: false,
+  // },
   modules: [
     '@pinia/nuxt',
-    '@leanera/nuxt-i18n',
-    async (options, nuxt) => {
-      nuxt.hooks.hook("vite:extendConfig", (config) =>
-        // @ts-ignore
-        config.plugins.push(
-          vuetify({
-            styles: { configFile: "assets/variables.scss" },
-          })
-        )
-      );
-    },
+    '@nuxtjs/i18n',
+    // async (options, nuxt) => {
+    //   nuxt.hooks.hook("vite:extendConfig", (config) =>
+    //     config.plugins?.push(
+    //       vuetify({
+    //         styles: { configFile: "assets/variables.scss" },
+    //       })
+    //     ) as any
+    //   );
+    // },
   ],
-
+  experimental: {
+    inlineSSRStyles: false,
+    watcher: 'chokidar'
+  },
   i18n: {
-    locales: ['en', 'ar'],
-    defaultLocale: 'en',
-    messages: {
-      en,
-      ar
-    }
+    locales: langs,
+    vueI18n: './locales/i18n.config.ts'
   },
 
   vite: {
@@ -49,6 +48,23 @@ export default defineNuxtConfig({
     },
     ssr: {
       noExternal: ['vuetify'],
-    }
+    },
+    hooks: {
+      'vite:extendConfig': (config: ViteConfig) => {
+        config.plugins!.push(
+            // @ts-ignore
+            vuetify({
+              styles: {configFile: 'assets/variables.scss'},
+            })
+        )
+      }
+    },
+    // server: {
+    //   hmr: {
+    //     protocol: 'wss',
+    //     clientPort: 443,
+    //     path: 'hmr/'
+    //   }
+    // }
   }
 })
