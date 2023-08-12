@@ -1,6 +1,8 @@
 <template>
   <v-app>
-    <molecules-e-nav />
+    <delay-hydration>
+      <molecules-e-nav />
+    </delay-hydration>
     <v-main>
       <slot />
     </v-main>
@@ -8,9 +10,9 @@
 </template>
 
 <script lang="ts">
-export default {
-  name: "DefaultLayout"
-}
+export default defineComponent({
+  name: 'DefaultLayout'
+})
 </script>
 
 <script lang="ts" setup>

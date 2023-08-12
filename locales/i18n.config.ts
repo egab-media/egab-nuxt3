@@ -4,10 +4,7 @@ import ar from './ar-SA.json'
 export default defineI18nConfig(() => ({
     legacy: true,
     locale: 'en',
-    detectBrowserLanguage: {
-        useCookie: true,
-        cookieKey: 'i18n_redirected',
-        redirectOn: 'root',  // recommended
-    },
+    globalInjection: true,
+    detectBrowserLanguage: false,
     messages: {en, ar}
 }))

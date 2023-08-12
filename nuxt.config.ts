@@ -1,7 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import vuetify from "vite-plugin-vuetify";
 import {langs} from "./utils/languages";
-import {ViteConfig} from "@nuxt/schema";
 
 export default defineNuxtConfig({
   // @ts-ignore
@@ -16,13 +15,13 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
-  // sourcemap: {
-  //   client: false,
-  //   server: false,
-  // },
+  delayHydration: {
+    mode: 'manual'
+  },
   modules: [
     '@pinia/nuxt',
     '@nuxtjs/i18n',
+    'nuxt-delay-hydration',
     process.env.NODE_ENV === 'production' ? async (options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) =>
         config.plugins?.push(
@@ -33,10 +32,6 @@ export default defineNuxtConfig({
       );
     }: undefined,
   ],
-  experimental: {
-    inlineSSRStyles: false,
-    watcher: 'chokidar'
-  },
   i18n: {
     locales: langs,
     vueI18n: './locales/i18n.config.ts'
@@ -48,23 +43,6 @@ export default defineNuxtConfig({
     },
     ssr: {
       noExternal: ['vuetify'],
-    },
-    hooks: {
-      'vite:extendConfig': (config: ViteConfig) => {
-        config.plugins!.push(
-            // @ts-ignore
-            vuetify({
-              styles: {configFile: 'assets/variables.scss'},
-            })
-        )
-      }
-    },
-    // server: {
-    //   hmr: {
-    //     protocol: 'wss',
-    //     clientPort: 443,
-    //     path: 'hmr/'
-    //   }
-    // }
+    }
   }
 })
