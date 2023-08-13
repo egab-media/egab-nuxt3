@@ -31,6 +31,7 @@
 </template>
 
 <script lang="ts">
+import {defineComponent} from 'vue'
 export default defineComponent({
   name: 'ELangSwitcher'
 })
@@ -40,11 +41,12 @@ export default defineComponent({
 import {VSelect} from "vuetify/components/VSelect";
 import { VListItem, VListItemTitle } from 'vuetify/components/VList'
 import {useLanguageStore} from "~/store/language";
+import { useI18n } from 'vue-i18n'
 
 const { locale } = useI18n()
 
 const {languages} = useLanguageStore()
-const localeSelection = ref(locale.value)
+const localeSelection = computed(() => languages.find(lang => lang.code === locale.value))
 </script>
 
 <style scoped>

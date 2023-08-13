@@ -1,110 +1,96 @@
-import { vi, beforeAll } from 'vitest';
-import { createVuetify } from 'vuetify';
-import * as components from 'vuetify/components';
-import * as directives from 'vuetify/directives';
-// import { createI18n } from 'vue-i18n';
-// import en from '../locales/en-US.json';
-// import ar from '../locales/ar-EG.json';
-// import { createTestingPinia } from '@pinia/testing'
-
-(global as any).CSS = { supports: () => false };
+import { vi } from 'vitest'
+import en from '@/locales/en-US.json'
+import ar from '@/locales/ar-SA.json'
+import { createTestingPinia } from '@pinia/testing'
+import { createVuetify } from 'vuetify'
+import * as vueTestUtils from '@vue/test-utils'
+import { createApp } from 'vue'
+import { createI18n } from 'vue-i18n'
 
 export const addVuetify = (context: any) => {
-    context.vuetifyInstance = createVuetify({
-        components,
-        directives,
-    });
+    context.vuetifyInstance = createVuetify({});
     context.vueTestUtils.config.global.plugins = [context.vuetifyInstance];
     context.vueTestUtils.config.global.CSS = { supports: () => false };
-};
+}
 
-// export const addPinia = (context: any) => {
-//     context.vueTestUtils.config.global.plugins.push(createTestingPinia())
+// export const addVuex = (context: { vuex: any; vue: { use: (arg0: any) => void } }) => {
+//     context.vuex = require('vuex')
+//     context.vue.use(context.vuex)
 // }
 
-export const addRouter = (context: any) => {
-    context.vueRouter = require('vue-router')
-    console.log(context.vue.use)
-    context.vue!.use(context.vueRouter)
+export const addPinia = (context: any) => {
+    context.vueTestUtils.config.global.plugins.push(createTestingPinia())
+}
+
+export const addI18n = (context: any): any => {
     // eslint-disable-next-line new-cap
-    context.routerInstance = new context.vueRouter()
+    context.i18nInstance = createI18n({
+        // ...options,
+        messages: { en, ar },
+        fallbackLocale: 'en',
+        legacy: false,
+        locale: 'en',
+        globalInjection: true,
+    })
+    context.vueTestUtils.config.global.plugins.push(context.i18nInstance)
+}
+
+export const addFilter = (name: any, lambda: any): any => {
+    return (context: { vue: any[] }) => context.vue.filter(name, lambda)
 }
 
 export const compositeConfiguration = (...configs: any[]): any => {
-    return (context: any) => configs.forEach((config) => config(context));
-};
-
-// export const addI18n = (context: any): any => {
-//     // eslint-disable-next-line new-cap
-//     context.i18nInstance = createI18n({
-//         // ...options,
-//         messages: { en, ar },
-//         fallbackLocale: 'en',
-//         locale: 'en',
-//     });
-//     context.vueTestUtils.config.global.plugins = [context.i18nInstance];
-// };
+    return (context: any) => configs.forEach(config => config(context))
+}
 
 export const bootstrapVueContext = (configureContext: (arg0: {}) => any) => {
-    const context: any = {};
+    const context: any = {}
+
     const teardownVueContext = () => {
-        vi.unmock('vue');
-        Object.keys(context).forEach((key) => delete context[key]);
-        vi.resetModules();
-    };
+        vi.unmock('vue')
+        Object.keys(context).forEach(key => delete context[key])
+        vi.resetModules()
+    }
 
-    context.vueTestUtils = require('@vue/test-utils');
-    // context.vueTestUtils.config.stubs.nuxt = { template: '<div />' }
-    // context.vueTestUtils.config.stubs['nuxt-link'] = { template: '<a><slot /></a>' }
-    // context.vueTestUtils.config.stubs['no-ssr'] = { template: '<span><slot /></span>' }
+    context.vueTestUtils = vueTestUtils
+    context.vue = createApp({})
 
-    context.vue = require('vue');
-    // context.localVue = context.vueTestUtils.createLocalVue()
+    vi.doMock('vue', () => context.vue)
 
-    vi.doMock('vue', () => context.vue);
-
-    configureContext && configureContext(context);
+    configureContext && configureContext(context)
 
     return {
         teardownVueContext,
-        ...context,
-    };
-};
-
-beforeAll(() => {
-    global.CSS = {
-        supports: (str: string) => false,
-        escape: (str: string) => str,
-    };
-});
-
-// Simulate the structure of `index.html`
-const div = document.createElement('div');
-div.id = 'app';
-document.body.appendChild(div);
+        ...context
+    }
+}
 
 export const shallowMount = (component: any, context: any) => {
     return context.vueTestUtils.shallowMount(component, {
         localVue: context.localVue,
+        vuetify: context.vuetifyInstance,
+        i18n: context.i18nInstance,
         store: context.store,
         router: context.routerInstance,
         propsData: context.propsData,
         stubs: context.stubs,
         mocks: context.mocks,
         slots: context.slots,
-        attachTo: context.attachTo,
-    });
-};
+        attachTo: context.attachTo
+    })
+}
 
 export const mountWrapper = (component: any, context: any) => {
     return context.vueTestUtils.mount(component, {
         localVue: context.localVue,
+        vuetify: context.vuetifyInstance,
+        i18n: context.i18nInstance,
         store: context.store,
         router: context.routerInstance,
         propsData: context.propsData,
         stubs: context.stubs,
         mocks: context.mocks,
         slots: context.slots,
-        attachTo: context.attachTo,
-    });
-};
+        attachTo: context.attachTo
+    })
+}
