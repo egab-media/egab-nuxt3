@@ -19,7 +19,7 @@ export const langs: Language[] = [
         name: 'English',
         file: 'en-US.json',
         dir: Direction.ltr,
-        flag: 'https://cdn.ipregistry.co/flags/noto/gb.png',
+        flag: 'https://flagcdn.com/w40/us.png',
     },
     {
         code: 'ar',
@@ -27,6 +27,6 @@ export const langs: Language[] = [
         name: 'Arabic',
         file: 'ar-SA.json',
         dir: Direction.rtl,
-        flag: 'https://cdn.ipregistry.co/flags/noto/eg.png',
+        flag: 'https://flagcdn.com/w40/sa.png',
     },
 ];

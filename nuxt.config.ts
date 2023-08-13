@@ -46,6 +46,7 @@ export default defineNuxtConfig({
         /v-col/,
         /v-row/,
         /v-select/,
+        /v-field/,
         /v-list-item/
       ]
     }
