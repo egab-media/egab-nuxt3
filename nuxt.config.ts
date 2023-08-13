@@ -51,7 +51,7 @@ export default defineNuxtConfig({
       ]
     }
     }],
-    process.env.NODE_ENV === 'development' ? async (options, nuxt) => {
+    process.env.NODE_ENV === 'production' ? async (options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) =>
         config.plugins?.push(
           vuetify({
