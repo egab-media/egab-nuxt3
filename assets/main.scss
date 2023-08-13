@@ -9,6 +9,13 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Ge";
+  src: url("../public/fonts/ge/ArbFONTS-59GE-SS-Two.otf"); /* IE9*/
+  src: url("../public/fonts/ge/ArbFONTS-59GE-SS-Two.otf?#iefix") format("opentype"); /* IE6-IE8 */
+  font-display: swap;
+}
+
 //.v-application {
 //  .text-h1,
 //  .text-h2,

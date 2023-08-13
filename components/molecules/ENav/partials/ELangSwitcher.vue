@@ -16,7 +16,7 @@
     >
       <template #item="{ item }">
         <v-list-item height="30" dense :prepend-avatar="item.value.flag" :to="switchLocalePath(item.value.code)" @click="$i18n.setLocale(item.value.code)">
-          <v-list-item-title :class="item.value.name.toLowerCase() === 'arabic' ? 'atom-font__arabic' : ''">
+          <v-list-item-title :class="item.value.name === 'Arabic' ? 'atom-font__arabic' : ''">
             {{ item.value.name === 'Arabic' ? 'العربية' : item.value.name }}
           </v-list-item-title>
         </v-list-item>
@@ -50,8 +50,11 @@ const { locale } = useI18n()
 
 const {languages} = useLanguageStore()
 const localeSelection = computed(() => languages.find(lang => lang.code === locale.value))
+const getFont = computed(() => localeSelection.value?.code === 'ar' ? 'Ge' : 'Panton')
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+@use "assets/variables" with (
+  $font-family: v-bind(getFont),
+);
 </style>

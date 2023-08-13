@@ -1,4 +1,4 @@
-$font-family: 'Panton';
+$font-family: 'Panton' !default;
 
 @forward 'vuetify' with (
   $typography: (
