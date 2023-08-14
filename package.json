@@ -9,7 +9,8 @@
     "postinstall": "nuxt prepare",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "vitest-preview": "vitest-preview"
+    "vitest-preview": "vitest-preview",
+    "test:bench": "vitest bench"
   },
   "devDependencies": {
     "@mdi/js": "^7.2.96",

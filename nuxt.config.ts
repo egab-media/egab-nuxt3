@@ -5,19 +5,25 @@ import {langs} from "./utils/languages";
 export default defineNuxtConfig({
   // @ts-ignore
   ssr: true,
+
   nitro: {
     compressPublicAssets: true
   },
+
   devtools: { enabled: false },
+
   components: true,
   // @ts-ignore
   css: ['@/assets/main.scss'],
+
   build: {
     transpile: ['vuetify'],
   },
+
   delayHydration: {
     mode: 'manual'
   },
+
   modules: [
     '@pinia/nuxt',
     '@nuxtjs/i18n',
