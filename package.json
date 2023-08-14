@@ -5,19 +5,21 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
+    "preview": "nuxt preview --https --ssl-cert nash-dev.local.pem --ssl-key nash-dev.local-key.pem",
     "postinstall": "nuxt prepare",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "vitest-preview": "vitest-preview",
     "test:bench": "vitest bench",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "proxy": "mkcert -install && mkcert localhost && local-ssl-proxy --source 3010 --target 3000 --cert nash-dev.local.pem --key nash-dev.local-key.pem"
   },
   "devDependencies": {
     "@mdi/js": "^7.2.96",
     "@nuxt/devtools": "latest",
     "@nuxtjs/i18n": "^8.0.0-rc.2",
     "@pinia/testing": "^0.1.3",
+    "@types/fs-extra": "^11.0.1",
     "@types/node": "^18.17.3",
     "@vitest/coverage-istanbul": "^0.34.1",
     "@vitest/ui": "^0.34.1",

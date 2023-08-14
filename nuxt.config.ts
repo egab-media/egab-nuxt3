@@ -1,10 +1,20 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import vuetify from "vite-plugin-vuetify";
 import {langs} from "./utils/languages";
+import fs from 'fs-extra'
 
 export default defineNuxtConfig({
   // @ts-ignore
   ssr: true,
+
+  devServer: {
+    host: 'nash-dev.local',
+    port: 3000,
+    https: {
+      key: fs.readFileSync('./nash-dev.local-key.pem').toString(),
+      cert: fs.readFileSync('./nash-dev.local.pem').toString()
+    }
+  },
 
   nitro: {
     compressPublicAssets: true
@@ -74,11 +84,11 @@ export default defineNuxtConfig({
   },
 
   vite: {
-    define: {
-      'process.env.DEBUG': false,
-    },
-    ssr: {
-      noExternal: ['vuetify'],
-    }
+    // define: {
+    //   'process.env.DEBUG': false,
+    // },
+    // ssr: {
+    //   noExternal: ['vuetify'],
+    // }
   }
 })

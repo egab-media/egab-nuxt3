@@ -27,3 +27,5 @@ logs
 *.html
 
 coverage/
+
+*.pem
