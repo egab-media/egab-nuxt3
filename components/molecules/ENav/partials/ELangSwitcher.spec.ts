@@ -9,6 +9,7 @@ import {
     addPinia,
     mountWrapper
 } from "~/test-utils";
+import {langs} from "~/utils/languages";
 
 let wrapper: VueWrapper<any>;
 let vueContext: any;
@@ -26,5 +27,7 @@ describe('ELangSwitcher', () => {
         expect(wrapper.vm).toBeTruthy()
         const selection = wrapper.find('.v-select__selection').find('.v-list-item-title')
         expect(selection.text()).toEqual('English')
+        expect(wrapper.vm.localeSelection).toEqual(langs[0])
+        expect(wrapper.vm.getFont).toEqual('Panton')
     })
 })

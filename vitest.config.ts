@@ -30,6 +30,11 @@ export default {
     test: {
         globals: true,
         css: true,
+        coverage: {
+            enabled: true,
+            provider: 'istanbul',
+            reporter: ['text', 'json', 'html']
+        },
         server: {
             deps: {
                 inline: ['vuetify'],
