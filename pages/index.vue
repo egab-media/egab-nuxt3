@@ -3,9 +3,12 @@
 </template>
 
 <script lang="ts">
-export default {
-  name: "HomePage"
-}
+export default defineComponent({
+  name: "HomePage",
+  data: () => ({
+    selectValue: ''
+  })
+})
 </script>
 
 <script lang="ts" setup>

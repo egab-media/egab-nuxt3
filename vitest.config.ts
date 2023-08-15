@@ -16,7 +16,10 @@ export default {
             ]
         }),
         VueI18nPlugin({
+            globalSFCScope: true,
+            fullInstall: true,
             runtimeOnly: false,
+            useVueI18nImportName: true,
             include: resolve(dirname(fileURLToPath(import.meta.url)), './locales/**'), // provide a path to the folder where you'll store translation data (see below)
         })
     ],
@@ -40,6 +43,6 @@ export default {
                 inline: ['vuetify'],
             }
         },
-        environment: 'jsdom',
+        environment: 'happy-dom',
     },
 };
