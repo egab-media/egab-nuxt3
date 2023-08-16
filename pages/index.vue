@@ -5,9 +5,7 @@
 <script lang="ts">
 export default defineComponent({
   name: "HomePage",
-  data: () => ({
-    selectValue: ''
-  })
+  data: () => ({})
 })
 </script>
 

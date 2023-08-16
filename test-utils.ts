@@ -28,9 +28,11 @@ export const addI18n = (context: any): any => {
         // ...options,
         messages: { en, ar },
         fallbackLocale: 'en',
-        legacy: true,
+        legacy: false,
         globalInjection: true,
+        allowComposition: true,
     })
+    context.vue.use(context.i18nInstance)
     context.vueTestUtils.config.global.plugins.push(context.i18nInstance)
 }
 

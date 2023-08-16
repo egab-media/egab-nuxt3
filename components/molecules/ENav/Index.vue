@@ -17,7 +17,8 @@
 
 <script lang="ts">
 export default defineComponent({
-  name: "ENav"
+  name: "ENav",
+  data: () => ({})
 })
 </script>
 

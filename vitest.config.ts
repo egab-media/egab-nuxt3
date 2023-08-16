@@ -2,8 +2,8 @@ import vue from '@vitejs/plugin-vue';
 import vuetify from 'vite-plugin-vuetify';
 import {fileURLToPath, resolve, URL} from 'url';
 import AutoImport from 'unplugin-auto-import/vite'
-import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
-import {dirname} from "pathe";
+// import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
+// import {dirname} from "pathe";
 
 export default {
     plugins: [
@@ -15,13 +15,13 @@ export default {
                 'vue-router'
             ]
         }),
-        VueI18nPlugin({
-            globalSFCScope: true,
-            fullInstall: true,
-            runtimeOnly: false,
-            useVueI18nImportName: true,
-            include: resolve(dirname(fileURLToPath(import.meta.url)), './locales/**'), // provide a path to the folder where you'll store translation data (see below)
-        })
+        // VueI18nPlugin({
+        //     globalSFCScope: false,
+        //     fullInstall: true,
+        //     runtimeOnly: false,
+        //     useVueI18nImportName: true,
+        //     include: resolve(dirname(fileURLToPath(import.meta.url)), './locales/**'), // provide a path to the folder where you'll store translation data (see below)
+        // })
     ],
     resolve: {
         alias: {

@@ -6,5 +6,6 @@ export default defineI18nConfig(() => ({
     locale: 'en',
     globalInjection: true,
     detectBrowserLanguage: false,
+    allowComposition: true,
     messages: {en, ar}
 }))

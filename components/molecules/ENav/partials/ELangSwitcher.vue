@@ -1,5 +1,5 @@
 <template>
-  <e-select
+  <v-select
     v-model="localeSelection"
     :items="langs"
     dense
@@ -22,14 +22,13 @@
       </v-list-item>
     </template>
     <template #selection="{ item }">
-      {{item}}
       <v-list-item dense max-height="10" class="pa-0" :prepend-avatar="item.value.flag">
       <v-list-item-title class="text-body-2 font-weight-bold">
         {{ item.value.name === 'Arabic' ? 'العربية' : item.value.name }}
       </v-list-item-title>
       </v-list-item>
     </template>
-  </e-select>
+  </v-select>
 </template>
 
 <script lang="ts">
@@ -39,22 +38,36 @@ import {langs} from "~/utils/languages";
 export default defineComponent({
   name: 'ELangSwitcher',
   data: (vm) => ({
-    localeSelection: langs.find(lang => lang.code === vm.$i18n.locale),
-    font: 'Panton',
-    langs,
+    // localeSelection: langs.find(lang => lang.code === vm.$i18n.locale),
+    // font: 'Panton',
+    // langs,
   }),
   methods: {
-    handleClick(code: string) {
-      this.$i18n.setLocale(code)
-      this.localeSelection = langs.find(lang => lang.code === code)
-      this.font = this.localeSelection!.code === 'ar' ? 'Ge' : 'Panton'
-    }
+    // handleClick(code: string) {
+    //   this.$i18n.setLocale(code)
+    //   this.localeSelection = langs.find(lang => lang.code === code)
+    //   this.font = this.localeSelection!.code === 'ar' ? 'Ge' : 'Panton'
+    // }
   }
 })
 </script>
 
 <script lang="ts" setup>
 import { VListItem, VListItemTitle } from 'vuetify/components/VList'
+import {VSelect} from "vuetify/components/VSelect";
+import {langs} from "~/utils/languages";
+import {useI18n} from "vue-i18n";
+
+const { setLocale, locale } = useI18n()
+
+const localeSelection = ref(langs.find(lang => lang.code === locale.value))
+const font = ref('Panton')
+
+const handleClick = (code: string) => {
+  setLocale(code)
+  localeSelection.value = langs.find(lang => lang.code === code)
+  font.value = localeSelection.value!.code === 'ar' ? 'Ge' : 'Panton'
+}
 </script>
 
 <style scoped lang="scss">
