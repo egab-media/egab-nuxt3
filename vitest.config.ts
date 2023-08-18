@@ -14,14 +14,7 @@ export default {
                 'vue',
                 'vue-router'
             ]
-        }),
-        // VueI18nPlugin({
-        //     globalSFCScope: false,
-        //     fullInstall: true,
-        //     runtimeOnly: false,
-        //     useVueI18nImportName: true,
-        //     include: resolve(dirname(fileURLToPath(import.meta.url)), './locales/**'), // provide a path to the folder where you'll store translation data (see below)
-        // })
+        })
     ],
     resolve: {
         alias: {

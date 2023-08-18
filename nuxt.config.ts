@@ -84,17 +84,18 @@ export default defineNuxtConfig({
   ],
 
   pwa: {
+    registerType: 'autoUpdate',
     manifest: {
       name: "Egab Portal",
       short_name: "Egab",
       icons: [
         {
-          src: "/android-chrome-192x192.png",
+          src: "android-chrome-192x192.png",
           sizes: "192x192",
           type: "image/png"
         },
         {
-          src: "/android-chrome-256x256.png",
+          src: "android-chrome-256x256.png",
           sizes: "256x256",
           type: "image/png"
         }
@@ -102,6 +103,18 @@ export default defineNuxtConfig({
       theme_color: "#ffffff",
       background_color: "#ffffff",
       display: "standalone"
+    },
+    workbox: {
+      navigateFallback: '/',
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}']
+    },
+    client: {
+      installPrompt: true
+    },
+    devOptions: {
+      enabled: true,
+      navigateFallbackAllowlist: [/^\/$/],
+      type: 'module'
     }
   },
 
