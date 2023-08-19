@@ -1,13 +1,19 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import vuetify from "vite-plugin-vuetify";
 import {langs} from "./utils/languages";
-import fs from 'fs-extra'
 
 export default defineNuxtConfig({
   // @ts-ignore
   ssr: true,
 
   nitro: {
+    preset: 'render_com',
+    routing: {
+      routeRules: {
+        '/assets/': { headers: { 'cache-control': 's-maxage=31536000' } },
+        '/public/': { headers: { 'cache-control': 's-maxage=31536000' } }
+      }
+    },
     compressPublicAssets: true
   },
 

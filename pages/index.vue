@@ -1,9 +1,9 @@
 <template>
   <v-container>
-    <h2 class="text-h2">{{ $t('hello') }}</h2>
     <hydration-status />
 
     <delay-hydration>
+      <h2 class="text-h2">{{ $t('hello') }}</h2>
       <v-card>
         <v-card-title>
           <v-row justify="center">
