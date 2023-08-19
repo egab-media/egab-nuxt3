@@ -7,15 +7,6 @@ export default defineNuxtConfig({
   // @ts-ignore
   ssr: true,
 
-  devServer: {
-    host: 'nash-dev.local',
-    port: 3000,
-    https: {
-      key: fs.readFileSync('./nash-dev.local-key.pem').toString(),
-      cert: fs.readFileSync('./nash-dev.local.pem').toString()
-    }
-  },
-
   nitro: {
     compressPublicAssets: true
   },
@@ -122,13 +113,4 @@ export default defineNuxtConfig({
     locales: langs,
     vueI18n: './locales/i18n.config.ts'
   },
-
-  vite: {
-    // define: {
-    //   'process.env.DEBUG': false,
-    // },
-    // ssr: {
-    //   noExternal: ['vuetify'],
-    // }
-  }
 })

@@ -1,6 +1,20 @@
 <template>
-  <h2 class="text-h2">{{ $t('hello') }}</h2>
-  <e-input v-model="testValue" type="password" label="ssss" cols="3" :rules="['required']" />
+  <v-container>
+    <h2 class="text-h2">{{ $t('hello') }}</h2>
+    <hydration-status />
+
+    <delay-hydration>
+      <v-card>
+        <v-card-title>
+          <v-row justify="center">
+            Some Title
+          </v-row>
+        </v-card-title>
+        <e-input type="text" label="Some Text" cols="3" :rules="['required']" />
+        <e-input v-model="testValue" type="password" label="Password" cols="3" :rules="['required']" />
+      </v-card>
+    </delay-hydration>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -13,6 +27,9 @@ export default defineComponent({
 </script>
 
 <script lang="ts" setup>
+import {VContainer, VRow} from 'vuetify/components/VGrid'
+import {VCard, VCardTitle} from 'vuetify/components/VCard'
+
 const {locale} = useI18n()
 useHead({
   htmlAttrs: {

@@ -5,7 +5,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview --https --ssl-cert nash-dev.local.pem --ssl-key nash-dev.local-key.pem",
+    "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "test": "vitest -u",
     "test:ui": "vitest --ui -u",
