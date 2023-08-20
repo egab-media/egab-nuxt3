@@ -1,7 +1,5 @@
 <template>
   <v-container>
-    <hydration-status />
-
     <delay-hydration>
       <h2 class="text-h2">{{ $t('hello') }}</h2>
       <v-card>
