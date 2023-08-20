@@ -25,10 +25,13 @@
       </v-list-item>
     </template>
     <template #selection="{ item }">
-      <v-list-item dense max-height="10" class="pa-0" :prepend-avatar="item.value.flag">
-      <v-list-item-title class="text-body-2 font-weight-bold">
-        {{ item.value.name === 'Arabic' ? 'العربية' : item.value.name }}
-      </v-list-item-title>
+      <v-list-item dense max-height="10" class="pa-0">
+        <template #prepend>
+          <v-img width="40" cover :src="item.value.flag" aspect-ratio="16/9" />
+        </template>
+        <v-list-item-title class="text-body-2 font-weight-bold">
+          {{ item.value.name === 'Arabic' ? 'العربية' : item.value.name }}
+        </v-list-item-title>
       </v-list-item>
     </template>
   </v-select>
