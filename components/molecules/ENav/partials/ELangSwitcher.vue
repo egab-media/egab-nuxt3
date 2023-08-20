@@ -15,7 +15,10 @@
     :menu-props="{ bottom: true, offsetY: true, closeOnContentClick: true }"
   >
     <template #item="{ item }">
-      <v-list-item height="30" dense :prepend-avatar="item.value.flag" :to="switchLocalePath(item.value.code)" @click="handleClick(item.value.code)">
+      <v-list-item height="30" dense :to="switchLocalePath(item.value.code)" @click="handleClick(item.value.code)">
+        <template #prepend>
+          <v-img width="40" cover :src="item.value.flag" aspect-ratio="16/9" />
+        </template>
         <v-list-item-title :class="item.value.name === 'Arabic' ? 'atom-font__arabic' : ''">
           {{ item.value.name === 'Arabic' ? 'العربية' : item.value.name }}
         </v-list-item-title>
@@ -54,9 +57,10 @@ export default defineComponent({
 
 <script lang="ts" setup>
 import { VListItem, VListItemTitle } from 'vuetify/components/VList'
-import {VSelect} from "vuetify/components/VSelect";
-import {langs} from "~/utils/languages";
-import {useI18n} from "vue-i18n";
+import {VSelect} from "vuetify/components/VSelect"
+import {langs} from "~/utils/languages"
+import {VImg} from 'vuetify/components/VImg'
+import {useI18n} from "vue-i18n"
 
 const { setLocale, locale } = useI18n()
 
