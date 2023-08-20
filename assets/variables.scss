@@ -1,4 +1,4 @@
-$font-family: 'Panton', 'sans-serif' !default;
+$font-family: 'Panton', sans-serif !default;
 
 @forward 'vuetify' with (
   $typography: (
@@ -13,5 +13,5 @@ $font-family: 'Panton', 'sans-serif' !default;
     'button': ('font-family': $font-family),
     'caption': ('font-family': $font-family),
     'overline': ('font-family': $font-family),
-  )
+  ),
 );

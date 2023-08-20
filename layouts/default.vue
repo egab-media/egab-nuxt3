@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <delay-hydration>
+    <div>
       <molecules-e-nav />
-    </delay-hydration>
+    </div>
 
     <v-main>
       <v-locale-provider :rtl="locale === 'ar'">

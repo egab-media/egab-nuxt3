@@ -2,16 +2,13 @@
   <v-app-bar fixed app>
     <!-- TODO: May be needed in mobile screens -->
     <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
+      <v-app-bar-title>
+        Logo here
+      </v-app-bar-title>
 
-    <v-app-bar-title>
-      Logo here
-    </v-app-bar-title>
-
-    <template v-slot:append>
-      <v-lazy>
+      <template v-slot:append>
         <e-lang-switcher />
-      </v-lazy>
-    </template>
+      </template>
   </v-app-bar>
 </template>
 
@@ -28,6 +25,8 @@ import { VLazy } from 'vuetify/components/VLazy'
 import ELangSwitcher from './partials/ELangSwitcher.vue';
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+//@use 'vuetify/settings' with (
+//  $app-bar-transition: none
+//);
 </style>

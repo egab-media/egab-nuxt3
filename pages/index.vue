@@ -9,7 +9,7 @@
           </v-row>
         </v-card-title>
         <e-input type="text" label="Some Text" cols="3" :rules="['required']" />
-        <e-input v-model="testValue" type="password" label="Password" cols="3" :rules="['required']" />
+        <e-input v-model="testValue" id="pass" type="password" label="Password" cols="3" :rules="['required']" />
       </v-card>
     </delay-hydration>
   </v-container>
