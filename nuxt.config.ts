@@ -60,7 +60,8 @@ export default defineNuxtConfig({
     routing: {
       routeRules: {
         '/assets/': { headers: { 'cache-control': 's-maxage=31536000' } },
-        '/public/': { headers: { 'cache-control': 's-maxage=31536000' } }
+        '/public/': { headers: { 'cache-control': 's-maxage=31536000' } },
+        '/public/fonts/': { headers: { 'cache-control': 's-maxage=31536000' } },
       }
     },
     compressPublicAssets: true
