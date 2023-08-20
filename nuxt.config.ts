@@ -36,6 +36,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     'nuxt-delay-hydration',
     '@vite-pwa/nuxt',
+    '@nuxt/image',
     ['nuxt-purgecss', {
     enabled: true,
     safelist: {

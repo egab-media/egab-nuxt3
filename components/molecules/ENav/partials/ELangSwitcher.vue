@@ -17,7 +17,7 @@
     <template #item="{ item }">
       <v-list-item height="30" dense :to="switchLocalePath(item.value.code)" @click="handleClick(item.value.code)">
         <template #prepend>
-          <v-img width="40" cover :src="item.value.flag" aspect-ratio="16/9" />
+          <nuxt-img :src="item.value.flag" width="40px" height="25px" />
         </template>
         <v-list-item-title :class="item.value.name === 'Arabic' ? 'atom-font__arabic' : ''">
           {{ item.value.name === 'Arabic' ? 'العربية' : item.value.name }}
@@ -27,7 +27,7 @@
     <template #selection="{ item }">
       <v-list-item dense max-height="10" class="pa-0">
         <template #prepend>
-          <v-img width="40" cover :src="item.value.flag" aspect-ratio="16/9" />
+          <nuxt-img :src="item.value.flag" width="40px" height="25px" />
         </template>
         <v-list-item-title class="text-body-2 font-weight-bold">
           {{ item.value.name === 'Arabic' ? 'العربية' : item.value.name }}
