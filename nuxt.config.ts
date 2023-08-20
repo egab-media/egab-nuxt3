@@ -6,6 +6,55 @@ export default defineNuxtConfig({
   // @ts-ignore
   ssr: true,
 
+  app: {
+    head: {
+      link: [
+        {
+          rel: 'preload',
+          as: 'font',
+          href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.eot',
+          type: 'font/eot',
+          crossorigin: 'anonymous'
+        },
+        {
+          rel: 'preload',
+          as: 'font',
+          href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.svg',
+          type: 'font/svg',
+          crossorigin: 'anonymous'
+        },
+        {
+          rel: 'preload',
+          as: 'font',
+          href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.ttf',
+          type: 'font/ttf',
+          crossorigin: 'anonymous'
+        },
+        {
+          rel: 'preload',
+          as: 'font',
+          href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.woff',
+          type: 'font/woff',
+          crossorigin: 'anonymous'
+        },
+        {
+          rel: 'preload',
+          as: 'font',
+          href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.woff2',
+          type: 'font/woff2',
+          crossorigin: 'anonymous'
+        },
+        {
+          rel: 'preload',
+          as: 'font',
+          href: './fonts/panton/ArbFONTS-59GE-SS-Two.otf',
+          type: 'font/otf',
+          crossorigin: 'anonymous'
+        },
+      ]
+    }
+  },
+
   nitro: {
     preset: 'render_com',
     routing: {
