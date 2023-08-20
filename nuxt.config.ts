@@ -9,34 +9,34 @@ export default defineNuxtConfig({
   app: {
     head: {
       link: [
-        {
-          rel: 'preload',
-          as: 'font',
-          href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.eot',
-          type: 'font/eot',
-          crossorigin: 'anonymous'
-        },
-        {
-          rel: 'preload',
-          as: 'font',
-          href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.svg',
-          type: 'font/svg',
-          crossorigin: 'anonymous'
-        },
-        {
-          rel: 'preload',
-          as: 'font',
-          href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.ttf',
-          type: 'font/ttf',
-          crossorigin: 'anonymous'
-        },
-        {
-          rel: 'preload',
-          as: 'font',
-          href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.woff',
-          type: 'font/woff',
-          crossorigin: 'anonymous'
-        },
+        // {
+        //   rel: 'preload',
+        //   as: 'font',
+        //   href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.eot',
+        //   type: 'font/eot',
+        //   crossorigin: 'anonymous'
+        // },
+        // {
+        //   rel: 'preload',
+        //   as: 'font',
+        //   href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.svg',
+        //   type: 'font/svg',
+        //   crossorigin: 'anonymous'
+        // },
+        // {
+        //   rel: 'preload',
+        //   as: 'font',
+        //   href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.ttf',
+        //   type: 'font/ttf',
+        //   crossorigin: 'anonymous'
+        // },
+        // {
+        //   rel: 'preload',
+        //   as: 'font',
+        //   href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.woff',
+        //   type: 'font/woff',
+        //   crossorigin: 'anonymous'
+        // },
         {
           rel: 'preload',
           as: 'font',
@@ -44,13 +44,13 @@ export default defineNuxtConfig({
           type: 'font/woff2',
           crossorigin: 'anonymous'
         },
-        {
-          rel: 'preload',
-          as: 'font',
-          href: './fonts/panton/ArbFONTS-59GE-SS-Two.otf',
-          type: 'font/otf',
-          crossorigin: 'anonymous'
-        },
+        // {
+        //   rel: 'preload',
+        //   as: 'font',
+        //   href: './fonts/panton/ArbFONTS-59GE-SS-Two.otf',
+        //   type: 'font/otf',
+        //   crossorigin: 'anonymous'
+        // },
       ]
     }
   },
@@ -59,9 +59,8 @@ export default defineNuxtConfig({
     preset: 'render_com',
     routing: {
       routeRules: {
-        '/assets/': { headers: { 'cache-control': 's-maxage=31536000' } },
-        '/public/': { headers: { 'cache-control': 's-maxage=31536000' } },
-        '/public/fonts/': { headers: { 'cache-control': 's-maxage=31536000' } },
+        '/assets/': { headers: { 'cache-control': 's-maxage=31536000', 'must-revalidate': true } },
+        '/public/': { headers: { 'cache-control': 's-maxage=31536000', 'must-revalidate': true } }
       }
     },
     compressPublicAssets: true
