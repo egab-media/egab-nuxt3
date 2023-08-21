@@ -9,48 +9,13 @@ export default defineNuxtConfig({
     app: {
         head: {
             link: [
-                // {
-                //   rel: 'preload',
-                //   as: 'font',
-                //   href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.eot',
-                //   type: 'font/eot',
-                //   crossorigin: 'anonymous'
-                // },
-                // {
-                //   rel: 'preload',
-                //   as: 'font',
-                //   href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.svg',
-                //   type: 'font/svg',
-                //   crossorigin: 'anonymous'
-                // },
-                // {
-                //   rel: 'preload',
-                //   as: 'font',
-                //   href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.ttf',
-                //   type: 'font/ttf',
-                //   crossorigin: 'anonymous'
-                // },
-                // {
-                //   rel: 'preload',
-                //   as: 'font',
-                //   href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.woff',
-                //   type: 'font/woff',
-                //   crossorigin: 'anonymous'
-                // },
                 {
                     rel: 'preload',
-                    as: 'font',
+                    as: 'document',
                     href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.woff2',
                     type: 'font/woff2',
                     crossorigin: 'anonymous'
-                },
-                // {
-                //   rel: 'preload',
-                //   as: 'font',
-                //   href: './fonts/panton/ArbFONTS-59GE-SS-Two.otf',
-                //   type: 'font/otf',
-                //   crossorigin: 'anonymous'
-                // },
+                }
             ]
         }
     },
@@ -59,8 +24,8 @@ export default defineNuxtConfig({
         preset: 'render_com',
         routing: {
             routeRules: {
-                '/assets/': {headers: {'cache-control': 's-maxage=31536000', 'must-revalidate': true}},
-                '/public/': {headers: {'cache-control': 's-maxage=31536000', 'must-revalidate': true}}
+                '/assets/': {headers: {'cache-control': 'maxage=31536000 s-maxage=31536000'}},
+                '/public/': {headers: {'cache-control': 'maxage=31536000 s-maxage=31536000'}}
             }
         },
         compressPublicAssets: true
@@ -153,7 +118,7 @@ export default defineNuxtConfig({
         },
         workbox: {
             navigateFallback: '/',
-            globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+            globPatterns: ['**/*.{js,css,html,png,svg,ico,ttf,eot,woff,woff2,svg}'],
             runtimeCaching: [
                 {
                     urlPattern: './fonts/panton/5920187ef0bf42859293e1ea01545b96.woff2',
