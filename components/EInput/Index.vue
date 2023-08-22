@@ -4,11 +4,12 @@
       v-model="reactiveValue"
       v-bind="$props"
       :ref="id"
+      :id="id"
       :append-inner-icon="type === 'password' ? showPass ? mdiEye : mdiEyeOff : appendIcon"
       density="compact"
       :type="showPass ? 'text' : type"
       flat
-      dirty
+      :title="id"
       variant="outlined"
       :rules="handleRules()"
       @keyup="getProgress()"
@@ -22,10 +23,10 @@
         <slot :name="inputSlot" v-bind="slotScope" />
       </template>
 
-      <template #label>
-        <span v-if="rules.includes('required')" v-text="'* '" data-test="input-asterisk" class="red--text" />
-        <span v-text="label" data-test="input-label" />
-      </template>
+<!--      <template v-slot:label="{label, props}">-->
+<!--        <span v-if="rules.includes('required')" v-text="'* '" data-test="input-asterisk" class="red--text" />-->
+<!--        <span v-text="label" data-test="input-label" />-->
+<!--      </template>-->
 
       <template v-if="type === 'password'" #loader>
         <v-progress-linear
@@ -81,10 +82,26 @@ export default defineComponent({
       default: ''
     },
   },
-  data: () => ({
+  data: (vm) => ({
     inputRef: null,
     showPass: false,
-    progress: 0
+    progress: 0,
+    reservedRules: {
+      required: (val: string) => ruleSpecs.required(val, vm.$t('auth.form.validation.required') as string),
+      blank: (val: string) => ruleSpecs.blank(val, 'cannot be blank') as string,
+      email: (val: string) => ruleSpecs.email(val, vm.$t('auth.form.validation.email') as string),
+      alpha: (val: string) => ruleSpecs.alpha(val, vm.$t('auth.form.validation.alpha') as string),
+      titleMinChars: (val: string) => ruleSpecs.titleMinChars(val, vm.$t('auth.form.validation.titleMinChars') as string),
+      fullNameMinChars: (val: string) => ruleSpecs.fullNameMinChars(val, vm.$t('auth.form.validation.fullNameMinChars') as string),
+      ip: (val: string) => ruleSpecs.ip(val, vm.$t('auth.form.validation.ip') as string),
+      port: (val: string) => ruleSpecs.port(val, vm.$t('auth.form.validation.port') as string),
+      hasLowercase: (val: string) => ruleSpecs.hasLowercase(val, vm.$t('auth.form.validation.hasLowercase') as string),
+      hasUppercase: (val: string) => ruleSpecs.hasUppercase(val, vm.$t('auth.form.validation.hasUppercase') as string),
+      hasNumber: (val: string) => ruleSpecs.hasNumber(val, vm.$t('auth.form.validation.hasNumber') as string),
+      hasSpecial: (val: string) => ruleSpecs.hasSpecial(val, vm.$t('auth.form.validation.hasSpecial') as string),
+      minchars: (val: string) => ruleSpecs.minchars(val, vm.$t('auth.form.validation.minchars') as string),
+      url: (val: string) => ruleSpecs.url(val)
+    } as any
   }),
 
   computed: {
@@ -121,33 +138,17 @@ export default defineComponent({
      */
     handleRules(): Array<any> {
       const finalRules: any = []
-      const reservedRules: any = {
-        required: (val: string) => ruleSpecs.required(val, this.$t('auth.form.validation.required') as string),
-        blank: (val: string) => ruleSpecs.blank(val, 'cannot be blank') as string,
-        email: (val: string) => ruleSpecs.email(val, this.$t('auth.form.validation.email') as string),
-        alpha: (val: string) => ruleSpecs.alpha(val, this.$t('auth.form.validation.alpha') as string),
-        titleMinChars: (val: string) => ruleSpecs.titleMinChars(val, this.$t('auth.form.validation.titleMinChars') as string),
-        fullNameMinChars: (val: string) => ruleSpecs.fullNameMinChars(val, this.$t('auth.form.validation.fullNameMinChars') as string),
-        ip: (val: string) => ruleSpecs.ip(val, this.$t('auth.form.validation.ip') as string),
-        port: (val: string) => ruleSpecs.port(val, this.$t('auth.form.validation.port') as string),
-        hasLowercase: (val: string) => ruleSpecs.hasLowercase(val, this.$t('auth.form.validation.hasLowercase') as string),
-        hasUppercase: (val: string) => ruleSpecs.hasUppercase(val, this.$t('auth.form.validation.hasUppercase') as string),
-        hasNumber: (val: string) => ruleSpecs.hasNumber(val, this.$t('auth.form.validation.hasNumber') as string),
-        hasSpecial: (val: string) => ruleSpecs.hasSpecial(val, this.$t('auth.form.validation.hasSpecial') as string),
-        minchars: (val: string) => ruleSpecs.minchars(val, this.$t('auth.form.validation.minchars') as string),
-        url: (val: string) => ruleSpecs.url(val)
-      }
+      const reservedRules = this.reservedRules
+
       this.rules.forEach((key: string | any) => {
         if (typeof key !== 'string') {
           finalRules.push(key)
-          console.log('rules => ', finalRules)
         }
 
         if (key in reservedRules) {
           finalRules.push(reservedRules[key])
         }
       })
-
       return finalRules
     },
 
@@ -165,14 +166,12 @@ export default defineComponent({
         if (this.inputRef) {
           const cached = await (this.inputRef as any).validate()
           errs = toRaw(cached)
-          console.log(errs)
         }
 
         const worker = new Worker('/js/password-progress.worker.js')
         // Listening
         worker.addEventListener('message', (event: { data: number }) => {
           this.progress = event.data
-          console.log('received from worker => ', event.data)
           worker.terminate()
         })
 
@@ -181,7 +180,6 @@ export default defineComponent({
           rules: this.rules,
           errs
         })
-        console.log(this.progress)
         return this.progress
       }
     }

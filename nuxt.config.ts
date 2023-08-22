@@ -80,6 +80,7 @@ export default defineNuxtConfig({
                     /v-text-field/,
                     /v-input/,
                     /v-progress-linear/,
+                    /v-label/,
                     /v-list-item/
                 ]
             }

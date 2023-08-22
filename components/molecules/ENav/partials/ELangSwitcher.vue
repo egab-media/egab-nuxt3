@@ -10,8 +10,6 @@
     item-text="value.name"
     item-value="value.code"
     full-width
-    title="select language"
-    aria-label="select language"
     :menu-props="{ bottom: true, offsetY: true, closeOnContentClick: true }"
   >
     <template #item="{ item }">
@@ -62,7 +60,6 @@ export default defineComponent({
 import { VListItem, VListItemTitle } from 'vuetify/components/VList'
 import {VSelect} from "vuetify/components/VSelect"
 import {langs} from "~/utils/languages"
-import {VImg} from 'vuetify/components/VImg'
 import {useI18n} from "vue-i18n"
 
 const { setLocale, locale } = useI18n()
