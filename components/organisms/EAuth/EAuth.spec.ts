@@ -11,7 +11,14 @@ import {
 import EInput from '@/components/EInput/Index.vue'
 import {VueWrapper} from "@vue/test-utils";
 
-let wrapper: VueWrapper<typeof EAuth>
+type RelaxedVue = typeof EAuth & {
+    form: {
+        email: string
+        name: string
+    }
+}
+
+let wrapper: VueWrapper<RelaxedVue>
 
 const findAuthWrapper = () => wrapper.find('[data-test="auth-wrapper"]')
 const findEmailInput = () => wrapper.find('[data-test="email"]')
@@ -64,8 +71,6 @@ describe('EAuth', () => {
             }
         }
         vueContext.components = { 'e-input': EInput }
-        // vueContext.stubs = ['e-input']
-        // vueContext.attachTo = document.body
 
         wrapper = mountWrapper(EAuth, vueContext)
     })
@@ -77,6 +82,7 @@ describe('EAuth', () => {
     describe('DOM', () => {
         describe('Mounting', () => {
             it('should test wrapper', async () => {
+                expect(findAuthWrapper().attributes('class')).not.toContain('px-6')
                 wrapper.vm.$vuetify.display.mobile = false
                 wrapper.vm.$vuetify.display.lg = true
                 await nextTick()
@@ -104,11 +110,16 @@ describe('EAuth', () => {
                 })
                 await nextTick()
                 expect(findEmailInput().find('label').text()).toBe('your email')
+                await findEmailInput().find('input').setValue('meow@me.com')
+                expect(wrapper.vm.form.email).toBe('meow@me.com')
             })
 
-            it('should load name input', function () {
+            it('should load name input', async function () {
                 expect(findNameInput().exists()).toBeTruthy()
                 expect(findNameInput().find('label').text()).toEqual('first and last name')
+                await findNameInput().find('input').setValue('vitest')
+                expect(wrapper.vm.form.name).toBe('vitest')
+                expect(findNameInput().find('.v-counter').text()).toBe('1')
             })
         })
     })

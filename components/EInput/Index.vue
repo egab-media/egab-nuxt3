@@ -83,6 +83,8 @@ export default defineComponent({
       type: String,
       default: ''
     },
+    counter: { type: Boolean, default: false },
+    counterValue: { type: Function, default: undefined }
   },
   data: (vm) => ({
     inputRef: null,
