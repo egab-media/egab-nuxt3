@@ -1,6 +1,6 @@
 import { vi } from 'vitest'
-import en from '@/locales/en-US.json'
-import ar from '@/locales/ar-SA.json'
+import en from '~/locales/en-US.json'
+import ar from '~/locales/ar-SA.json'
 import { createTestingPinia } from '@pinia/testing'
 import { createVuetify } from 'vuetify'
 import * as vueTestUtils from '@vue/test-utils'
@@ -26,11 +26,12 @@ export const addI18n = (context: any): any => {
     // eslint-disable-next-line new-cap
     context.i18nInstance = createI18n({
         // ...options,
-        messages: { en, ar },
         fallbackLocale: 'en',
-        legacy: false,
+        locale: 'en',
+        legacy: true,
         globalInjection: true,
-        allowComposition: true,
+        allowComposition: false,
+        messages: { en, ar },
     })
     context.vue.use(context.i18nInstance)
     context.vueTestUtils.config.global.plugins.push(context.i18nInstance)

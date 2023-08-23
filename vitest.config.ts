@@ -29,10 +29,12 @@ export default {
             vueTemplate: true
         }),
         VueI18nPlugin({
-            globalSFCScope: true,
+            globalSFCScope: false,
             fullInstall: true,
             runtimeOnly: false,
             useVueI18nImportName: true,
+            allowDynamic: true,
+            forceStringify: true,
             include: resolve(dirname(fileURLToPath(import.meta.url)), './locales/**'), // provide a path to the folder where you'll store translation data (see below)
         })
     ],

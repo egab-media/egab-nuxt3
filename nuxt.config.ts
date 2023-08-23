@@ -52,6 +52,7 @@ export default defineNuxtConfig({
         '@vite-pwa/nuxt',
         '@nuxt/image',
         'nuxt-vuefire',
+        '@nuxtjs/html-validator',
         ['nuxt-purgecss', {
             enabled: true,
             safelist: {
@@ -96,6 +97,10 @@ export default defineNuxtConfig({
             );
         } : undefined,
     ],
+
+    htmlValidator: {
+        usePrettier: true
+    },
 
     vuefire: {
         auth: true,
