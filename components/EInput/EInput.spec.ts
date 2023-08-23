@@ -111,7 +111,7 @@ describe('Global EInput', () => {
             await input.trigger('focus')
             await input.trigger('blur')
             expect(wrapper.find('.v-input--error').exists()).toBeTruthy()
-            expect(wrapper.find('.v-input__details').text()).toEqual('auth.form.validation.required')
+            expect(wrapper.find('.v-input__details').text()).toEqual('* required')
         });
     })
 })

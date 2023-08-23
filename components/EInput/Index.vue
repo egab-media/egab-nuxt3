@@ -23,10 +23,10 @@
         <slot :name="inputSlot" v-bind="slotScope" />
       </template>
 
-<!--      <template v-slot:label="{label, props}">-->
-<!--        <span v-if="rules.includes('required')" v-text="'* '" data-test="input-asterisk" class="red--text" />-->
-<!--        <span v-text="label" data-test="input-label" />-->
-<!--      </template>-->
+      <template v-slot:label="{label, props}">
+        <span v-if="rules.includes('required')" v-text="'* '" data-test="input-asterisk" class="red--text" />
+        <span v-text="label" data-test="input-label" />
+      </template>
 
       <template v-if="type === 'password'" #loader>
         <v-progress-linear

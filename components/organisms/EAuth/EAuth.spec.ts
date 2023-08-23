@@ -98,25 +98,25 @@ describe('EAuth', () => {
         describe('form', () => {
             it('should load the email input', async () => {
                 expect(findEmailInput().exists()).toBe(true)
-                expect(findEmailInput().find('label').text()).toBe('work email')
+                expect(findEmailInput().find('label').text()).toBe('* work email')
                 expect(findEmailInput().find('.v-messages__message').text()).toBe('Can\'t find your company? Please,  register here')
                 await wrapper.setProps({
                     isEditor: false
                 })
                 await nextTick()
-                expect(findEmailInput().find('label').text()).toBe('contact email')
+                expect(findEmailInput().find('label').text()).toBe('* contact email')
                 await wrapper.setProps({
                     isRegister: false
                 })
                 await nextTick()
-                expect(findEmailInput().find('label').text()).toBe('your email')
+                expect(findEmailInput().find('label').text()).toBe('* your email')
                 await findEmailInput().find('input').setValue('meow@me.com')
                 expect(wrapper.vm.form.email).toBe('meow@me.com')
             })
 
             it('should load name input', async function () {
                 expect(findNameInput().exists()).toBeTruthy()
-                expect(findNameInput().find('label').text()).toEqual('first and last name')
+                expect(findNameInput().find('label').text()).toEqual('* first and last name')
                 await findNameInput().find('input').setValue('vitest')
                 expect(wrapper.vm.form.name).toBe('vitest')
                 expect(findNameInput().find('.v-counter').text()).toBe('1')
