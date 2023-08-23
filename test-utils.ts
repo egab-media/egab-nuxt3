@@ -77,6 +77,8 @@ export const shallowMount = (component: any, context: any) => {
         stubs: context.stubs,
         mocks: context.mocks,
         slots: context.slots,
+        global: context.global,
+        components: context.components,
         attachTo: context.attachTo
     })
 }
@@ -92,6 +94,8 @@ export const mountWrapper = (component: any, context: any) => {
         stubs: context.stubs,
         mocks: context.mocks,
         slots: context.slots,
+        global: context.global,
+        components: context.components,
         attachTo: context.attachTo
     })
 }

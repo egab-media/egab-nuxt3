@@ -62,6 +62,8 @@ export default defineComponent({
       type: String,
       default: null
     },
+    hint: { type: String, default: undefined },
+    persistentHint: { type: Boolean, default: false },
     modelValue: {
       default: ''
     },

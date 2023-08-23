@@ -11,7 +11,7 @@ export default defineNuxtConfig({
             link: [
                 {
                     rel: 'preload',
-                    as: 'document',
+                    as: 'font',
                     href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.woff2',
                     type: 'font/woff2',
                     crossorigin: 'anonymous'
@@ -51,6 +51,7 @@ export default defineNuxtConfig({
         'nuxt-delay-hydration',
         '@vite-pwa/nuxt',
         '@nuxt/image',
+        'nuxt-vuefire',
         ['nuxt-purgecss', {
             enabled: true,
             safelist: {
@@ -95,6 +96,19 @@ export default defineNuxtConfig({
             );
         } : undefined,
     ],
+
+    vuefire: {
+        auth: true,
+        config: {
+            apiKey: "AIzaSyDDHJah7UV8pPQOsQze40KxbVBFgw7_e_0",
+            authDomain: "egab-staging.firebaseapp.com",
+            databaseURL: "https://egab-staging-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "egab-staging",
+            storageBucket: "egab-staging.appspot.com",
+            messagingSenderId: "290778158311",
+            appId: "1:290778158311:web:b327e4fc359ecde0f7be42"
+        },
+    },
 
     pwa: {
         registerType: 'autoUpdate',
@@ -152,5 +166,5 @@ export default defineNuxtConfig({
     i18n: {
         locales: langs,
         vueI18n: './locales/i18n.config.ts'
-    },
+    }
 })

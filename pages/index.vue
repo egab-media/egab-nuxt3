@@ -1,7 +1,12 @@
 <template>
   <v-container>
     <delay-hydration>
-      <h2 class="text-h2">{{ $t('hello') }}</h2>
+      <e-input hint="some message">
+        <template #message="{message}">
+          -- {{message}}
+        </template>
+      </e-input>
+      <organisms-e-auth />
     </delay-hydration>
   </v-container>
 </template>
@@ -17,7 +22,6 @@ export default defineComponent({
 
 <script lang="ts" setup>
 import {VContainer} from 'vuetify/components/VGrid'
-import {VCard, VCardTitle, VCardText} from 'vuetify/components/VCard'
 
 const {locale} = useI18n()
 useHead({
