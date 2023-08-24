@@ -18,12 +18,8 @@ const findLabel = () => wrapper.find('[data-test="input-label"]')
 
 describe('Global EInput', () => {
     vueContext = bootstrapVueContext(compositeConfiguration(addVuetify, addI18n))
-    vueContext.mocks = {
-        $worker: {}
-    }
-    vueContext.propsData = {
-        id: 'vi'
-    }
+    vueContext.mocks = {$worker: {}}
+    vueContext.propsData = {id: 'vi'}
     vueContext.stubs = ['v-progress-linear']
     beforeEach(() => {
         /**
@@ -85,8 +81,13 @@ describe('Global EInput', () => {
         it('should render pass', async function () {
             const input = wrapper.find('input')
             expect(input.attributes('type')).toEqual('text')
-            await wrapper.setProps({ type: 'password' })
+            await wrapper.setProps({ type: 'password', label: 'password' })
             expect(input.attributes('type')).toEqual('password')
+            await wrapper.setData({
+                showPass: true
+            })
+            expect(wrapper.find('input').attributes('type')).toEqual('text')
+            expect(wrapper.find('label').text()).toBe('password')
         });
 
         it.todo('should render icons', async function () {

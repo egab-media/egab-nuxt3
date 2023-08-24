@@ -7,7 +7,7 @@ export const blank = function (value: any, validationText = '* Value cannot be b
     return (value && !!value.replace(/^\s+/, '')) || validationText
 }
 
-export const email = function (value: string, validationText = '* Invalid e-mail.') {
+export const email = function (value: string, validationText = '* Invalid e-mail') {
     const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     return pattern.test(value) || validationText
 }
@@ -23,16 +23,6 @@ export const titleMinChars = function (value: string, validationText = '* title 
 
 export const fullNameMinChars = function (value: string, validationText = '* First and last name is required') {
     return value.trim().split(' ').length >= 2 || validationText
-}
-
-export const ip = function (value: string, validationText = '* Wrong IP format') {
-    const hasIp = /^(25[0-5]|2[0-4][0-9]|[01]?[1-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[1-9][1-9]?)$/.test(value)
-    return hasIp || validationText
-}
-
-export const port = function (value: string, validationText = '* Port number should be between 1 and 65535') {
-    const hasPort = /^(^[1-9]{1}$|^[0-9]{2,4}$|^[0-9]{3,4}$|^[1-5]{1}[0-9]{1}[0-9]{1}[0-9]{1}[0-9]{1}$|^[1-6]{1}[0-4]{1}[0-9]{1}[0-9]{1}[0-9]{1}$|^[1-6]{1}[0-5]{1}[0-4]{1}[0-9]{1}[0-9]{1}$|^[1-6]{1}[0-5]{1}[0-5]{1}[0-3]{1}[0-5]{1}$)/.test(value)
-    return hasPort || validationText
 }
 
 export const hasLowercase = function (value: string, validationText = '* password must have at least 1 lowercase character') {

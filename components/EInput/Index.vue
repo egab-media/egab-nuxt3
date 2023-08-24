@@ -97,8 +97,6 @@ export default defineComponent({
       alpha: (val: string) => ruleSpecs.alpha(val, vm.$t('auth.form.validation.alpha') as string),
       titleMinChars: (val: string) => ruleSpecs.titleMinChars(val, vm.$t('auth.form.validation.titleMinChars') as string),
       fullNameMinChars: (val: string) => ruleSpecs.fullNameMinChars(val, vm.$t('auth.form.validation.fullNameMinChars') as string),
-      ip: (val: string) => ruleSpecs.ip(val, vm.$t('auth.form.validation.ip') as string),
-      port: (val: string) => ruleSpecs.port(val, vm.$t('auth.form.validation.port') as string),
       hasLowercase: (val: string) => ruleSpecs.hasLowercase(val, vm.$t('auth.form.validation.hasLowercase') as string),
       hasUppercase: (val: string) => ruleSpecs.hasUppercase(val, vm.$t('auth.form.validation.hasUppercase') as string),
       hasNumber: (val: string) => ruleSpecs.hasNumber(val, vm.$t('auth.form.validation.hasNumber') as string),
