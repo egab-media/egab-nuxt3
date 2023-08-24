@@ -1,11 +1,7 @@
 <template>
   <v-container>
     <delay-hydration>
-      <e-input hint="some message">
-        <template #message="{message}">
-          -- {{message}}
-        </template>
-      </e-input>
+      <e-input v-model="testValue" hint="some message" type="password" label="pass" :rules="['required', 'alpha']" />
       <organisms-e-auth />
     </delay-hydration>
   </v-container>

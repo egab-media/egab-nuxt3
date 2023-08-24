@@ -12,14 +12,13 @@
       :title="id"
       variant="outlined"
       :rules="handleRules()"
-      @keyup="getProgress()"
+      @keyup="type === 'password' ? initProgress(inputRef, rules) : false"
       @click:appendInner="showPass = !showPass"
     >
       <template
           v-for="(_, inputSlot) in $slots"
           #[inputSlot]="slotScope"
       >
-        <!-- @slot inputSlot to enable using custom templates -->
         <slot :name="inputSlot" v-bind="slotScope" />
       </template>
 
@@ -89,7 +88,7 @@ export default defineComponent({
   data: (vm) => ({
     inputRef: null,
     showPass: false,
-    progress: 0,
+    // progress: 0,
     reservedRules: {
       required: (val: string) => ruleSpecs.required(val, vm.$t('auth.form.validation.required') as string),
       blank: (val: string) => ruleSpecs.blank(val, 'cannot be blank') as string,
@@ -162,29 +161,29 @@ export default defineComponent({
      * So it is preferable to assign this to another browser thread to avoid performance issues
      * @returns {number} progress
      */
-    async getProgress() {
-      if (process.client) {
-        let errs: any[] = []
-        if (this.inputRef) {
-          const cached = await (this.inputRef as any).validate()
-          errs = toRaw(cached)
-        }
-
-        const worker = new Worker('/js/password-progress.worker.js')
-        // Listening
-        worker.addEventListener('message', (event: { data: number }) => {
-          this.progress = event.data
-          worker.terminate()
-        })
-
-        // initiating
-        worker.postMessage({
-          rules: this.rules,
-          errs
-        })
-        return this.progress
-      }
-    }
+    // async getProgress() {
+    //   if (process.client) {
+    //     let errs: any[] = []
+    //     if (this.inputRef) {
+    //       const cached = await (this.inputRef as any).validate()
+    //       errs = toRaw(cached)
+    //     }
+    //
+    //     const worker = new Worker('/js/password-progress.worker.js')
+    //     // Listening
+    //     worker.addEventListener('message', (event: { data: number }) => {
+    //       this.progress = event.data
+    //       worker.terminate()
+    //     })
+    //
+    //     // initiating
+    //     worker.postMessage({
+    //       rules: this.rules,
+    //       errs
+    //     })
+    //     return this.progress
+    //   }
+    // }
   }
 })
 </script>
@@ -194,6 +193,12 @@ import {VCol} from "vuetify/components/VGrid"
 import {VTextField} from 'vuetify/components/VTextField';
 import {VProgressLinear} from "vuetify/components/VProgressLinear";
 import { mdiEye, mdiEyeOff } from '@mdi/js'
+import {useGetProgress} from '@/composables/input-progress'
+
+const { getProgress } = useGetProgress()
+const progress = ref(0)
+const initProgress = (inputRef: any, rules: string[]) => getProgress(inputRef, rules, progress)
+defineExpose({ progress, getProgress })
 </script>
 
 <style scoped>

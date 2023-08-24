@@ -1,4 +1,4 @@
-import { VueWrapper } from '@vue/test-utils'
+import {flushPromises, VueWrapper} from '@vue/test-utils'
 import EInput from './Index.vue'
 import { it, expect, describe, afterEach, beforeEach, vi } from 'vitest'
 import {
@@ -8,8 +8,11 @@ import {
     compositeConfiguration,
     mountWrapper
 } from '~/test-utils'
+import {ComponentPublicInstance} from "@vue/runtime-core";
 
-let wrapper: VueWrapper<typeof EInput>
+type MyComponentProps = any
+type MyComponentVariables = {  }
+let wrapper: VueWrapper<ComponentPublicInstance<any, any>>
 let vueContext: any
 
 const findAsterisk = () => wrapper.find('[data-test="input-asterisk"]')
@@ -20,7 +23,7 @@ describe('Global EInput', () => {
     vueContext = bootstrapVueContext(compositeConfiguration(addVuetify, addI18n))
     vueContext.mocks = {$worker: {}}
     vueContext.propsData = {id: 'vi'}
-    vueContext.stubs = ['v-progress-linear']
+    // vueContext.stubs = ['v-progress-linear']
     beforeEach(() => {
         /**
          * SECTION: only for vue-phone-input plugin
@@ -90,16 +93,19 @@ describe('Global EInput', () => {
             expect(wrapper.find('label').text()).toBe('password')
         });
 
-        it.todo('should render icons', async function () {
+        it('should render icons', async function () {
             let iconWrapper;
             iconWrapper = wrapper.find('.v-field__append-inner')
             expect(iconWrapper.exists()).toBeFalsy()
 
             await wrapper.setProps({ type: 'password' })
-            // @ts-ignore
-            expect(wrapper.vm.$props.appendIcon).toEqual('')
+            expect(wrapper.vm.appendIcon).toEqual('')
             iconWrapper = wrapper.find('.v-field__append-inner')
             expect(iconWrapper.exists()).toBeTruthy()
+            await iconWrapper.find('i').trigger('click')
+            expect(wrapper.vm.showPass).toBe(true)
+            await iconWrapper.find('i').trigger('click')
+            expect(wrapper.vm.showPass).toBe(false)
         });
     })
 
@@ -115,4 +121,27 @@ describe('Global EInput', () => {
             expect(wrapper.find('.v-input__details').text()).toEqual('* required')
         });
     })
+
+    describe('keyup event', () => {
+        it('should test keyup', async function () {
+            const spy = vi.spyOn(wrapper.vm, 'initProgress')
+            const input = wrapper.find('input')
+            await input.trigger('keyup')
+            expect(spy).not.toHaveBeenCalled()
+
+            await wrapper.setProps({ type: 'password', rules: ['required', 'alpha'] })
+            await input.trigger('keyup')
+            expect(spy).toHaveBeenCalled()
+        });
+    })
+
+    // describe('progress', () => {
+    //     it('should check progress', async function () {
+    //         await wrapper.setProps({ rules: ['required', 'alpha', 'hasNumber'], type: 'password' })
+    //         expect(wrapper.find('.bg-error').exists()).toBeTruthy()
+    //         await wrapper.find('input').setValue('sa')
+    //         await wrapper.find('input').trigger('keyup')
+    //         console.log(wrapper.find('.v-progress-linear').html())
+    //     })
+    // })
 })
