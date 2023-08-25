@@ -135,13 +135,14 @@ describe('Global EInput', () => {
         });
     })
 
-    // describe('progress', () => {
-    //     it('should check progress', async function () {
-    //         await wrapper.setProps({ rules: ['required', 'alpha', 'hasNumber'], type: 'password' })
-    //         expect(wrapper.find('.bg-error').exists()).toBeTruthy()
-    //         await wrapper.find('input').setValue('sa')
-    //         await wrapper.find('input').trigger('keyup')
-    //         console.log(wrapper.find('.v-progress-linear').html())
-    //     })
-    // })
+    describe('progress', () => {
+        it('should check progress', async function () {
+            await wrapper.setProps({ rules: ['required'], type: 'password' })
+            await wrapper.setProps({ modelValue: 'ee' })
+            await wrapper.find('input').setValue('ee')
+            await wrapper.find('input').trigger('keyup')
+            await flushPromises()
+            console.log(wrapper.vm.progress)
+        })
+    })
 })

@@ -197,7 +197,7 @@ import {useGetProgress} from '@/composables/input-progress'
 
 const { getProgress } = useGetProgress()
 const progress = ref(0)
-const initProgress = (inputRef: any, rules: string[]) => getProgress(inputRef, rules, progress)
+const initProgress = (inputRef: any, rules: string[]) => getProgress(inputRef, rules, toRef(progress))
 defineExpose({ progress, getProgress })
 </script>
 
