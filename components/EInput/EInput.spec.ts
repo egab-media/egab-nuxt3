@@ -130,19 +130,33 @@ describe('Global EInput', () => {
             expect(spy).not.toHaveBeenCalled()
 
             await wrapper.setProps({ type: 'password', rules: ['required', 'alpha'] })
+            await input.setValue('ee')
             await input.trigger('keyup')
             expect(spy).toHaveBeenCalled()
         });
     })
 
-    describe('progress', () => {
-        it('should check progress', async function () {
-            await wrapper.setProps({ rules: ['required'], type: 'password' })
-            await wrapper.setProps({ modelValue: 'ee' })
-            await wrapper.find('input').setValue('ee')
-            await wrapper.find('input').trigger('keyup')
-            await flushPromises()
-            console.log(wrapper.vm.progress)
-        })
+    describe('progress bar', () => {
+        // Eliminates 14% of branching
+        it('should render the progress correctly', async function () {
+            await wrapper.setProps({ type: 'password', rules: ['required', 'hasSpecial'] })
+            wrapper.vm.progress = 100
+            await nextTick()
+
+            const progressBar = wrapper.find('.v-progress-linear')
+            const innerBar = progressBar.find('.v-progress-linear__determinate')
+            expect(progressBar.attributes('aria-valuenow')).toEqual('100')
+            expect(innerBar.attributes('class')).toContain('bg-primary')
+
+            wrapper.vm.progress = 50
+            await nextTick()
+            expect(progressBar.attributes('aria-valuenow')).toEqual('50')
+            expect(innerBar.attributes('class')).toContain('bg-orange')
+
+            wrapper.vm.progress = 80
+            await nextTick()
+            expect(progressBar.attributes('aria-valuenow')).toEqual('80')
+            expect(innerBar.attributes('class')).toContain('bg-warning')
+        });
     })
 })

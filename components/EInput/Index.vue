@@ -196,9 +196,10 @@ import { mdiEye, mdiEyeOff } from '@mdi/js'
 import {useGetProgress} from '@/composables/input-progress'
 
 const { getProgress } = useGetProgress()
-const progress = ref(0)
-const initProgress = (inputRef: any, rules: string[]) => getProgress(inputRef, rules, toRef(progress))
-defineExpose({ progress, getProgress })
+let progress = ref(0)
+const initProgress = async (inputRef: any, rules: string[]) => getProgress(inputRef, rules, progress)
+
+defineExpose({ progress: progress.value, getProgress })
 </script>
 
 <style scoped>
