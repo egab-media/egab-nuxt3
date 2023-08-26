@@ -8,17 +8,11 @@ import {
     compositeConfiguration,
     mountWrapper
 } from '~/test-utils'
-import {ComponentPublicInstance} from "@vue/runtime-core";
-import * as ruleSpecs from "~/utils/allRules";
 
-type MyComponentProps = any
-type MyComponentVariables = {  }
-let wrapper: VueWrapper<ComponentPublicInstance<any, any>>
+let wrapper: VueWrapper<typeof EInput>
 let vueContext: any
 
 const findAsterisk = () => wrapper.find('[data-test="input-asterisk"]')
-const findLabelWrapper = () => wrapper.find('.v-label')
-const findLabel = () => wrapper.find('[data-test="input-label"]')
 
 describe('Global EInput', () => {
     vueContext = bootstrapVueContext(compositeConfiguration(addVuetify, addI18n))
@@ -61,22 +55,6 @@ describe('Global EInput', () => {
             expect(findAsterisk().exists()).toBe(true)
             expect(findAsterisk().text()).toEqual('*')
             expect(findAsterisk().attributes('class')).toEqual('red--text')
-        })
-
-        it.todo('should render label', async () => {
-            const labelWrapper = findLabelWrapper()
-            expect(labelWrapper.text()).toBe('vi')
-
-            const labelText = findLabel()
-
-            expect(labelText.exists()).toBeTruthy()
-            expect(labelText.text()).toEqual('vi')
-            expect(labelText.attributes('class')).toContain('text-caption text-capitalize font-weight-bold')
-
-            await wrapper.setProps({
-                rules: ['required']
-            })
-            expect(labelWrapper.text().replace(/\s+/, '')).toBe('*vi')
         })
     })
 
@@ -208,13 +186,6 @@ describe('Global EInput', () => {
             await input.trigger('focus')
             await input.trigger('blur')
             expect(wrapper.find('.v-input__details').text()).toEqual('* Wrong facebook url format')
-        });
-
-        it.todo('should check computed rules', async function () {
-            await wrapper.setProps({ rules: ['required'] })
-            console.log(wrapper.vm.handleRules())
-            expect(typeof wrapper.vm.rules[0]).toBe('string')
-            expect(wrapper.vm.handleRules()[0]).toContain(function required(val: string) {})
         });
     })
 
