@@ -41,10 +41,7 @@
   "dependencies": {
     "@firebase/app-types": "^0.9.0",
     "@pinia/nuxt": "^0.4.11",
-    "firebase": "^10.2.0",
-    "firebase-admin": "^11.10.1",
     "firebase-functions": "^4.4.1",
-    "nuxt-vuefire": "^0.2.17",
     "pinia": "^2.1.6",
     "sass": "^1.64.2",
     "vite-plugin-vuetify": "^1.0.2",

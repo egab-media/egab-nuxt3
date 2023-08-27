@@ -51,7 +51,6 @@ export default defineNuxtConfig({
         'nuxt-delay-hydration',
         '@vite-pwa/nuxt',
         '@nuxt/image',
-        'nuxt-vuefire',
         ['nuxt-purgecss', {
             enabled: true,
             safelist: {
@@ -96,19 +95,6 @@ export default defineNuxtConfig({
             );
         } : undefined,
     ],
-
-    vuefire: {
-        auth: true,
-        config: {
-            apiKey: "AIzaSyDDHJah7UV8pPQOsQze40KxbVBFgw7_e_0",
-            authDomain: "egab-staging.firebaseapp.com",
-            databaseURL: "https://egab-staging-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "egab-staging",
-            storageBucket: "egab-staging.appspot.com",
-            messagingSenderId: "290778158311",
-            appId: "1:290778158311:web:b327e4fc359ecde0f7be42"
-        },
-    },
 
     pwa: {
         registerType: 'autoUpdate',
