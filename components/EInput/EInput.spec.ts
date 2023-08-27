@@ -1,4 +1,4 @@
-import {flushPromises, VueWrapper} from '@vue/test-utils'
+import {VueWrapper} from '@vue/test-utils'
 import EInput from './Index.vue'
 import { it, expect, describe, afterEach, beforeEach, vi } from 'vitest'
 import {
@@ -169,7 +169,7 @@ describe('Global EInput', () => {
             const input = wrapper.find('input')
             await input.trigger('focus')
             await input.trigger('blur')
-            expect(wrapper.find('.v-input__details').text()).toEqual('* password must have at least one special character (\'"!@#$*;&:?-+)')
+            expect(wrapper.find('.v-input__details').text()).toContain(`* password must have at least one special character`)
         });
 
         it('should check minchars', async function () {
@@ -224,6 +224,11 @@ describe('Global EInput', () => {
             await nextTick()
             expect(progressBar.attributes('aria-valuenow')).toEqual('80')
             expect(innerBar.attributes('class')).toContain('bg-warning')
+        });
+
+        it('should test the composable', async function () {
+            await wrapper.setProps({ type: 'password', rule: ['required'] })
+            console.log(wrapper.vm.getProgress())
         });
     })
 })

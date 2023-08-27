@@ -46,6 +46,7 @@ export default {
         },
     },
     test: {
+        environment: 'happy-dom',
         globals: true,
         css: true,
         coverage: {
@@ -58,6 +59,5 @@ export default {
                 inline: ['vuetify'],
             }
         },
-        environment: 'happy-dom',
     },
 };
