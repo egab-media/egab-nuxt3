@@ -31,10 +31,6 @@ const findSurveySelect = () => wrapper.find('[data-test="survey-select"]')
 const findSurveyOther = () => wrapper.find('[data-test="survey-other"]')
 const findDisclaimer = () => wrapper.find('[data-test="disclaimer"]')
 
-const app = document.createElement('div')
-app.setAttribute('data-app', 'true')
-document.body.appendChild(app)
-
 let vueContext: any
 
 describe('EAuth', () => {
@@ -121,6 +117,13 @@ describe('EAuth', () => {
                 expect(wrapper.vm.form.name).toBe('vitest')
                 expect(findNameInput().find('.v-counter').text()).toBe('1')
             })
+
+            it('should load email input', async function () {
+                expect(findEmailInput().exists()).toBeTruthy()
+                expect(findEmailInput().find('label').text()).toEqual('* work email')
+                await findEmailInput().find('input').setValue('test@vi.vitest')
+                expect(wrapper.vm.form.email).toBe('test@vi.vitest')
+            });
         })
     })
 })
