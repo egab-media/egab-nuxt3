@@ -1,10 +1,10 @@
 import { setActivePinia, createPinia } from 'pinia'
-import { useLanguageStore } from './index'
 import { describe, bench } from 'vitest'
+import { useLanguageStore } from './index'
 
 describe('Language benchmarking', () => {
-    setActivePinia(createPinia())
-    bench('get direction', () => {
-        useLanguageStore().getDir('ar')
-    })
+  setActivePinia(createPinia())
+  bench('get direction', () => {
+    useLanguageStore().getDir('ar')
+  })
 })

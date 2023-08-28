@@ -36,12 +36,11 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
-import {langs} from "~/utils/languages";
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'ELangSwitcher',
-  data: (vm) => ({
+  data: () => ({
     // localeSelection: langs.find(lang => lang.code === vm.$i18n.locale),
     // font: 'Panton',
     // langs,
@@ -58,9 +57,9 @@ export default defineComponent({
 
 <script lang="ts" setup>
 import { VListItem, VListItemTitle } from 'vuetify/components/VList'
-import {VSelect} from "vuetify/components/VSelect"
-import {langs} from "~/utils/languages"
-import {useI18n} from "vue-i18n"
+import { VSelect } from 'vuetify/components/VSelect'
+import { useI18n } from 'vue-i18n'
+import { langs } from '~/utils/languages'
 
 const { setLocale, locale } = useI18n()
 

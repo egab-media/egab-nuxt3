@@ -44,7 +44,7 @@
 
 <script lang="ts">
 export default defineComponent({
-  name: "EInput",
+  name: "ETextField",
   emits: ['update:modelValue'],
   props: {
     cols: {
@@ -83,7 +83,7 @@ export default defineComponent({
     counter: { type: Boolean, default: false },
     counterValue: { type: Function, default: undefined }
   },
-  data: (vm) => ({
+  data: () => ({
     inputRef: null,
     showPass: false,
   }),
@@ -121,6 +121,7 @@ let progress = ref(0)
 const initProgress = async (inputRef: any, rules: string[]) => getProgress(inputRef, rules, progress)
 
 const {handleRules} = useRules()
+// exposing all for unit tests
 defineExpose({ progress: progress.value, getProgress, handleRules })
 </script>
 

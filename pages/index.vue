@@ -1,7 +1,6 @@
 <template>
   <v-container>
     <delay-hydration>
-      <e-input v-model="testValue" hint="some message" type="password" label="pass" :rules="['required', 'alpha']" />
       <organisms-e-auth />
     </delay-hydration>
   </v-container>
@@ -9,17 +8,15 @@
 
 <script lang="ts">
 export default defineComponent({
-  name: "HomePage",
-  data: () => ({
-    testValue: ''
-  })
+  name: 'HomePage',
+  data: () => ({})
 })
 </script>
 
 <script lang="ts" setup>
-import {VContainer} from 'vuetify/components/VGrid'
+import { VContainer } from 'vuetify/components/VGrid'
 
-const {locale} = useI18n()
+const { locale } = useI18n()
 useHead({
   htmlAttrs: {
     lang: locale

@@ -23,7 +23,7 @@
         <v-card-text>
           <v-row no-gutters>
             <!-- SECTION: Email field -->
-            <e-input
+            <e-text-field
               v-model="form.email"
               data-test="email"
               id="email"
@@ -37,10 +37,10 @@
               <template v-slot:message="{ message }">
                 <span v-html="message" />
               </template>
-            </e-input>
+            </e-text-field>
             <!-- SECTION: ./Email field -->
 
-            <e-input
+            <e-text-field
                 v-if="isRegister"
                 v-model="form.name"
                 data-test="name-input"
@@ -56,9 +56,9 @@
 
             <!--
               NOTE:
-              * All rules are registered in the EInput component.
+              * All rules are registered in the ETextField component.
                 This empowers the validation scenarios & progress calculation.
-                For more information, @see @/components/EInput.vue
+                For more information, @see @/components/ETextField.vue
 
               * Id must be assigned as it will be used as a reference for progress calculation
             -->

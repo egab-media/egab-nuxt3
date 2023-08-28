@@ -9,24 +9,28 @@
         <slot />
         <client-only>
           <v-snackbar
-              :model-value="$pwa?.offlineReady || $pwa?.needRefresh"
-              multi-line
+            :model-value="$pwa?.offlineReady || $pwa?.needRefresh"
+            multi-line
           >
-            <p v-if="$pwa.offlineReady">You are offline</p>
-            <p v-else>New updates available, click on reload to update</p>
+            <p v-if="$pwa.offlineReady">
+              You are offline
+            </p>
+            <p v-else>
+              New updates available, click on reload to update
+            </p>
 
-            <template v-slot:actions>
+            <template #actions>
               <v-btn
-                  color="primary"
-                  variant="outlined"
-                  @click="$pwa.updateServiceWorker()"
+                color="primary"
+                variant="outlined"
+                @click="$pwa.updateServiceWorker()"
               >
                 Refresh
               </v-btn>
               <v-btn
-                  color="red"
-                  variant="text"
-                  @click="$pwa.cancelPrompt()"
+                color="red"
+                variant="text"
+                @click="$pwa.cancelPrompt()"
               >
                 Close
               </v-btn>
@@ -38,18 +42,18 @@
             multi-line
           >
             <p>Install PWA</p>
-            <template v-slot:actions>
+            <template #actions>
               <v-btn
-                  color="primary"
-                  variant="outlined"
-                  @click="$pwa.install()"
+                color="primary"
+                variant="outlined"
+                @click="$pwa.install()"
               >
                 Refresh
               </v-btn>
               <v-btn
-                  color="red"
-                  variant="text"
-                  @click="$pwa.cancelInstall()"
+                color="red"
+                variant="text"
+                @click="$pwa.cancelInstall()"
               >
                 Close
               </v-btn>
@@ -68,12 +72,12 @@ export default defineComponent({
 </script>
 
 <script lang="ts" setup>
-import {VApp} from 'vuetify/components/VApp'
-import {VMain} from 'vuetify/components/VMain'
-import {VLocaleProvider} from 'vuetify/components/VLocaleProvider'
-import {VSnackbar} from 'vuetify/components/VSnackbar'
-import {VBtn} from 'vuetify/components/VBtn'
-import {useI18n} from 'vue-i18n'
+import { VApp } from 'vuetify/components/VApp'
+import { VMain } from 'vuetify/components/VMain'
+import { VLocaleProvider } from 'vuetify/components/VLocaleProvider'
+import { VSnackbar } from 'vuetify/components/VSnackbar'
+import { VBtn } from 'vuetify/components/VBtn'
+import { useI18n } from 'vue-i18n'
 
 const { locale } = useI18n()
 </script>

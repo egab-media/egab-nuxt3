@@ -1,0 +1,22 @@
+{
+  "plugins": [
+    "security-node",
+    "anti-trojan-source"
+  ],
+  "extends": [
+    "plugin:security-node/recommended",
+    "plugin:anti-trojan-source/recommended",
+    "@nuxtjs/eslint-config-typescript"
+  ],
+  "rules": {
+    "equire-await": "off",
+    "space-before-function-paren": "off",
+    "vue/valid-v-slot": [
+      "error",
+      {
+        "allowModifiers": true
+      }
+    ],
+    "vue/no-export-in-script-setup": "off"
+  }
+}
