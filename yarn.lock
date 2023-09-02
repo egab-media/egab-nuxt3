@@ -10747,10 +10747,10 @@ vuefire@^3.1.15:
   dependencies:
     vue-demi latest
 
-vuetify@^3.3.12:
-  version "3.3.12"
-  resolved "https://registry.npmjs.org/vuetify/-/vuetify-3.3.12.tgz"
-  integrity sha512-mH3CF+ALM1sC0Zm91IPq5b+bummrHH/Ek9jwYrQ0+fOAoJWd9nUcOIHODTPY+PODJDbJTwF6b3wVTDwqzUgTgQ==
+vuetify@3.4.0-alpha.1:
+  version "3.4.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-3.4.0-alpha.1.tgz#838beddaeda34d46d89a8eaeb93d3212e93e76d7"
+  integrity sha512-m0aULcy8VFkkpx7KQ6XkOyHRJCrCkpQNlsnSqocdzypgCRcUOwJG/7kgUy6ugMd433EL2GiDaWGuwt8r1bzTqA==
 
 w3c-xmlserializer@^4.0.0:
   version "4.0.0"

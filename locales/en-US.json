@@ -56,7 +56,7 @@
         "fullNameMinChars": "* First and Last name required",
         "hasLowercase": "* password must have at least 1 lowercase character",
         "hasNumber": "* password must have at least one number",
-        "hasSpecial": "* password must have at least one special character ('\"!@#$*;&:?-+)",
+        "hasSpecial": "* password must have at least one special character {'('}e.g. {'@'}{'*'}{'!'}{'#'}{'$'}{'%'}{'^'}{')'}",
         "hasUppercase": "* password must have at least 1 uppercase character",
         "intCode": "* Wrong format (i.e 5555555555 or +45555555555)",
         "ip": "* Wrong IP format",
@@ -372,7 +372,7 @@
     },
     "s16": {
       "p1": "The ToS is governed by, and construed in accordance with, the laws of the Arab Republic of Egypt.",
-      "p2": "In case you have any claims or complaints regarding any of our services, you are obliged to first communicate with our support team through: clientsupport@egab.co.                    In case your complaint has not been settled in a manner that is satisfactory to you within thirty (30) days, you may resort to arbitration in accordance with the following section.",
+      "p2": "In case you have any claims or complaints regarding any of our services, you are obliged to first communicate with our support team through: clientsupport{'@'}egab.co.                    In case your complaint has not been settled in a manner that is satisfactory to you within thirty (30) days, you may resort to arbitration in accordance with the following section.",
       "p3": "Any dispute, controversy or claim arising out of or relating to this contract, its interpretation, execution, the termination or invalidity thereof, shall be settled by arbitration in accordance with the Rules of Arbitration of the Cairo Regional Centre for International Commercial Arbitration (CRCICA). The seat of arbitration shall be in Egypt; the tribunal shall be composed of a sole arbitrator; and the proceedings shall be in Arabic.",
       "title": "Applicable Law & Dispute Resolution Mechanism"
     },
@@ -430,7 +430,7 @@
         "title": "Commission:"
       },
       "p2": {
-        "li1": "Your entitlements may only be transferred through cashless methods. The types of transfer methods available over Egab may differ from time to time. However, and without prejudice to any applicable laws and regulations, in case this arrangement is not suitable per your case, you are invited to contact us to reach an alternative and feasible solution through this e-mail: accounting@egab.co",
+        "li1": "Your entitlements may only be transferred through cashless methods. The types of transfer methods available over Egab may differ from time to time. However, and without prejudice to any applicable laws and regulations, in case this arrangement is not suitable per your case, you are invited to contact us to reach an alternative and feasible solution through this e-mail: accounting{'@'}egab.co",
         "li2": "The responsibility of providing a secured and feasible transfer mechanism totally lies upon you. Thus, Egab would never be liable for the failure or delay of the transfer mechanism you chose in transferring your entitlements. Any disputes in this regard should be raised against your payment service provider.",
         "li3": "Upon transferring your entitlements, Egab is obliged to provide to you a proof of transfer.",
         "title": "Transfer Mechanism:"
@@ -566,7 +566,7 @@
       "question": "Can I delete my account on Egab?"
     },
     "twenty-two": {
-      "answer": "For editorial queries, you can message the relevant editor directly via the messaging feature on the platform.  For technical queries, email tech@egab.co For financial queries, email accounting@egab.co For general queries before signing up on the platform, email enquiries@egab.co For general queries after signing up on the platform, email clientsupport@egab.co ",
+      "answer": "For editorial queries, you can message the relevant editor directly via the messaging feature on the platform.  For technical queries, email tech{'@'}egab.co For financial queries, email accounting{'@'}egab.co For general queries before signing up on the platform, email enquiries{'@'}egab.co For general queries after signing up on the platform, email clientsupport{'@'}egab.co ",
       "question": "Who can I contact if I have any further queries?"
     },
     "two": {
@@ -1494,7 +1494,7 @@
       },
       "s13": {
         "p1": "If you have questions or comments about this Privacy Policy, please contact Us at;",
-        "p2": "Email: [clientsupport@egab.co]",
+        "p2": "Email: [clientsupport{'@'}egab.co]",
         "p3": "Business Transfer",
         "p4": "Please note that as Your personal data constitutes one of EGAB’s company assets,                 in the event where EGAB, or substantially all of its assets, were acquired,                 or goes out of business or enters bankruptcy, Your information shall be transferred or acquired by a third party.                 ",
         "p5": "You acknowledge that such transfers may occur, and that any acquirer of EGAB may continue to use Your personal information as set forth in this policy.",

@@ -1,3 +1,20 @@
+<script lang="ts" setup>
+import { VApp } from 'vuetify/components/VApp'
+import { VMain } from 'vuetify/components/VMain'
+import { VLocaleProvider } from 'vuetify/components/VLocaleProvider'
+import { VSnackbar } from 'vuetify/components/VSnackbar'
+import { VBtn } from 'vuetify/components/VBtn'
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n()
+</script>
+
+<script lang="ts">
+export default defineComponent({
+  name: 'DefaultLayout'
+})
+</script>
+
 <template>
   <v-app>
     <div>
@@ -64,23 +81,6 @@
     </v-main>
   </v-app>
 </template>
-
-<script lang="ts">
-export default defineComponent({
-  name: 'DefaultLayout'
-})
-</script>
-
-<script lang="ts" setup>
-import { VApp } from 'vuetify/components/VApp'
-import { VMain } from 'vuetify/components/VMain'
-import { VLocaleProvider } from 'vuetify/components/VLocaleProvider'
-import { VSnackbar } from 'vuetify/components/VSnackbar'
-import { VBtn } from 'vuetify/components/VBtn'
-import { useI18n } from 'vue-i18n'
-
-const { locale } = useI18n()
-</script>
 
 <style scoped>
 

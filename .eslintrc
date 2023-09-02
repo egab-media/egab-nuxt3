@@ -17,6 +17,7 @@
         "allowModifiers": true
       }
     ],
-    "vue/no-export-in-script-setup": "off"
+    "vue/no-export-in-script-setup": "off",
+    "import/first": "off"
   }
 }

@@ -1,3 +1,15 @@
+<script lang="ts" setup>
+import { VAppBar, VAppBarTitle } from 'vuetify/components/VAppBar'
+import ELangSwitcher from './partials/ELangSwitcher.vue'
+</script>
+
+<script lang="ts">
+export default defineComponent({
+  name: 'ENav',
+  data: () => ({})
+})
+</script>
+
 <template>
   <v-app-bar fixed app>
     <!-- TODO: May be needed in mobile screens -->
@@ -11,19 +23,6 @@
     </template>
   </v-app-bar>
 </template>
-
-<script lang="ts">
-export default defineComponent({
-  name: 'ENav',
-  data: () => ({})
-})
-</script>
-
-<script lang="ts" setup>
-import { VAppBar, VAppBarTitle } from 'vuetify/components/VAppBar'
-import { VLazy } from 'vuetify/components/VLazy'
-import ELangSwitcher from './partials/ELangSwitcher.vue'
-</script>
 
 <style scoped lang="scss">
 //@use 'vuetify/settings' with (

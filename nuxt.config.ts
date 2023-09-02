@@ -85,6 +85,7 @@ export default defineNuxtConfig({
           /v-col/,
           /v-row/,
           /v-select/,
+          /v-menu/,
           /v-field/,
           /v-text-field/,
           /v-input/,
@@ -95,13 +96,13 @@ export default defineNuxtConfig({
       }
     }],
     process.env.NODE_ENV === 'production'
-      ? async (options, nuxt) => {
-        nuxt.hooks.hook('vite:extendConfig', config =>
-                config.plugins?.push(
-                  vuetify({
-                    styles: { configFile: 'assets/variables.scss' }
-                  })
-                ) as any
+      ? async (_, nuxt) => {
+        await nuxt.hooks.hook('vite:extendConfig', config =>
+          config.plugins?.push(
+            vuetify({
+              styles: { configFile: 'assets/variables.scss' }
+            })
+          ) as any
         )
       }
       : undefined
@@ -146,8 +147,7 @@ export default defineNuxtConfig({
       display: 'standalone'
     },
     workbox: {
-      navigateFallback: '/',
-      globPatterns: ['**/*.{js,css,html,png,svg,ico,ttf,eot,woff,woff2}'],
+      globPatterns: ['**/*.{js,css,html,png,woff2}'],
       runtimeCaching: [
         {
           urlPattern: './fonts/panton/5920187ef0bf42859293e1ea01545b96.woff2',

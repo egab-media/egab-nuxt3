@@ -1,12 +1,11 @@
-import { fileURLToPath, resolve, URL } from 'url'
+import { fileURLToPath, URL } from 'url'
 import vue from '@vitejs/plugin-vue'
-import vuetify from 'vite-plugin-vuetify'
+// import vuetify from 'vite-plugin-vuetify'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { VuetifyResolver } from 'unplugin-vue-components/resolvers'
 
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
-import { dirname } from 'pathe'
 
 export default {
   plugins: [
@@ -34,8 +33,8 @@ export default {
       runtimeOnly: false,
       useVueI18nImportName: true,
       allowDynamic: true,
-      forceStringify: true,
-      include: resolve(dirname(fileURLToPath(import.meta.url)), './locales/**') // provide a path to the folder where you'll store translation data (see below)
+      forceStringify: false,
+      include: fileURLToPath(new URL('./locales/**', import.meta.url)) // provide a path to the folder where you'll store translation data (see below)
     })
   ],
   resolve: {

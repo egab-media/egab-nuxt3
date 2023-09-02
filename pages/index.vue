@@ -1,18 +1,3 @@
-<template>
-  <v-container>
-    <delay-hydration>
-      <organisms-e-auth />
-    </delay-hydration>
-  </v-container>
-</template>
-
-<script lang="ts">
-export default defineComponent({
-  name: 'HomePage',
-  data: () => ({})
-})
-</script>
-
 <script lang="ts" setup>
 import { VContainer } from 'vuetify/components/VGrid'
 
@@ -27,6 +12,21 @@ useSeoMeta({
   title: 'Egab Portal'
 })
 </script>
+
+<script lang="ts">
+export default defineComponent({
+  name: 'HomePage',
+  data: () => ({
+    inputVal: ''
+  })
+})
+</script>
+
+<template>
+  <v-container>
+    Hey there
+  </v-container>
+</template>
 
 <style scoped>
 

@@ -55,6 +55,6 @@
     "sass": "^1.64.2",
     "vite-plugin-vuetify": "^1.0.2",
     "vuefire": "^3.1.15",
-    "vuetify": "^3.3.12"
+    "vuetify": "3.4.0-alpha.1"
   }
 }

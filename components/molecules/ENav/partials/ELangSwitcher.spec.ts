@@ -1,5 +1,5 @@
 import { VueWrapper } from '@vue/test-utils'
-import { beforeEach, afterEach, describe, it, expect, vi } from 'vitest'
+import { beforeEach, afterEach, describe, it, expect } from 'vitest'
 import ELangSwitcher from './ELangSwitcher.vue'
 import {
   addVuetify,
@@ -15,7 +15,7 @@ let wrapper: VueWrapper<typeof ELangSwitcher>
 let vueContext: any
 
 describe('ELangSwitcher', () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     vueContext = bootstrapVueContext(compositeConfiguration(addVuetify, addI18n, addPinia))
     wrapper = mountWrapper(ELangSwitcher, vueContext)
   })

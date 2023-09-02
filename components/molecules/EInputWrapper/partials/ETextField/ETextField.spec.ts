@@ -125,9 +125,8 @@ describe('Global ETextField', () => {
       expect(innerBar.attributes('class')).toContain('bg-warning')
     })
 
-    it('should test the composable', async function () {
+    it.todo('should test the composable', async function () {
       await wrapper.setProps({ type: 'password', rule: ['required'] })
-      console.log(wrapper.vm.getProgress())
     })
   })
 })
