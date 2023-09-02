@@ -7,7 +7,7 @@ import { useRules } from '~/composables/rules'
 
 const { getProgress } = useGetProgress()
 const progress = ref(0)
-defineEmits(['input'])
+defineEmits(['update:modelValue'])
 const initProgress = async (inputRef: any, rules: string[]) => await getProgress(inputRef, rules, progress)
 
 const { handleRules } = useRules()
@@ -79,7 +79,7 @@ export default defineComponent({
     variant="outlined"
     :rules="handleRules(rules)"
     @keyup="type === 'password' ? initProgress(inputRef, rules) : false"
-    @input="$emit('input', $event.target.value)"
+    @input="$emit('update:modelValue', $event.target.value)"
     @click:append-inner="showPass = !showPass"
   >
     <template

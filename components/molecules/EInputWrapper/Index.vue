@@ -13,14 +13,10 @@ export default defineComponent({
     }
   },
   emits: ['update:modelValue'],
-  setup(props, { emit }) {
+  setup(props, { expose }) {
     const textField = resolveComponent('lazy-molecules-e-input-wrapper-partials-e-text-field')
     // TODO: check vuetify open issue for select menus before using all dropdowns
     // const select = resolveComponent('lazy-molecules-e-input-wrapper-partials-e-select')
-
-    const handleInput = (e: any) => {
-      emit('update:modelValue', e?.target?.value || e)
-    }
 
     const getComponent = computed(() => {
       switch (props.componentName) {
@@ -28,7 +24,9 @@ export default defineComponent({
           return textField
       }
     })
-    return { textField, getComponent, handleInput }
+    // NOTE: It is important to expose the modelValue props to the grand parent
+    expose({ modelValue: props.modelValue })
+    return { textField, getComponent }
   }
 })
 </script>
@@ -37,9 +35,8 @@ export default defineComponent({
   <component
     :is="getComponent"
     v-bind="$props"
-    :value="modelValue"
-    @input="handleInput"
-    @change="handleInput"
+    :model-value="modelValue"
+    @update:model-value="$emit('update:modelValue', $event)"
   />
 </template>
 

@@ -24,7 +24,10 @@ export default defineComponent({
 
 <template>
   <v-container>
-    Hey there
+    <molecules-e-input-wrapper
+      v-model="inputVal"
+      label="meow"
+    />
   </v-container>
 </template>
 
