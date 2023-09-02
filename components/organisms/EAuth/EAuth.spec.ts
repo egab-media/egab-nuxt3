@@ -22,15 +22,7 @@ let wrapper: VueWrapper<RelaxedVue>
 
 const findAuthWrapper = () => wrapper.find('[data-test="auth-wrapper"]')
 const findEmailInput = () => wrapper.find('[data-test="email"]')
-// const findForm = () => wrapper.find('[data-test="form"]')
-// const findBtn = () => wrapper.find('[data-test="action-btn"]')
-// const findSubheader = () => wrapper.find('[data-test="subheader"]')
-// const findError = () => wrapper.find('[data-test="error"]')
 const findNameInput = () => wrapper.find('[data-test="name-input"]')
-// const findSurveySelect = () => wrapper.find('[data-test="survey-select"]')
-// const findSurveyOther = () => wrapper.find('[data-test="survey-other"]')
-// const findDisclaimer = () => wrapper.find('[data-test="disclaimer"]')
-
 let vueContext: any
 
 describe('EAuth', () => {
