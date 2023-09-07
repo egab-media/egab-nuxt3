@@ -16,6 +16,8 @@ export default defineComponent({
   setup(props, { expose }) {
     const textField = resolveComponent('lazy-molecules-e-input-wrapper-partials-e-text-field')
     // TODO: check vuetify open issue for select menus before using all dropdowns
+    // check issue on Github: https://github.com/SAP/inquirer-gui/issues/651
+    // https://github.com/vuetifyjs/vuetify/issues/17126
     // const select = resolveComponent('lazy-molecules-e-input-wrapper-partials-e-select')
 
     const getComponent = computed(() => {

@@ -2,6 +2,9 @@
 import vuetify from 'vite-plugin-vuetify'
 import { langs } from './utils/languages'
 
+const ONE_DAY = 60 * 60 * 24 * 1000
+const ONE_WEEK = ONE_DAY * 7
+
 export default defineNuxtConfig({
   // @ts-ignore
   ssr: true,
@@ -17,6 +20,38 @@ export default defineNuxtConfig({
           crossorigin: 'anonymous'
         }
       ]
+    }
+  },
+
+  runtimeConfig: {
+    //  private
+    firebaseAdmin: {
+      project_id: 'egab-staging',
+      private_key_id: 'b3639900bbb0f5e5c9bcaf28aa1d14e5a7dcd0b4',
+      private_key: '-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCj2U7laodej+T9\nkhA9XEMgD0XID10l7T5m+l8L9G8+cYkpj+0GADVdAIdWeaez4+IZQ3IRTQxzoK2v\nxVQzpG/CWKI19zQZFHwIt83EftmYG/Fwr11xvNT7Y9orfozWsdcXQ/E5SUiEe8FU\nAlwl9wVyWE2XVkmS9i1cS+s35CCiFf6zcKivput2M/m5vJQTMlX7L+8XXsRCBG6e\nrxazj6GKXIQyHpAIo8E6tRRSZCYhAG3wInwL/MQa9iQKEI/LiX7itNSpZLuG8nrj\nUBv7gNTjCk8P2093riQ5Is2krEqDaDMP+muIDSUF54WePe48E49trYK+e1lZD2JW\nSdYd4Ia9AgMBAAECggEAILcLi0AdflKR4NVwu6e32WdjQgJbUW7Q1mPoZW0tZxTp\nU6yioV+aSBMKcshApWj7ZJr0ZCLzuQScmWt3mAYdsHrdDJRqyRUvfNgiVDkVvkra\nButk54hSKE20KpoOifGhZkpRGGSa/6TsIZeFCamMY1vhRjXa4+aWgQbBlPvOTj5u\n2tyoFgHg5UGwsdykft2+Kztt8/IJqQNSEueWIiDNrYXgf8skd4HlrcwCTURH3Cn/\nJilsRArI6dR7jajylOmq7udI54kuXZ2PynbS7o29XE8iAm8jlgsnn0hLpDc21ZXK\nwHi0xZfOWjUoP6h5vWkGeRaO442FsC3Yw+cHQsX0iwKBgQDh0Uin8kSS5cNq8HTO\nlEDvQuEZmOSQUPpR0HXo2WLwg4oJ6PblJxUshcHhJgVInHmzR2XvKwYWwSH21wxD\nXjm4vMnqS0ErpE1MlbxeQSIyblPvmDo31KbWEoy4HkeHv98MuBNPmkAqs/SQoTsQ\naGLae1YJ5oFFEwHxxuaOuMDv4wKBgQC5v6pTvD2J8zH8Ak/Bl764kJ8FjfjRE2JD\nu5h7jgi8wimamf+5JlrrYTbFUW6pFBPJYK6m2aVSl8n083bbxcOD+QPLX2YrG3Me\njcXf/wFd2uS2g6/11kpTukOV8MOQsdGCU5H7oh4C8AhozISxXGpUM8WMHJaaaGVS\nFbm/Oecw3wKBgDtS4NSGN++jftgcPYN7vSdeGYbA/OLQ80IFEsTOP0jSNbRuyFXh\nE5XzucBtXZv6x5oKmsPfOKVHraWMT0NvgJiAuEbd6EwPyOLiv26/i71V8KUUB89d\nBUtd6iwAgGgwRuevgBs8ebj+N7S7NqoT0kx1dF/7d2BvIuaiizVZYg5jAoGARn8Y\nvOj/jiCvws55yKa36sJwqCIG4gryS3SiXZo9dK5YLeXuqS2GajkeGWtbjW4iSFaa\nUpbd6OfU7VONs8Ft/+N9bi1J0Gh9m4YBKI9WzHEsRpzaJnprATX7OqgDASKLumPP\nTupra4AAIQ4l+k5xyH1Rp2iePAINGkdGlO378Y8CgYEArBS781ooTe3zk3/sQ991\nU7WQOOj2GrMWXJePOiX6FgHXyYhH2fn3icl5c2G3PGDvPArwGzefbuFpYdfCWZOn\n6tllw+x+MjfKU4JIMcLmDU9FkUk2jjHWaxfNHmZA8ZoqouJ2lFp7G+jdGkDptR3L\nUwWHlDjBrnM/KM0XUuIa66A=\n-----END PRIVATE KEY-----\n',
+      client_email: 'firebase-adminsdk-uviw7@egab-staging.iam.gserviceaccount.com',
+      client_id: '103454563138954494611'
+    },
+    //  public
+    public: {
+      firebaseAuthCookie: {
+        name: 'authCookie',
+        lifetime: parseInt(ONE_WEEK.toString(), 10),
+        domain: 'nash-dev.local',
+        path: '/',
+        sameSite: 'lax'
+      },
+      // authCookieName: '__session',
+      // authCookieExpires: parseInt(ONE_WEEK.toString(), 10),
+      firebase: {
+        apiKey: 'AIzaSyDDHJah7UV8pPQOsQze40KxbVBFgw7_e_0',
+        authDomain: 'egab-staging.firebaseapp.com',
+        databaseURL: 'https://egab-staging-default-rtdb.europe-west1.firebasedatabase.app',
+        projectId: 'egab-staging',
+        storageBucket: 'egab-staging.appspot.com',
+        messagingSenderId: '290778158311',
+        appId: '1:290778158311:web:b327e4fc359ecde0f7be42'
+      }
     }
   },
 
