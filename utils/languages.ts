@@ -1,15 +1,15 @@
 export enum Direction {
-    ltr = 'ltr',
-    rtl = 'rtl',
+  ltr = 'ltr',
+  rtl = 'rtl',
 }
 
 export interface Language {
-    code: string;
-    iso?: string;
-    name: string;
-    file?: string;
-    dir: Direction;
-    flag?: string;
+  code: string;
+  iso?: string;
+  name: string;
+  file?: string;
+  dir: Direction;
+  flag?: string;
 }
 
 export const langs: Language[] = [
