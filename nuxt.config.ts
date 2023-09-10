@@ -9,6 +9,10 @@ export default defineNuxtConfig({
   // @ts-ignore
   ssr: true,
 
+  typescript: {
+    strict: false
+  },
+
   app: {
     head: {
       link: [

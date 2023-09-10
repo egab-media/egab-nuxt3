@@ -3,6 +3,10 @@
     "security-node",
     "anti-trojan-source"
   ],
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser"
+  },
   "extends": [
     "plugin:security-node/recommended",
     "plugin:anti-trojan-source/recommended",
