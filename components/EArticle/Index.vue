@@ -22,7 +22,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <article data-testid="article" v-html="truncate(article, truncateLength)" />
+  <article data-testid="article">
+    {{ truncate(article, truncateLength) }}
+  </article>
 </template>
 
 <style scoped>

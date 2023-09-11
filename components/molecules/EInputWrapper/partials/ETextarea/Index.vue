@@ -28,7 +28,7 @@ export default defineComponent({
     type: {
       type: String,
       default: 'textarea',
-      validator: (val) => val === 'textarea'
+      validator: val => val === 'textarea'
     },
     loading: {
       type: Boolean,
@@ -40,7 +40,7 @@ export default defineComponent({
     },
     counter: { type: Boolean, default: false },
     counterValue: { type: Function, default: undefined }
-  },
+  }
 })
 </script>
 

@@ -28,6 +28,7 @@ export default defineComponent({
       v-model="inputVal"
       label="meow"
     />
+    <e-btn text="dadfa" />
   </v-container>
 </template>
 

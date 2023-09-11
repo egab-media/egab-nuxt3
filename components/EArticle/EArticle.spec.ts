@@ -1,6 +1,6 @@
 import { describe, beforeEach, afterEach, it, expect } from 'vitest'
-import EArticle from './Index.vue'
 import { VueWrapper } from '@vue/test-utils'
+import EArticle from './Index.vue'
 import { addI18n, addVuetify, bootstrapVueContext, compositeConfiguration, mountWrapper } from '~/test-utils'
 
 let wrapper: VueWrapper<typeof EArticle>

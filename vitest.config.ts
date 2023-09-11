@@ -1,9 +1,9 @@
 import { fileURLToPath, URL } from 'url'
 import vue from '@vitejs/plugin-vue'
-// import vuetify from 'vite-plugin-vuetify'
+import vuetify from 'vite-plugin-vuetify'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { VuetifyResolver } from 'unplugin-vue-components/resolvers'
+// import { VuetifyResolver } from 'unplugin-vue-components/resolvers'
 
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
@@ -12,12 +12,12 @@ export default {
     vue({
       customElement: /e-/
     }),
-    // vuetify(),
+    vuetify(),
     Components({
       dirs: ['~/components'],
       directoryAsNamespace: true,
       resolvers: [
-        VuetifyResolver()
+        // VuetifyResolver()
       ],
       include: [/\.vue$/, /\.vue\?vue/, /\.stories\.ts$/, /\.[tj]s$/]
     }),
