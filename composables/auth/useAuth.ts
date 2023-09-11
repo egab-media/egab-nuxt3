@@ -1,6 +1,11 @@
 import { useUser } from '~/composables/auth/useUser'
 import useFirebase from '~/composables/auth/useFirebase'
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth'
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword
+} from 'firebase/auth'
+import { useAuthStore } from '~/store/auth'
 
 export default function useAuth() {
   const user = useUser()
@@ -56,8 +61,13 @@ export default function useAuth() {
 
   async function logout() { await auth.signOut() }
 
+  const userStore = useAuthStore()
+
   onAuthStateChanged(auth, (userDetails) => {
-    if (userDetails) { user.value = userDetails }
+    if (userDetails) {
+      user.value = userDetails
+      userStore.user = userDetails
+    }
   })
 
   return { user, login, signup, logout }

@@ -15,11 +15,19 @@ export default defineEventHandler(async (event) => {
     const authCookie = await auth.createSessionCookie(token, { expiresIn })
     setCookie(event, 'authCookie', authCookie, options)
 
+    //  verify session cookie
+    const sessionToken = await auth.verifySessionCookie(authCookie, true)
+    //  set custom claims
+    //  doc https://firebase.google.com/docs/auth/admin/custom-claims
+    await auth.setCustomUserClaims(sessionToken.uid, {
+      journalist: true
+    })
+
     return {
       statusCode: 200,
-      message: 'Auth success'
+      message: authCookie
     }
-  } catch (error) {
+  } catch (error: any) {
     throw createError({
       statusCode: 401,
       statusMessage: 'Unauthorized',

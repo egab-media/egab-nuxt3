@@ -1,5 +1,4 @@
 import {User} from '@firebase/auth'
-
-interface EgabUser extends User {}
+import { EgabUser } from '~/utils/types'
 
 export const useUser = () => useState<EgabUser | null>('user', () => null)
