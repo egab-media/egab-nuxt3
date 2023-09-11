@@ -1,5 +1,7 @@
-export default defineNuxtRouteMiddleware(async () => {
-  const cookie = useCookie(useRuntimeConfig().public.firebaseAuthCookie.name)
+import { useUser } from '~/composables/auth/useUser'
 
-  if (!cookie) { return navigateTo('/login') }
+export default defineNuxtRouteMiddleware(async () => {
+  const user = useUser()
+  console.log(user.value)
+  if (!user.value) { return navigateTo('/login') }
 })

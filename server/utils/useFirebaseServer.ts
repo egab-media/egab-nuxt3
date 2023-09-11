@@ -1,5 +1,6 @@
 import { cert, getApps, initializeApp } from 'firebase-admin/app'
 import { getAuth } from 'firebase-admin/auth'
+// @ts-ignore
 import serviceAccountJson from './service-account-staging.json'
 
 export default function useFirebaseServer() {

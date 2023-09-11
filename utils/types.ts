@@ -1,5 +1,3 @@
-import { UserRecord } from 'firebase-admin/lib/auth/user-record'
+import { User } from 'firebase/auth'
 
-export interface EgabUser extends Partial<UserRecord> {
-  username?: string
-}
+export interface EgabUser extends User {}
