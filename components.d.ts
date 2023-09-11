@@ -9,7 +9,5 @@ declare module 'vue' {
   export interface GlobalComponents {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    VBtn: typeof import('vuetify/lib')['VBtn']
-    VIcon: typeof import('vuetify/lib')['VIcon']
   }
 }

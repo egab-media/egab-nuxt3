@@ -147,7 +147,7 @@ export default defineNuxtConfig({
       display: 'standalone'
     },
     workbox: {
-      globPatterns: ['**/*.{js,css,html,png,woff2}'],
+      globPatterns: ['**/*.{png,woff2}'],
       runtimeCaching: [
         {
           urlPattern: './fonts/panton/5920187ef0bf42859293e1ea01545b96.woff2',

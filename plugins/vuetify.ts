@@ -4,6 +4,15 @@ import { VBtn } from 'vuetify/components/VBtn'
 import { Intersect } from 'vuetify/directives'
 // @ts-ignore
 import colors from 'vuetify/lib/util/colors.mjs'
+import { IconProps, IconSet } from 'vuetify/dist/vuetify-labs'
+import EIconGoogle from '~/components/icons/EIconGoogle/Index.vue'
+
+const customSVGs: any = {
+  EIconGoogle
+}
+const custom: IconSet = {
+  component: (props: IconProps) => h(props.tag, [h(customSVGs[props.icon])])
+}
 
 export default defineNuxtPlugin((nuxtApp) => {
   const vuetify = createVuetify({
@@ -18,7 +27,10 @@ export default defineNuxtPlugin((nuxtApp) => {
     icons: {
       defaultSet: 'mdi',
       aliases,
-      sets: { mdi }
+      sets: {
+        mdi,
+        custom
+      }
     },
     theme: {
       themes: {
