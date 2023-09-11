@@ -1,10 +1,12 @@
 import { describe, it, expect, vi } from 'vitest'
 import { useGetProgress } from './input-progress'
-
-const { getProgress } = useGetProgress()
+import { flushPromises } from '@vue/test-utils'
 
 describe('useGetProgress', () => {
-  it('should work', function () {
-    expect(getProgress({ validate: () => false }, ['required'], toRef(0)))
+  it('should work', async function () {
+    const { getProgress } = useGetProgress()
+    const meow = await getProgress({ validate: () => false }, ['required'], toRef(0))
+    await flushPromises()
+    console.log('input progress => ', meow)
   })
 })
