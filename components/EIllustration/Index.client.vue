@@ -10,8 +10,8 @@ export default defineComponent({
 
   props: {
     imageName: {
-        type: String,
-        default: 'empty'
+      type: String,
+      default: 'empty'
     }
   },
 
@@ -23,16 +23,16 @@ export default defineComponent({
 
 <template>
   <!-- TODO: Make an atom for importing all illustrations -->
-    <v-img
-        data-test="state-image"
-        class="mx-auto"
-        width="280"
-        height="300"
-        eager
-        :src="`/svg/${imageName}.svg`"
-        :alt="imageName"
-        lazy-src="https://placehold.co/280x300"
-    />
+  <v-img
+    data-test="state-image"
+    class="mx-auto"
+    width="280"
+    height="300"
+    eager
+    :src="`/svg/${imageName}.svg`"
+    :alt="imageName"
+    lazy-src="https://placehold.co/280x300"
+  />
 </template>
 
 <style scoped></style>

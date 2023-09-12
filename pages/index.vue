@@ -34,6 +34,7 @@ export default defineComponent({
     <v-icon icon="custom:EIconGoogle" />
     <e-illustration />
     <e-avatar img-src="https://placehold.co/600x400" size="100" />
+    <molecules-e-rich-text />
   </v-container>
 </template>
 
