@@ -33,6 +33,7 @@ export default defineComponent({
     <e-btn text="dadfa" />
     <v-icon icon="custom:EIconGoogle" />
     <e-illustration />
+    <e-avatar img-src="https://placehold.co/600x400" size="100" />
   </v-container>
 </template>
 
