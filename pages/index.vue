@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { VContainer } from 'vuetify/components/VGrid'
-import {VIcon} from 'vuetify/components'
+import { VIcon } from 'vuetify/components'
 
 const { locale } = useI18n()
 useHead({
@@ -32,6 +32,7 @@ export default defineComponent({
     />
     <e-btn text="dadfa" />
     <v-icon icon="custom:EIconGoogle" />
+    <e-illustration />
   </v-container>
 </template>
 

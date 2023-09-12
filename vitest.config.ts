@@ -57,7 +57,7 @@ export default {
       deps: {
         inline: ['vuetify']
       }
-    },
-    setupFiles: ['@vitest/web-worker']
+    }
+    // setupFiles: ['@vitest/web-worker']
   }
 }

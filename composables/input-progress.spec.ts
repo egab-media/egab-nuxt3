@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
-import { useGetProgress } from './input-progress'
 import { flushPromises } from '@vue/test-utils'
+import { useGetProgress } from './input-progress'
 
 describe('useGetProgress', () => {
   it('should work', async function () {

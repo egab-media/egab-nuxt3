@@ -38,11 +38,11 @@ export default defineNuxtPlugin((nuxtApp) => {
           dark: false,
           colors: {
             /**
-                         * use primary darken-1 for luminescent-green-800
-                         * use primary lighten-2 for luminescent-green-400
-                         * use primary-50 for luminescent-green-50
-                         * use primary-100 for luminescent-green-100
-                         */
+             * use primary darken-1 for luminescent-green-800
+             * use primary lighten-2 for luminescent-green-400
+             * use primary-50 for luminescent-green-50
+             * use primary-100 for luminescent-green-100
+             */
             primary: '#77A11D',
             'primary-20': '#ACCD53',
             'primary-50': '#F4F8E7',
