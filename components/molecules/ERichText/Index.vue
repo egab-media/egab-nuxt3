@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Editor } from '@tiptap/vue-3'
+import { Editor, EditorContent } from '@tiptap/vue-3'
 import { Editor as CoreEditor } from '@tiptap/core'
 import throttle from 'lodash/throttle'
 import { EDITOR_UPDATE_THROTTLE_WAIT_TIME } from '~/utils/constants/rich-text/define'
@@ -20,7 +20,8 @@ export default defineComponent({
     VCardTitle,
     VDivider,
     VToolbar,
-    VSpacer
+    VSpacer,
+    EditorContent
   },
   props: {
     modelValue: {
@@ -48,6 +49,22 @@ export default defineComponent({
     outlined: {
       type: Boolean,
       default: true
+    },
+    isFullscreen: {
+      type: Boolean,
+      default: false
+    },
+    label: {
+      type: String,
+      default: undefined
+    }
+  },
+  setup(props) {
+    const contentDynamicClasses = () => {
+      const values: Record<string, any> = {
+        __dark: unref(props.dark)
+        //  markdownThemeStyles
+      }
     }
   },
   data: () => ({
@@ -101,8 +118,28 @@ export default defineComponent({
             borderColor: $attrs['error-messages'] ? '#ff5252' : undefined,
             width: '100%'
           }"
+          class="vuetify-pro-tiptap-editor"
+          :class="{ 'vuetify-pro-tiptap-editor--fullscreen': isFullscreen }"
         >
-          
+          <template v-if="label && !isFullscreen">
+            <v-card-title :class="dark ? 'bg-grey-darken-3' : 'bg-grey-lighten-3'">
+              {{ label }}
+            </v-card-title>
+
+            <v-divider />
+          </template>
+
+          <!-- TODO: Add Toolbar -->
+
+          <slot
+            name="editor"
+            v-bind="{ editor, props: { class: 'vuetify-pro-tiptap-editor__content', 'data-test': 'value' } }"
+          >
+            <editor-content
+              class="vuetify-pro-tiptap-editor__content"
+
+            />
+          </slot>
         </v-card>
       </v-input>
     </v-theme-provider>
