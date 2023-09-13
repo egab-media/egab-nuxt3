@@ -51,12 +51,14 @@
   "dependencies": {
     "@firebase/app-types": "^0.9.0",
     "@pinia/nuxt": "^0.4.11",
+    "@tiptap/pm": "^2.1.8",
+    "@tiptap/starter-kit": "^2.1.8",
+    "@tiptap/vue-3": "^2.1.8",
     "firebase-functions": "^4.4.1",
     "pinia": "^2.1.6",
     "sass": "^1.64.2",
     "vite-plugin-vuetify": "^1.0.2",
     "vuefire": "^3.1.15",
-    "vuetify": "3.4.0-alpha.1",
-    "vuetify-pro-tiptap": "^2.2.0"
+    "vuetify": "3.4.0-alpha.1"
   }
 }

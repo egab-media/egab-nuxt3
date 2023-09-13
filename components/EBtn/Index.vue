@@ -1,54 +1,3 @@
-<template>
-  <v-btn
-    :data-test="dataTest"
-    :color="color"
-    :depressed="depressed"
-    :icon="icon"
-    :outlined="outlined"
-    :plain="plain"
-    :rounded="rounded"
-    :type="type"
-    :fab="fab"
-    :dark="dark"
-    :text="text"
-    :block="block"
-    :disabled="disabled"
-    :large="large"
-    :loading="loading"
-    :small="small"
-    :x-large="xLarge"
-    :x-small="xSmall"
-    :link="link"
-    :to="to"
-    :nuxt="nuxt"
-    :href="href"
-    :width="width"
-    :height="height"
-    :title="title"
-    class="text-body-1 text-capitalize font-weight-thin"
-    :class="
-      underline ? 'text-decoration-underline pa-0' : removePadding ? 'pa-0' : ''
-    "
-    @click="$emit('click', $event)"
-  >
-    <v-icon
-      v-if="iconName"
-      :left="
-        !(fab || icon) && getDir($i18n.locale) && getDir($i18n.locale) === 'ltr'
-      "
-    >
-      {{ iconName }}
-    </v-icon>
-
-    <!-- custom icon here -->
-    <slot>
-      {{ text }}
-    </slot>
-
-    {{ !(fab || icon) ? label : '' }}
-  </v-btn>
-</template>
-
 <script lang="ts">
 import { storeToRefs } from 'pinia'
 import { RouteLocationRaw } from 'vue-router'
@@ -191,6 +140,57 @@ export default defineComponent({
   data: () => ({})
 })
 </script>
+
+<template>
+  <v-btn
+    :data-test="dataTest"
+    :color="color"
+    :depressed="depressed"
+    :icon="icon"
+    :outlined="outlined"
+    :plain="plain"
+    :rounded="rounded"
+    :type="type"
+    :fab="fab"
+    :dark="dark"
+    :text="text"
+    :block="block"
+    :disabled="disabled"
+    :large="large"
+    :loading="loading"
+    :small="small"
+    :x-large="xLarge"
+    :x-small="xSmall"
+    :link="link"
+    :to="to"
+    :nuxt="nuxt"
+    :href="href"
+    :width="width"
+    :height="height"
+    :title="title"
+    class="text-body-1 text-capitalize font-weight-thin"
+    :class="
+      underline ? 'text-decoration-underline pa-0' : removePadding ? 'pa-0' : ''
+    "
+    @click="$emit('click', $event)"
+  >
+    <v-icon
+      v-if="iconName"
+      :left="
+        !(fab || icon) && getDir($i18n.locale) && getDir($i18n.locale) === 'ltr'
+      "
+    >
+      {{ iconName }}
+    </v-icon>
+
+    <!-- custom icon here -->
+    <slot>
+      {{ text }}
+    </slot>
+
+    {{ !(fab || icon) ? label : '' }}
+  </v-btn>
+</template>
 
 <style scoped>
 
