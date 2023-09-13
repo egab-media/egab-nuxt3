@@ -2368,6 +2368,11 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-bullet-list/-/extension-bullet-list-2.1.8.tgz#d9d4ee46d1adb2b70d3b8c19540ebcdd8a1eaaec"
   integrity sha512-VWj3XZMwJQVb7e4ZM0N+o6o+905lyMMS4C35yw/sxN5CDw4TJpQMSPSAmBVNtK469XUdlGOxeLc/+Q00aU+S8A==
 
+"@tiptap/extension-character-count@^2.1.8":
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-character-count/-/extension-character-count-2.1.8.tgz#b526a5daaee0d68afd094e3ea6dd978f8f163068"
+  integrity sha512-Rp9vHGd2pYtjE8BA2fM63ghRKyFa5e1WDb89LyKNqWSRVBgJgvgs54sQ3N85W84K2TSrDfXlpLEtZwfDeJaAOA==
+
 "@tiptap/extension-code-block@^2.1.8":
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/@tiptap/extension-code-block/-/extension-code-block-2.1.8.tgz#d2dccf64a583bfb12e2ebd04b3724b7e9430549d"
@@ -2394,6 +2399,11 @@
   integrity sha512-lc8bjHGqWSgXKmoU2HAlBFWzu7wnFKb5Vg0R3PECBrOZ9hXkmNA0mHxrvHglwjLtfe7XOfZf4FLySG/5S+BdeQ==
   dependencies:
     tippy.js "^6.3.7"
+
+"@tiptap/extension-focus@^2.1.8":
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-focus/-/extension-focus-2.1.8.tgz#19d854721937f18d311a71b4a9e347ca563a3534"
+  integrity sha512-RxMrkdeq9fJeaP0CHZFzrhBpr1by8Gw/25x9QsWPt85QDXYbCKq8TfXeOvu6TxS5IbLvwtTiLL9kPGt81YokMg==
 
 "@tiptap/extension-gapcursor@^2.1.8":
   version "2.1.8"
@@ -2440,10 +2450,20 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-paragraph/-/extension-paragraph-2.1.8.tgz#f337c3f84cbfddd1ea16860e934f2049c46211ce"
   integrity sha512-ZuwvwKaG5GeoYRgeh96PToLk2TjxsLiZKnLN6rkUCsW6aLoseK7/8/7vm3dP2N9dAUN35ESw0/pRk2Q/VK1/+g==
 
+"@tiptap/extension-placeholder@^2.1.8":
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-placeholder/-/extension-placeholder-2.1.8.tgz#5ead71aca842c17cdc9cff6fff8809a1f327119d"
+  integrity sha512-4yhyvvqsXTzXtJs+39cgvsld4df3ppbajCoxkzHYntKoonm3DtgFTSh+lbdEVCQgDmIfIt1o6DKY1n8NAJRQUQ==
+
 "@tiptap/extension-strike@^2.1.8":
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/@tiptap/extension-strike/-/extension-strike-2.1.8.tgz#ba6966a9afb9493d8bd30d4c617ffe6966b90379"
   integrity sha512-JGPiGudEZAKTiOirua9gtDG+HILHEx4CGODW5PDBMA1xYDfyo7ZJk5xgfJWZ1SOo7YviF26HSY4KKV9ThINq2Q==
+
+"@tiptap/extension-text-style@^2.1.8":
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-text-style/-/extension-text-style-2.1.8.tgz#42e9fa179f76d4e88f73f2c66aee3b06162e659b"
+  integrity sha512-xnx/Pq5ttt2/gOQPmqVQIBz/jo3MErtYdYk22fUaOyu1xT36X4BDJYsrLyWhcs3aWR/tv1/XylbNOFvhrDOHoQ==
 
 "@tiptap/extension-text@^2.1.8":
   version "2.1.8"

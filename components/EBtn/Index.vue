@@ -4,10 +4,11 @@ import { RouteLocationRaw } from 'vue-router'
 import { VBtn } from 'vuetify/components/VBtn'
 import { VIcon } from 'vuetify/components/VIcon'
 import { useLanguageStore } from '~/store/language'
+import { VTooltip } from 'vuetify/components/VTooltip'
 
 export default defineComponent({
   name: 'EBtn',
-  components: { VBtn, VIcon },
+  components: { VBtn, VIcon, VTooltip },
   props: {
     dataTest: {
       type: String,
@@ -129,6 +130,10 @@ export default defineComponent({
     title: {
       type: String,
       default: undefined
+    },
+    tooltip: {
+      type: String,
+      default: undefined
     }
   },
   emits: ['click'],
@@ -182,6 +187,8 @@ export default defineComponent({
     >
       {{ iconName }}
     </v-icon>
+
+    <v-tooltip :eager="false" activator="parent" location="top" :text="tooltip" />
 
     <!-- custom icon here -->
     <slot>

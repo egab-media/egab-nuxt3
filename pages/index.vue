@@ -25,6 +25,7 @@ export default defineComponent({
 <template>
   <v-container>
     <e-fps />
+    <molecules-e-rich-text />
   </v-container>
 </template>
 

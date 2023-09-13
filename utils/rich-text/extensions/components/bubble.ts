@@ -2,10 +2,10 @@ import { deleteSelection } from '@tiptap/pm/commands'
 import type { Editor } from '@tiptap/vue-3'
 
 import type { Display } from './image/types'
-import ActionButton from './ActionButton.vue'
+import EBtn from '@/components/EBtn/Index.vue'
 
-import { IMAGE_SIZE, VIDEO_SIZE } from '@/utils/constants/rich-text/define'
-import type { ButtonViewParams, ButtonViewReturn, ExtensionNameKeys } from '@/utils/constants/rich-text/type'
+import { IMAGE_SIZE, VIDEO_SIZE } from '~/utils/rich-text/constants/define'
+import type { ButtonViewParams, ButtonViewReturn, ExtensionNameKeys } from '~/utils/rich-text/constants/type'
 
 type BubbleImageFloatType = 'float-left' | 'float-none' | 'float-right'
 type BubbleImageOrVideoSizeType = 'size-small' | 'size-medium' | 'size-large'
@@ -50,7 +50,7 @@ const imageFloatMenus = (editor: Editor): BubbleMenuItem[] => {
 
   return types.map((float, i) => ({
     type: float,
-    component: ActionButton,
+    component: EBtn,
     componentProps: {
       tooltip: `editor.image.${float.replace('-', '.')}.tooltip`,
       icon: icons[i],
@@ -67,7 +67,7 @@ const imageSizeMenus = (editor: Editor): BubbleMenuItem[] => {
 
   return types.map((size, i) => ({
     type: `image-${size}`,
-    component: ActionButton,
+    component: EBtn,
     componentProps: {
       tooltip: `editor.${size.replace('-', '.')}.tooltip`,
       icon: icons[i],
@@ -84,7 +84,7 @@ const videoSizeMenus = (editor: Editor): BubbleMenuItem[] => {
 
   return types.map((size, i) => ({
     type: `video-${size}`,
-    component: ActionButton,
+    component: EBtn,
     componentProps: {
       tooltip: `editor.${size.replace('-', '.')}.tooltip`,
       icon: icons[i],
@@ -101,7 +101,7 @@ export const defaultBubbleList = (editor: Editor): BubbleMenuItem[] => [
   ...videoSizeMenus(editor),
   {
     type: 'image-aspect-ratio',
-    component: ActionButton,
+    component: EBtn,
     componentProps: {
       tooltip: 'editor.image.dialog.form.aspectRatio',
       icon: 'aspectRatio',
@@ -118,7 +118,7 @@ export const defaultBubbleList = (editor: Editor): BubbleMenuItem[] => [
   },
   {
     type: 'remove',
-    component: ActionButton,
+    component: EBtn,
     componentProps: {
       tooltip: 'editor.remove',
       icon: 'delete',

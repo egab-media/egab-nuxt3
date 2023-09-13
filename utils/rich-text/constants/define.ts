@@ -1,4 +1,4 @@
-import type { NodeTypeMenu } from '@/components/molecules/ERichText/partials/extensions/components/bubble'
+import type { NodeTypeMenu } from '~/utils/rich-text/extensions/components/bubble'
 
 export const EDITOR_UPDATE_THROTTLE_WAIT_TIME = 200
 
