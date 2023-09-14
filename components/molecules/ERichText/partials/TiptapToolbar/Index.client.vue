@@ -75,6 +75,7 @@ export default defineComponent({
         v-bind="item.button.componentProps"
         :editor="editor"
         :disabled="disabled"
+        color="primary"
       />
       <v-divider v-if="item.divider" vertical class="mx-1 me-2" />
     </template>

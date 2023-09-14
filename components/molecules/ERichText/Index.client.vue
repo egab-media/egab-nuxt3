@@ -19,7 +19,7 @@ import {
   Clear,
   CodeBlock,
   Code,
-  Color
+  Color, FontFamily, FontSize,
 } from '~/utils/rich-text/extensions'
 
 export default defineComponent({
@@ -85,7 +85,9 @@ export default defineComponent({
         Clear,
         CodeBlock,
         Code,
-        Color
+        Color,
+        FontFamily,
+        FontSize
       ]
     }
   },
@@ -178,7 +180,6 @@ export default defineComponent({
             <v-divider />
           </template>
 
-          <!-- TODO: Add Toolbar -->
           <lazy-molecules-e-rich-text-partials-tiptap-toolbar
             v-if="!hideToolbar"
             :editor="editor"

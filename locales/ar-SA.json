@@ -498,6 +498,23 @@
     },
     "color": {
       "tooltip": "لون النص"
+    },
+    "fontFamily": {
+      "tooltip": "الخط"
+    },
+    "fonts": {
+      "arial": "Arial",
+      "arial-black": "Arial Black",
+      "courier-new": "Courier New",
+      "default": "الافتراضي",
+      "georgia": "Georgia",
+      "helvetica": "Helvetica",
+      "impact": "Impact",
+      "monaco": "Monaco",
+      "monospace": "Monospace",
+      "tahoma": "Tahoma",
+      "times-new-roman": "Times New Roman",
+      "verdana": "Verdana"
     }
   },
   "emergency": "ستخضع صفحة المقترحات لبعض الاصلاحات ونعود في أقرب وقت",

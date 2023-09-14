@@ -498,6 +498,23 @@
     },
     "color": {
       "tooltip": "Color"
+    },
+    "fontFamily": {
+      "tooltip": "Font family"
+    },
+    "fonts": {
+      "arial": "Arial",
+      "arial-black": "Arial Black",
+      "courier-new": "Courier New",
+      "default": "Default",
+      "georgia": "Georgia",
+      "helvetica": "Helvetica",
+      "impact": "Impact",
+      "monaco": "Monaco",
+      "monospace": "Monospace",
+      "tahoma": "Tahoma",
+      "times-new-roman": "Times New Roman",
+      "verdana": "Verdana"
     }
   },
   "emergency": "Pitches will be on maintenance mode and be back shortly",

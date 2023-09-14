@@ -51,16 +51,16 @@ export interface FontFamilyProps {
 export const DEFAULT_FONT_FAMILY_VALUE = 'Roboto'
 
 export const DEFAULT_FONT_FAMILY_LIST: FontFamilyProps[] = [
-  { title: 'editor.default', value: DEFAULT_FONT_FAMILY_VALUE, divider: true, default: true },
+  { title: 'default', value: DEFAULT_FONT_FAMILY_VALUE, divider: true, default: true },
   { title: 'Arial', value: 'Arial' },
-  { title: 'Arial Black', value: 'Arial Black' },
+  { title: 'Arial-Black', value: 'Arial Black' },
   { title: 'Georgia', value: 'Georgia' },
   { title: 'Impact', value: 'Impact' },
   { title: 'Helvetica', value: 'Helvetica' },
   { title: 'Tahoma', value: 'Tahoma' },
-  { title: 'Times New Roman', value: 'Times New Roman' },
+  { title: 'Times-New-Roman', value: 'Times New Roman' },
   { title: 'Verdana', value: 'Verdana' },
-  { title: 'Courier New', value: 'Courier New', divider: true },
+  { title: 'Courier-New', value: 'Courier New', divider: true },
   { title: 'Monaco', value: 'Monaco' },
   { title: 'Monospace', value: 'monospace' }
 ]
