@@ -14,7 +14,7 @@ export default defineComponent({
       default: false
     },
     markdownTheme: {
-      type: String,
+      type: [String, Boolean],
       default: undefined
     },
     dark: {
@@ -40,7 +40,7 @@ export default defineComponent({
       default: undefined
     }
   },
-  setup(props) {
+  setup(props, { expose }) {
     const markdownTheme = () => {
       if (isBoolean(props.markdownTheme)) { return DEFAULT_MARKDOWN_THEME_VALUE }
       if (isString(props.markdownTheme)) { return props.markdownTheme }
@@ -79,6 +79,7 @@ export default defineComponent({
         maxHeightStyle
       }
     }
+    expose({ markdownTheme })
     return { contentDynamicClasses, contentDynamicStyles }
   }
 })
