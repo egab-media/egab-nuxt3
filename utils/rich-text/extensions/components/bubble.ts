@@ -21,17 +21,52 @@ type BubbleVideoType = 'video' | 'remove'
 type BubbleType = BubbleImageType | BubbleVideoType
 type BubbleAllType = BubbleType | ExtensionNameKeys | 'divider'
 
-export type NodeTypeKey = 'image' | 'text' | 'video'
-export type BubbleTypeMenu = Partial<Record<NodeTypeKey, BubbleMenuItem[]>>
-export type NodeTypeMenu = Partial<Record<NodeTypeKey, BubbleAllType[]>>
-
 export interface BubbleMenuItem extends ButtonViewReturn {
   type: BubbleAllType
 }
 
+export type NodeTypeKey = 'image' | 'text' | 'video'
+export type BubbleTypeMenu = Partial<Record<NodeTypeKey, BubbleMenuItem[]>>
+export type NodeTypeMenu = Partial<Record<NodeTypeKey, BubbleAllType[]>>
+
 interface BubbleView<T = any> {
   (options: ButtonViewParams<T>): BubbleTypeMenu
 }
+
+export const defaultBubbleList = (editor: Editor): BubbleMenuItem[] => [
+  ...imageFloatMenus(editor),
+  ...imageSizeMenus(editor),
+  ...videoSizeMenus(editor),
+  {
+    type: 'image-aspect-ratio',
+    component: EBtn,
+    componentProps: {
+      tooltip: 'editor.image.dialog.form.aspectRatio',
+      icon: 'aspectRatio',
+      action: () => {
+        const isLock = editor.isActive('image', { lockAspectRatio: true })
+        // @ts-ignore
+        editor.commands.updateImage({
+          lockAspectRatio: !isLock,
+          height: isLock ? undefined : null
+        })
+      },
+      isActive: () => editor.isActive('image', { lockAspectRatio: true })
+    }
+  },
+  {
+    type: 'remove',
+    component: EBtn,
+    componentProps: {
+      tooltip: 'editor.remove',
+      icon: 'delete',
+      action: () => {
+        const { state, dispatch } = editor.view
+        deleteSelection(state, dispatch)
+      }
+    }
+  }
+]
 
 export interface BubbleOptions<T> {
   list: NodeTypeMenu
@@ -94,42 +129,6 @@ const videoSizeMenus = (editor: Editor): BubbleMenuItem[] => {
     }
   }))
 }
-
-export const defaultBubbleList = (editor: Editor): BubbleMenuItem[] => [
-  ...imageFloatMenus(editor),
-  ...imageSizeMenus(editor),
-  ...videoSizeMenus(editor),
-  {
-    type: 'image-aspect-ratio',
-    component: EBtn,
-    componentProps: {
-      tooltip: 'editor.image.dialog.form.aspectRatio',
-      icon: 'aspectRatio',
-      action: () => {
-        const isLock = editor.isActive('image', { lockAspectRatio: true })
-        // @ts-ignore
-        editor.commands.updateImage({
-          lockAspectRatio: !isLock,
-          height: isLock ? undefined : null
-        })
-      },
-      isActive: () => editor.isActive('image', { lockAspectRatio: true })
-    }
-  },
-  {
-    type: 'remove',
-    component: EBtn,
-    componentProps: {
-      tooltip: 'editor.remove',
-      icon: 'delete',
-      action: () => {
-        const { state, dispatch } = editor.view
-        deleteSelection(state, dispatch)
-      }
-    }
-  }
-]
-
 /**
  * Generate bubble menu
  * @template T
@@ -141,7 +140,7 @@ export const defaultBubbleList = (editor: Editor): BubbleMenuItem[] => [
 export const generateBubbleTypeMenu = <T = any>(
   list: NodeTypeMenu,
   defaultList: BubbleMenuItem[],
-  { editor, extension, t }: ButtonViewParams<T>
+  { editor, t }: ButtonViewParams<T>
 ): BubbleTypeMenu => {
   const { extensions = [] } = editor.extensionManager
 
@@ -149,14 +148,14 @@ export const generateBubbleTypeMenu = <T = any>(
 
   for (const node of Object.keys(list)) {
     const nodeType = list[node as NodeTypeKey]
-    if (!nodeType) continue
+    if (!nodeType) { continue }
 
     const _items: BubbleMenuItem[] = []
 
     for (const ext of nodeType) {
       if (ext === 'divider') {
         const lastItem = _items[_items.length - 1]
-        if (lastItem?.type === 'divider') continue
+        if (lastItem?.type === 'divider') { continue }
 
         _items.push({
           type: 'divider',
@@ -195,8 +194,8 @@ export const generateBubbleTypeMenu = <T = any>(
     const lastItem = _items[_items.length - 1]
     const fristItem = _items[0]
 
-    if (lastItem?.type === 'divider') _items.pop()
-    if (fristItem?.type === 'divider') _items.shift()
+    if (lastItem?.type === 'divider') { _items.pop() }
+    if (fristItem?.type === 'divider') { _items.shift() }
 
     items[node as NodeTypeKey] = _items
   }

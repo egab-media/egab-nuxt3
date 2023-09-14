@@ -25,7 +25,7 @@ export default defineComponent({
 <template>
   <v-container>
     <e-fps />
-    <molecules-e-rich-text />
+    <molecules-e-rich-text v-model="inputVal" />
   </v-container>
 </template>
 

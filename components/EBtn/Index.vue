@@ -3,8 +3,8 @@ import { storeToRefs } from 'pinia'
 import { RouteLocationRaw } from 'vue-router'
 import { VBtn } from 'vuetify/components/VBtn'
 import { VIcon } from 'vuetify/components/VIcon'
-import { useLanguageStore } from '~/store/language'
 import { VTooltip } from 'vuetify/components/VTooltip'
+import { useLanguageStore } from '~/store/language'
 
 export default defineComponent({
   name: 'EBtn',

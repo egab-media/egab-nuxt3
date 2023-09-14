@@ -41,7 +41,7 @@ export interface BaseKitOptions {
   textStyle: Partial<TextStyleOptions> | false
 }
 
-export const BaseKit = /* @__PURE__*/ Extension.create<BaseKitOptions>({
+export const BaseKit = /* @__PURE__ */ Extension.create<BaseKitOptions>({
   name: 'base-kit',
 
   addOptions() {

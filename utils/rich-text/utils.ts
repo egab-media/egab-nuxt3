@@ -1,5 +1,5 @@
 export const getUnitWithPxAsDefault = (value?: string | number) => {
-  if (!value) return value
+  if (!value) { return value }
 
   const _value = isNumber(value) ? String(value) : value
 
@@ -10,8 +10,8 @@ export const getUnitWithPxAsDefault = (value?: string | number) => {
 }
 
 export function clamp(val: number, min: number, max: number) {
-  if (val < min) return min
-  if (val > max) return max
+  if (val < min) { return min }
+  if (val > max) { return max }
   return val
 }
 

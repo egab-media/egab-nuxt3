@@ -217,6 +217,6 @@ const icons: IconsOptions = {
 }
 
 export function getIcon(iconName?: keyof IconsOptions): string | undefined {
-  if (!iconName) return undefined
+  if (!iconName) { return undefined }
   return `svg:${icons[iconName]}`
 }
