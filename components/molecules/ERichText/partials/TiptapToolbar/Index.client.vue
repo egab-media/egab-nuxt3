@@ -48,9 +48,6 @@ export default defineComponent({
           t: unref(t)
         })
 
-        console.log('loaded computed')
-        console.log(_button)
-
         if (Array.isArray(_button)) {
           const menu: Menu[] = _button.map((k, i) => ({
             button: k,
@@ -83,7 +80,6 @@ export default defineComponent({
     </template>
   </v-toolbar>
 </template>
-
 
 <style scoped>
 

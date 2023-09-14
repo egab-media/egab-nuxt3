@@ -192,7 +192,7 @@ export default defineComponent({
     :class="
       underline ? 'text-decoration-underline pa-0' : removePadding ? 'pa-0' : isActive?.() ? 'v-btn--active' : ''
     "
-    @click="action ? action : $emit('click', $event)"
+    @click="action ? action() : $emit('click', $event)"
   >
     <v-icon
       v-if="btnIcon"
@@ -205,7 +205,7 @@ export default defineComponent({
     <v-tooltip :eager="false" activator="parent" location="top" :text="tooltip" />
 
     <!-- custom icon here -->
-    <slot></slot>
+    <slot />
 
     {{ !(fab || icon) ? label : '' }}
   </v-btn>

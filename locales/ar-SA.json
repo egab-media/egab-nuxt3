@@ -480,6 +480,24 @@
   "editor": {
     "blockquote": {
       "tooltip": "اقتباس"
+    },
+    "bold": {
+      "tooltip": "سميك"
+    },
+    "bulletlist": {
+      "tooltip": "قائمة منقوطة"
+    },
+    "clear": {
+      "tooltip": "إزالة التنسيقات"
+    },
+    "code": {
+      "tooltip": "كود"
+    },
+    "codeblock": {
+      "tooltip": "ملف كود"
+    },
+    "color": {
+      "tooltip": "لون النص"
     }
   },
   "emergency": "ستخضع صفحة المقترحات لبعض الاصلاحات ونعود في أقرب وقت",

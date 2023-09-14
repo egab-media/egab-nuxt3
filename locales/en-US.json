@@ -480,6 +480,24 @@
   "editor": {
     "blockquote": {
       "tooltip": "Blockquote"
+    },
+    "bold": {
+      "tooltip": "Bold"
+    },
+    "bulletlist": {
+      "tooltip": "Bullet List"
+    },
+    "clear": {
+      "tooltip": "Clear"
+    },
+    "code": {
+      "tooltip": "Code"
+    },
+    "codeblock": {
+      "tooltip": "Code block"
+    },
+    "color": {
+      "tooltip": "Color"
     }
   },
   "emergency": "Pitches will be on maintenance mode and be back shortly",

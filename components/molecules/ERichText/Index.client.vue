@@ -11,8 +11,16 @@ import { VDivider } from 'vuetify/components/VDivider'
 import {
   EDITOR_UPDATE_THROTTLE_WAIT_TIME, EDITOR_UPDATE_WATCH_THROTTLE_WAIT_TIME
 } from '~/utils/rich-text/constants/define'
-import { BaseKit } from '~/utils/rich-text/extensions/base-kit'
-import { Blockquote } from '~/utils/rich-text/extensions/blockquote'
+import {
+  BaseKit,
+  Blockquote,
+  Bold,
+  BulletList,
+  Clear,
+  CodeBlock,
+  Code,
+  Color
+} from '~/utils/rich-text/extensions'
 
 export default defineComponent({
   name: 'ERichText',
@@ -70,7 +78,15 @@ export default defineComponent({
     //  editor
     extensions: {
       type: Array as () => AnyExtension[],
-      default: () => [Blockquote]
+      default: () => [
+        Blockquote,
+        Bold,
+        BulletList,
+        Clear,
+        CodeBlock,
+        Code,
+        Color
+      ]
     }
   },
   emits: ['enter', 'update:modelValue', 'change'],

@@ -52,6 +52,7 @@
     "@firebase/app-types": "^0.9.0",
     "@pinia/nuxt": "^0.4.11",
     "@tiptap/extension-character-count": "^2.1.8",
+    "@tiptap/extension-color": "^2.1.9",
     "@tiptap/extension-focus": "^2.1.8",
     "@tiptap/extension-placeholder": "^2.1.8",
     "@tiptap/extension-text-style": "^2.1.8",
