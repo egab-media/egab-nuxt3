@@ -477,6 +477,11 @@
     },
     "label": "Drop your file(s) here, or click the \"Choose Files\" button to select them."
   },
+  "editor": {
+    "blockquote": {
+      "tooltip": "Blockquote"
+    }
+  },
   "emergency": "Pitches will be on maintenance mode and be back shortly",
   "emergencyTitle": "Pitches under maintenance",
   "faq": {

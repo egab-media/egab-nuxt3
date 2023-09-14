@@ -91,7 +91,8 @@ export default defineNuxtConfig({
           /v-input/,
           /v-progress-linear/,
           /v-label/,
-          /v-list-item/
+          /v-list-item/,
+          /v-tooltip/
         ]
       }
     }],

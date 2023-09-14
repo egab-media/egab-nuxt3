@@ -27,5 +27,5 @@ describe('ERichTextFooter', function () {
   it('should mount', function () {
     expect(findWordsSpan().text()).toContain('Words')
     expect(findCharsSpan().text()).toContain('characters')
-  });
-});
+  })
+})

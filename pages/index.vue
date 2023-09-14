@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { VContainer } from 'vuetify/components/VGrid'
+import { VForm } from 'vuetify/components/VForm'
 
 const { locale } = useI18n()
 useHead({
@@ -25,7 +26,9 @@ export default defineComponent({
 <template>
   <v-container>
     <e-fps />
-    <molecules-e-rich-text v-model="inputVal" />
+    <v-form ref="form">
+      <molecules-e-rich-text v-model="inputVal" :error-messages="['message-one']" />
+    </v-form>
   </v-container>
 </template>
 

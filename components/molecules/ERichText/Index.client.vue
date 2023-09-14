@@ -12,6 +12,7 @@ import {
   EDITOR_UPDATE_THROTTLE_WAIT_TIME, EDITOR_UPDATE_WATCH_THROTTLE_WAIT_TIME
 } from '~/utils/rich-text/constants/define'
 import { BaseKit } from '~/utils/rich-text/extensions/base-kit'
+import { Blockquote } from '~/utils/rich-text/extensions/blockquote'
 
 export default defineComponent({
   name: 'ERichText',
@@ -41,6 +42,7 @@ export default defineComponent({
       default: false,
       validator: val => typeof val === 'boolean'
     },
+    dense: { type: Boolean, default: false },
     flat: {
       type: Boolean,
       default: true
@@ -57,10 +59,18 @@ export default defineComponent({
       type: String,
       default: undefined
     },
+    rules: {
+      type: Array,
+      default: () => []
+    },
+    hideToolbar: {
+      type: Boolean,
+      default: false
+    },
     //  editor
     extensions: {
       type: Array as () => AnyExtension[],
-      default: () => []
+      default: () => [Blockquote]
     }
   },
   emits: ['enter', 'update:modelValue', 'change'],
@@ -92,7 +102,10 @@ export default defineComponent({
 
         emit('change', { editor, output })
       }, EDITOR_UPDATE_THROTTLE_WAIT_TIME),
-      extensions: [BaseKit, ...unref(props.extensions)],
+      extensions: [
+        BaseKit,
+        ...unref(props.extensions)
+      ],
       autofocus: false,
       editable: !props.disabled,
       injectCSS: true
@@ -124,11 +137,12 @@ export default defineComponent({
 </script>
 
 <template>
-  <div v-if="editor">
+  <div v-if="editor" :class="{ dense }">
     <v-theme-provider :theme="dark ? 'dark' : 'light'">
       <!-- TODO: Add Bubble Menu component -->
+      <lazy-molecules-e-rich-text-partials-e-rich-text-bubble-menu :editor="editor" :disabled="hideToolbar" />
 
-      <v-input class="pt-0" hide-details="auto">
+      <v-input :rules="rules" class="pt-0" :error="!!$attrs['error-messages']" :error-messages="$attrs['error-messages']" hide-details="auto">
         <v-card
           :flat="flat"
           :outlined="outlined"
@@ -149,6 +163,12 @@ export default defineComponent({
           </template>
 
           <!-- TODO: Add Toolbar -->
+          <lazy-molecules-e-rich-text-partials-tiptap-toolbar
+            v-if="!hideToolbar"
+            :editor="editor"
+            :disabled="hideToolbar"
+            class="vuetify-pro-tiptap-editor__toolbar"
+          />
 
           <slot
             name="editor"

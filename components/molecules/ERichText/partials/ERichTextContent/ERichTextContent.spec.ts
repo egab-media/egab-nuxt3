@@ -1,6 +1,6 @@
 import { describe, beforeEach, afterEach, expect, it } from 'vitest'
-import ERichTextContent from './Index.client.vue'
 import { VueWrapper } from '@vue/test-utils'
+import ERichTextContent from './Index.client.vue'
 import { bootstrapVueContext, compositeConfiguration, mountWrapper } from '~/test-utils'
 
 let wrapper: VueWrapper<typeof ERichTextContent>
@@ -30,8 +30,8 @@ describe('ERichTextContent', () => {
   })
 
   it('should check styles', function () {
-    expect(wrapper.vm.contentDynamicClasses()).toStrictEqual([ { __dark: false }, undefined ])
-    expect(wrapper.vm.contentDynamicClasses()).toStrictEqual([ { __dark: false }, undefined ])
+    expect(wrapper.vm.contentDynamicClasses()).toStrictEqual([{ __dark: false }, undefined])
+    expect(wrapper.vm.contentDynamicClasses()).toStrictEqual([{ __dark: false }, undefined])
     expect(wrapper.vm.contentDynamicStyles()).toStrictEqual({
       minHeight: '100px',
       maxHeight: undefined,

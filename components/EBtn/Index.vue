@@ -5,6 +5,8 @@ import { VBtn } from 'vuetify/components/VBtn'
 import { VIcon } from 'vuetify/components/VIcon'
 import { VTooltip } from 'vuetify/components/VTooltip'
 import { useLanguageStore } from '~/store/language'
+import { ButtonViewReturnComponentProps } from '~/utils/rich-text/constants/type'
+import { getIcon, IconsOptions } from '~/utils/rich-text/constants/icons'
 
 export default defineComponent({
   name: 'EBtn',
@@ -13,6 +15,10 @@ export default defineComponent({
     dataTest: {
       type: String,
       default: 'btn'
+    },
+    icon: {
+      type: String as () => keyof IconsOptions,
+      default: undefined
     },
     // adds color
     color: {
@@ -28,10 +34,6 @@ export default defineComponent({
       default: undefined
     },
     depressed: {
-      type: Boolean,
-      default: false
-    },
-    icon: {
       type: Boolean,
       default: false
     },
@@ -131,6 +133,14 @@ export default defineComponent({
       type: String,
       default: undefined
     },
+    action: {
+      type: Function as ButtonViewReturnComponentProps['action'],
+      default: undefined
+    },
+    isActive: {
+      type: Function,
+      default: undefined
+    },
     tooltip: {
       type: String,
       default: undefined
@@ -142,7 +152,12 @@ export default defineComponent({
     const { getDir } = storeToRefs(languageStore)
     return { getDir }
   },
-  data: () => ({})
+  data: () => ({}),
+  computed: {
+    btnIcon() {
+      return getIcon(this.icon)
+    }
+  }
 })
 </script>
 
@@ -175,25 +190,22 @@ export default defineComponent({
     :title="title"
     class="text-body-1 text-capitalize font-weight-thin"
     :class="
-      underline ? 'text-decoration-underline pa-0' : removePadding ? 'pa-0' : ''
+      underline ? 'text-decoration-underline pa-0' : removePadding ? 'pa-0' : isActive?.() ? 'v-btn--active' : ''
     "
-    @click="$emit('click', $event)"
+    @click="action ? action : $emit('click', $event)"
   >
     <v-icon
-      v-if="iconName"
+      v-if="btnIcon"
       :left="
         !(fab || icon) && getDir($i18n.locale) && getDir($i18n.locale) === 'ltr'
       "
-    >
-      {{ iconName }}
-    </v-icon>
+      :icon="btnIcon"
+    />
 
     <v-tooltip :eager="false" activator="parent" location="top" :text="tooltip" />
 
     <!-- custom icon here -->
-    <slot>
-      {{ text }}
-    </slot>
+    <slot></slot>
 
     {{ !(fab || icon) ? label : '' }}
   </v-btn>
