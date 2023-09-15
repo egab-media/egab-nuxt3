@@ -1,13 +1,49 @@
-<template>
-$END$
-</template>
+<script lang="ts">
+import { Editor } from '@tiptap/vue-3'
+import { ButtonViewReturnComponentProps } from '../../../../../utils/rich-text/constants/type';
 
-<script>
-export default {
-name: "Index"
-}
+export default defineComponent({
+    name: 'EFullscreenBtn',
+    props: {
+        editor: {
+            type: Object as () => Editor,
+            required: true
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        color: {
+            type: String,
+            default: undefined
+        },
+        isActive: {
+            type: Function as ButtonViewReturnComponentProps['isActive'],
+            default: undefined
+        }
+    },
+    setup(props) {
+        const isFullscreen = ref(false)
+        const onAction = () => {
+            isFullscreen.value = !isFullscreen.value
+            if (isFullscreen) {
+                document.documentElement.classList.add('overflow-y-hidden')
+            } else {
+                document.documentElement.classList.remove('overflow-y-hidden')
+            }
+        }
+        return { isFullscreen }
+    }
+})
 </script>
 
-<style scoped>
-
-</style>
+<template>
+    <e-btn
+        :icon="isFullscreen ? 'fullscreenExit' : 'fullscreen'"
+        :is-active="isActive"
+        :disabled="disabled"
+        :color="color"
+        :tooltip="isFullscreen ? 'editor.fullscreen.tooltip.exit' : 'editor.fullscreen.tooltip.fullscreen'"
+        @click="onAction"
+    />
+</template>

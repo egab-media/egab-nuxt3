@@ -148,7 +148,7 @@ export default defineNuxtConfig({
       display: 'standalone'
     },
     workbox: {
-      globPatterns: ['**/*.{svg,png,woff2}'],
+      globPatterns: ['**/*.{png,woff2}'],
       runtimeCaching: [
         {
           urlPattern: './fonts/panton/5920187ef0bf42859293e1ea01545b96.woff2',
@@ -160,6 +160,14 @@ export default defineNuxtConfig({
         },
         {
           urlPattern: 'https://flagcdn.com/w40/us.png',
+          handler: 'CacheFirst',
+          method: 'GET',
+          options: {
+            cacheableResponse: { statuses: [0, 200] }
+          }
+        },
+        {
+          urlPattern: 'https://flagcdn.com/w40/sa.png',
           handler: 'CacheFirst',
           method: 'GET',
           options: {

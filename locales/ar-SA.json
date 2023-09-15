@@ -515,6 +515,12 @@
       "tahoma": "Tahoma",
       "times-new-roman": "Times New Roman",
       "verdana": "Verdana"
+    },
+    "fullscreen": {
+      "tooltip": {
+        "fullscreen": "عرض في شاشة كاملة",
+        "exit": "خروج"
+      }
     }
   },
   "emergency": "ستخضع صفحة المقترحات لبعض الاصلاحات ونعود في أقرب وقت",
