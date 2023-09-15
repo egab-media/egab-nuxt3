@@ -1,12 +1,12 @@
 <script lang="ts">
 import { Editor } from '@tiptap/vue-3'
-import { getIcon, IconsOptions } from '~/utils/rich-text/constants/icons'
-import { StyleValue } from '@vue/runtime-dom'
-import { ButtonViewReturnComponentProps } from '~/utils/rich-text/constants/type'
+import { StyleValue } from 'vue'
 import { VMenu } from 'vuetify/components/VMenu'
 import { VList, VListItem, VListItemTitle } from 'vuetify/components/VList'
 import { VIcon } from 'vuetify/components/VIcon'
 import { VDivider } from 'vuetify/components/VDivider'
+import { ButtonViewReturnComponentProps } from '~/utils/rich-text/constants/type'
+import { getIcon, IconsOptions } from '~/utils/rich-text/constants/icons'
 
 export interface Item {
   title: string | undefined
@@ -58,7 +58,7 @@ export default defineComponent({
       default: () => []
     }
   },
-  setup(props, {}) {
+  setup(props) {
     const menu = ref(false)
     const active = computed<Item>(() => {
       const find = props.items.find(k => k.isActive())
@@ -96,7 +96,9 @@ export default defineComponent({
               <v-icon v-if="item.icon" :icon="getIcon(item.icon)" />
             </template>
 
-            <v-list-item-title :style="item.style">{{ item.title }}</v-list-item-title>
+            <v-list-item-title :style="item.style">
+              {{ item.title }}
+            </v-list-item-title>
           </v-list-item>
           <v-divider v-if="item.divider" />
         </template>

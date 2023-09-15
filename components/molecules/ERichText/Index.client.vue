@@ -19,7 +19,7 @@ import {
   Clear,
   CodeBlock,
   Code,
-  Color, FontFamily, FontSize,
+  Color, FontFamily, FontSize
 } from '~/utils/rich-text/extensions'
 
 export default defineComponent({

@@ -29,13 +29,14 @@ export default defineComponent({
     }
   },
   emits: ['update:modelValue', 'change'],
-  setup(_, { emit }) {
+  setup(_, { emit, expose }) {
     const menu = ref(false)
     const setColor = (color: string) => {
       emit('update:modelValue', color)
       emit('change', color)
       menu.value = false
     }
+    expose({ menu, setColor, COLORS_LIST, getIcon })
     return { menu, setColor, COLORS_LIST, getIcon }
   }
 })

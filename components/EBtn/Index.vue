@@ -7,6 +7,7 @@ import { VTooltip } from 'vuetify/components/VTooltip'
 import { useLanguageStore } from '~/store/language'
 import { ButtonViewReturnComponentProps } from '~/utils/rich-text/constants/type'
 import { getIcon, IconsOptions } from '~/utils/rich-text/constants/icons'
+import { isString } from '~/utils/rich-text/utils'
 
 export default defineComponent({
   name: 'EBtn',
@@ -17,7 +18,7 @@ export default defineComponent({
       default: 'btn'
     },
     icon: {
-      type: String as () => keyof IconsOptions,
+      type: [String as () => keyof IconsOptions, Boolean],
       default: undefined
     },
     // adds color
@@ -155,7 +156,10 @@ export default defineComponent({
   data: () => ({}),
   computed: {
     btnIcon() {
-      return getIcon(this.icon)
+      if (isString(this.icon)) {
+        return getIcon(this.icon)
+      }
+      return null
     }
   }
 })
