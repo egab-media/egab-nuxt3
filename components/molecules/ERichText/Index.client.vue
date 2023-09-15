@@ -19,7 +19,7 @@ import {
   Clear,
   CodeBlock,
   Code,
-  Color, FontFamily, FontSize, Fullscreen, Heading
+  Color, FontFamily, FontSize, Fullscreen, Heading, History
 } from '~/utils/rich-text/extensions'
 
 export default defineComponent({
@@ -90,7 +90,8 @@ export default defineComponent({
         FontSize,
         //  TODO: tweak functionality
         Fullscreen,
-        Heading
+        Heading,
+        History
       ]
     }
   },
