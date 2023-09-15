@@ -19,7 +19,7 @@ import {
   Clear,
   CodeBlock,
   Code,
-  Color, FontFamily, FontSize, Fullscreen, Heading, History, HorizontalRule, Indent, Italic, Link, OrderedList
+  Color, FontFamily, FontSize, Fullscreen, Heading, History, HorizontalRule, Indent, Italic, Link, OrderedList, Strike
 } from '~/utils/rich-text/extensions'
 
 export default defineComponent({
@@ -96,7 +96,8 @@ export default defineComponent({
         Indent,
         Italic,
         Link,
-        OrderedList
+        OrderedList,
+        Strike
       ]
     }
   },
