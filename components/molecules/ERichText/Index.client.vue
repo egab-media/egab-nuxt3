@@ -31,7 +31,7 @@ import {
   Link,
   OrderedList,
   Strike,
-  TaskList
+  TaskList, TextAlign
 } from '~/utils/rich-text/extensions'
 
 export default defineComponent({
@@ -110,7 +110,8 @@ export default defineComponent({
         Link,
         OrderedList,
         Strike,
-        TaskList
+        TaskList,
+        TextAlign
       ]
     }
   },
