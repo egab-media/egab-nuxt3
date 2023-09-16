@@ -12,7 +12,7 @@ export interface TaskListOptions extends TiptapTaskListOptions, GeneralOptions {
   button: ButtonView
 }
 
-export const TaskList = /* @__PURE__*/ TiptapTaskList.extend<TaskListOptions>({
+export const TaskList = /* @__PURE__ */ TiptapTaskList.extend<TaskListOptions>({
   addOptions() {
     return {
       ...this.parent?.(),

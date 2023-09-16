@@ -9,7 +9,7 @@ export interface StrikeOptions extends TiptapStrikeOptions, GeneralOptions {
   button: ButtonView
 }
 
-export const Strike = /* @__PURE__*/ TiptapStrike.extend<StrikeOptions>({
+export const Strike = /* @__PURE__ */ TiptapStrike.extend<StrikeOptions>({
   addOptions() {
     return {
       ...this.parent?.(),

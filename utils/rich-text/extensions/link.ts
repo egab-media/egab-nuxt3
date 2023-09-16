@@ -9,7 +9,7 @@ export interface LinkOptions extends TiptapLinkOptions, GeneralOptions {
   button: ButtonView
 }
 
-export const Link = /* @__PURE__*/ TiptapLink.extend<LinkOptions>({
+export const Link = /* @__PURE__ */ TiptapLink.extend<LinkOptions>({
   addOptions() {
     return {
       ...this.parent?.(),

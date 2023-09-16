@@ -13,7 +13,7 @@ export const Fullscreen = /* @__PURE__ */ Extension.create<FullscreenOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      button: ({ editor, t }) => ({
+      button: () => ({
         component: FullscreenActionButton,
         componentProps: {}
       })

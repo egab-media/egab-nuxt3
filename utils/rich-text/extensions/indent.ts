@@ -8,7 +8,7 @@ export interface IndentOptions extends GeneralOptions {
   button: ButtonView
 }
 
-export const Indent = /* @__PURE__*/ Extension.create<IndentOptions>({
+export const Indent = /* @__PURE__ */ Extension.create<IndentOptions>({
   name: 'indent',
   addOptions() {
     return {
@@ -21,8 +21,8 @@ export const Indent = /* @__PURE__*/ Extension.create<IndentOptions>({
           component: ActionButton,
           componentProps: {
             action: () => {
-              if (item === 'indent') editor.commands.sinkListItem('listItem')
-              if (item === 'outdent') editor.commands.liftListItem('listItem')
+              if (item === 'indent') { editor.commands.sinkListItem('listItem') }
+              if (item === 'outdent') { editor.commands.liftListItem('listItem') }
             },
             icon: item,
             tooltip: t(`editor.${item}.tooltip`)

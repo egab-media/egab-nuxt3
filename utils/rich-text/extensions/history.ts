@@ -9,7 +9,7 @@ export interface HistoryOptions extends TiptapHistoryOptions, GeneralOptions {
   button: ButtonView
 }
 
-export const History = /* @__PURE__*/ TiptapHistory.extend<HistoryOptions>({
+export const History = /* @__PURE__ */ TiptapHistory.extend<HistoryOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
@@ -21,8 +21,8 @@ export const History = /* @__PURE__*/ TiptapHistory.extend<HistoryOptions>({
           component: ActionButton,
           componentProps: {
             action: () => {
-              if (item === 'undo') editor.commands.undo()
-              if (item === 'redo') editor.commands.redo()
+              if (item === 'undo') { editor.commands.undo() }
+              if (item === 'redo') { editor.commands.redo() }
             },
             icon: item,
             tooltip: t(`editor.${item}.tooltip`)

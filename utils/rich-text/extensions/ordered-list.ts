@@ -9,7 +9,7 @@ export interface OrderedListOptions extends TiptapOrderedListOptions, GeneralOpt
   button: ButtonView
 }
 
-export const OrderedList = /* @__PURE__*/ TiptapOrderedList.extend<OrderedListOptions>({
+export const OrderedList = /* @__PURE__ */ TiptapOrderedList.extend<OrderedListOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
