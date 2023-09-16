@@ -1,8 +1,6 @@
 import type { CodeOptions as TiptapCodeOptions } from '@tiptap/extension-code'
 import { Code as TiptapCode } from '@tiptap/extension-code'
 
-import ActionButton from '@/components/EBtn/Index.vue'
-
 import type { ButtonView, GeneralOptions } from '@/utils/rich-text/constants/type'
 
 export interface CodeOptions extends TiptapCodeOptions, GeneralOptions {
@@ -14,7 +12,7 @@ export const Code = /* @__PURE__ */ TiptapCode.extend<CodeOptions>({
     return {
       ...this.parent?.(),
       button: ({ editor, t }) => ({
-        component: ActionButton,
+        component: defineAsyncComponent(() => import('@/components/EBtn/Index.vue')),
         componentProps: {
           action: () => editor.chain().focus().toggleCode().run(),
           isActive: () => editor.isActive('code') || false,

@@ -1,7 +1,6 @@
 import { Extension } from '@tiptap/core'
 
 import type { Item } from '@/components/molecules/ERichText/partials/EMenuBtn/Index.vue'
-import ActionMenuButton from '@/components/molecules/ERichText/partials/EMenuBtn/Index.vue'
 
 import { DEFAULT_FONT_SIZE_LIST, DEFAULT_FONT_SIZE_VALUUE } from '@/utils/rich-text/constants/define'
 import type { ButtonView, GeneralOptions } from '@/utils/rich-text/constants/type'
@@ -64,7 +63,7 @@ export const FontSize = /* @__PURE__ */ Extension.create<FontSizeOptions>({
         }))
 
         return {
-          component: ActionMenuButton,
+          component: defineAsyncComponent(() => import('@/components/molecules/ERichText/partials/EMenuBtn/Index.vue')),
           componentProps: {
             icon: 'fontSize',
             tooltip: t('editor.fontSize.tooltip'),

@@ -2,7 +2,6 @@ import type { FontFamilyOptions as TiptapFontFamilyOptions } from '@tiptap/exten
 import { FontFamily as TiptapFontFamily } from '@tiptap/extension-font-family'
 
 import type { Item } from '@/components/molecules/ERichText/partials/EMenuBtn/Index.vue'
-import ActionMenuButton from '@/components/molecules/ERichText/partials/EMenuBtn/Index.vue'
 
 import type { FontFamilyProps } from '@/utils/rich-text/constants/define'
 import { DEFAULT_FONT_FAMILY_LIST, DEFAULT_FONT_FAMILY_VALUE } from '@/utils/rich-text/constants/define'
@@ -47,7 +46,7 @@ export const FontFamily = /* @__PURE__ */ TiptapFontFamily.extend<FontFamilyOpti
         }))
 
         return {
-          component: ActionMenuButton,
+          component: defineAsyncComponent(() => import('@/components/molecules/ERichText/partials/EMenuBtn/Index.vue')),
           componentProps: {
             icon: 'fontFamily',
             tooltip: t('editor.fontFamily.tooltip'),

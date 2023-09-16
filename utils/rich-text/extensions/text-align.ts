@@ -2,7 +2,6 @@ import type { TextAlignOptions as TiptapTextAlignOptions } from '@tiptap/extensi
 import { TextAlign as TiptapTextAlign } from '@tiptap/extension-text-align'
 
 import type { Item } from '@/components/molecules/ERichText/partials/EMenuBtn/Index.vue'
-import ActionMenuButton from '@/components/molecules/ERichText/partials/EMenuBtn/Index.vue'
 
 import type { ButtonView, GeneralOptions } from '@/utils/rich-text/constants/type'
 
@@ -30,7 +29,7 @@ export const TextAlign = /* @__PURE__ */ TiptapTextAlign.extend<TextAlignOptions
         }))
 
         return {
-          component: ActionMenuButton,
+          component: defineAsyncComponent(() => import('@/components/molecules/ERichText/partials/EMenuBtn/Index.vue')),
           componentProps: {
             icon: 'center',
             tooltip: t('editor.textalign.tooltip'),

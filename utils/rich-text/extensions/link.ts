@@ -1,8 +1,6 @@
 import type { LinkOptions as TiptapLinkOptions } from '@tiptap/extension-link'
 import { Link as TiptapLink } from '@tiptap/extension-link'
 
-import LinkActionButton from '@/components/molecules/ERichText/partials/ELinkBtn/Index.client.vue'
-
 import type { ButtonView, GeneralOptions } from '@/utils/rich-text/constants/type'
 
 export interface LinkOptions extends TiptapLinkOptions, GeneralOptions {
@@ -15,7 +13,7 @@ export const Link = /* @__PURE__ */ TiptapLink.extend<LinkOptions>({
       ...this.parent?.(),
       openOnClick: true,
       button: ({ editor, t }) => ({
-        component: LinkActionButton,
+        component: defineAsyncComponent(() => import('@/components/molecules/ERichText/partials/ELinkBtn/Index.client.vue')),
         componentProps: {
           isActive: () => editor.isActive('link') || false,
           icon: 'link',

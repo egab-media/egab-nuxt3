@@ -1,8 +1,6 @@
 import type { UnderlineOptions as TiptapUnderlineOptions } from '@tiptap/extension-underline'
 import { Underline as TiptapUnderline } from '@tiptap/extension-underline'
 
-import ActionButton from '@/components/EBtn/Index.vue'
-
 import type { ButtonView, GeneralOptions } from '@/utils/rich-text/constants/type'
 
 export interface UnderlineOptions extends TiptapUnderlineOptions, GeneralOptions {
@@ -14,7 +12,7 @@ export const Underline = /* @__PURE__ */ TiptapUnderline.extend<UnderlineOptions
     return {
       ...this.parent?.(),
       button: ({ editor, t }) => ({
-        component: ActionButton,
+        component: defineAsyncComponent(() => import('@/components/EBtn/Index.vue')),
         componentProps: {
           action: () => editor.chain().focus().toggleUnderline().run(),
           isActive: () => editor.isActive('underline') || false,

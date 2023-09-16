@@ -1,8 +1,6 @@
 import type { StrikeOptions as TiptapStrikeOptions } from '@tiptap/extension-strike'
 import { Strike as TiptapStrike } from '@tiptap/extension-strike'
 
-import ActionButton from '@/components/EBtn/Index.vue'
-
 import type { ButtonView, GeneralOptions } from '@/utils/rich-text/constants/type'
 
 export interface StrikeOptions extends TiptapStrikeOptions, GeneralOptions {
@@ -14,7 +12,7 @@ export const Strike = /* @__PURE__ */ TiptapStrike.extend<StrikeOptions>({
     return {
       ...this.parent?.(),
       button: ({ editor, t }) => ({
-        component: ActionButton,
+        component: defineAsyncComponent(() => import('@/components/EBtn/Index.vue')),
         componentProps: {
           action: () => editor.chain().focus().toggleStrike().run(),
           isActive: () => editor.isActive('strike') || false,

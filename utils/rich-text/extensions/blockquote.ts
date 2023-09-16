@@ -2,8 +2,6 @@ import type { BlockquoteOptions as TiptapBlockquoteOptions } from '@tiptap/exten
 import { Blockquote as TiptapBlockquote } from '@tiptap/extension-blockquote'
 import type { ButtonView, GeneralOptions } from '@/utils/rich-text/constants/type'
 
-import ActionButton from '@/components/EBtn/Index.vue'
-
 export interface BlockquoteOptions extends TiptapBlockquoteOptions, GeneralOptions {
   button: ButtonView
 }
@@ -16,7 +14,7 @@ export const Blockquote = /* @__PURE__ */ TiptapBlockquote.extend<BlockquoteOpti
         class: 'blockquote'
       },
       button: ({ editor, t }) => ({
-        component: ActionButton,
+        component: defineAsyncComponent(() => import('@/components/EBtn/Index.vue')),
         componentProps: {
           action: () => editor.chain().focus().toggleBlockquote().run(),
           isActive: () => editor.isActive('blockquote') || false,

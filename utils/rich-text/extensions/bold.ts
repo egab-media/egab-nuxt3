@@ -14,7 +14,7 @@ export const Bold = /* @__PURE__ */ TiptapBold.extend<BoldOptions>({
     return {
       ...this.parent?.(),
       button: ({ editor, t }) => ({
-        component: ActionButton,
+        component: defineAsyncComponent(() => import('@/components/EBtn/Index.vue')),
         componentProps: {
           action: () => editor.chain().focus().toggleBold().run(),
           isActive: () => editor.isActive('bold') || false,

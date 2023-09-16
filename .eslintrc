@@ -10,7 +10,7 @@
   "extends": [
     "plugin:security-node/recommended",
     "plugin:anti-trojan-source/recommended",
-    "@nuxtjs/eslint-config-typescript",
+//    "@nuxtjs/eslint-config-typescript",
     "plugin:vue/vue3-recommended"
   ],
   "rules": {

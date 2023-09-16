@@ -1,7 +1,5 @@
 import { Extension } from '@tiptap/core'
 
-import ActionButton from '@/components/EBtn/Index.vue'
-
 import type { ButtonView, GeneralOptions } from '@/utils/rich-text/constants/type'
 
 export interface IndentOptions extends GeneralOptions {
@@ -18,7 +16,7 @@ export const Indent = /* @__PURE__ */ Extension.create<IndentOptions>({
         const items: ['indent', 'outdent'] = ['indent', 'outdent']
 
         return items.map(item => ({
-          component: ActionButton,
+          component: defineAsyncComponent(() => import('@/components/EBtn/Index.vue')),
           componentProps: {
             action: () => {
               if (item === 'indent') { editor.chain().focus().sinkListItem('listItem').run() }

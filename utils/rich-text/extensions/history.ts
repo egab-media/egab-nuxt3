@@ -1,8 +1,6 @@
 import type { HistoryOptions as TiptapHistoryOptions } from '@tiptap/extension-history'
 import { History as TiptapHistory } from '@tiptap/extension-history'
 
-import ActionButton from '@/components/EBtn/Index.vue'
-
 import type { ButtonView, GeneralOptions } from '@/utils/rich-text/constants/type'
 
 export interface HistoryOptions extends TiptapHistoryOptions, GeneralOptions {
@@ -18,7 +16,7 @@ export const History = /* @__PURE__ */ TiptapHistory.extend<HistoryOptions>({
         const historys: ['undo', 'redo'] = ['undo', 'redo']
 
         return historys.map(item => ({
-          component: ActionButton,
+          component: defineAsyncComponent(() => import('@/components/EBtn/Index.vue')),
           componentProps: {
             action: () => {
               if (item === 'undo') { editor.chain().focus().undo().run() }

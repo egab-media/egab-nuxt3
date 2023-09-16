@@ -1,7 +1,5 @@
 import { Extension } from '@tiptap/core'
 
-import FullscreenActionButton from '~/components/molecules/ERichText/partials/EFullscreenBtn/Index.client.vue'
-
 import type { ButtonView, GeneralOptions } from '@/utils/rich-text/constants/type'
 
 export interface FullscreenOptions extends GeneralOptions {
@@ -14,7 +12,7 @@ export const Fullscreen = /* @__PURE__ */ Extension.create<FullscreenOptions>({
     return {
       ...this.parent?.(),
       button: () => ({
-        component: FullscreenActionButton,
+        component: defineAsyncComponent(() => import('~/components/molecules/ERichText/partials/EFullscreenBtn/Index.client.vue')),
         componentProps: {}
       })
     }

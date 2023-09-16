@@ -4,7 +4,6 @@ import { Heading as TiptapHeading } from '@tiptap/extension-heading'
 
 import type { BaseKitOptions } from './base-kit'
 import type { Item } from '@/components/molecules/ERichText/partials/EMenuBtn/Index.vue'
-import ActionMenuButton from '@/components/molecules/ERichText/partials/EMenuBtn/Index.vue'
 
 import type { ButtonView, GeneralOptions } from '@/utils/rich-text/constants/type'
 
@@ -40,7 +39,7 @@ export const Heading = /* @__PURE__ */ TiptapHeading.extend<HeadingOptions>({
         }
 
         return {
-          component: ActionMenuButton,
+          component: defineAsyncComponent(() => import('@/components/molecules/ERichText/partials/EMenuBtn/Index.vue')),
           componentProps: {
             icon: 'heading',
             tooltip: t('editor.heading.tooltip'),
