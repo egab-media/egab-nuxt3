@@ -1,6 +1,5 @@
 <script lang="ts">
 import { Editor } from '@tiptap/vue-3'
-import { ButtonViewReturnComponentProps } from '@/utils/rich-text/constants/type'
 
 export default defineComponent({
   name: 'EFullscreenBtn',
@@ -18,7 +17,7 @@ export default defineComponent({
       default: undefined
     },
     isActive: {
-      type: Function as ButtonViewReturnComponentProps['isActive'],
+      type: Function,
       default: undefined
     }
   },

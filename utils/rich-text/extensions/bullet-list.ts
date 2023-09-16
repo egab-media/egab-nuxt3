@@ -16,7 +16,7 @@ export const BulletList = /* @__PURE__ */ TiptapBulletList.extend<BulletListOpti
       button: ({ editor, t }) => ({
         component: ActionButton,
         componentProps: {
-          action: () => editor.commands.toggleBulletList(),
+          action: () => editor.chain().focus().toggleBulletList().run(),
           isActive: () => editor.isActive('bulletList') || false,
           icon: 'bulletList',
           tooltip: t('editor.bulletlist.tooltip')

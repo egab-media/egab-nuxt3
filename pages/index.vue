@@ -24,7 +24,6 @@ export default defineComponent({
   <v-container>
     <e-fps />
     <molecules-e-rich-text v-model="inputVal" :error-messages="['message-one']" />
-    <!--    <molecules-e-input-wrapper v-model="inputVal" />-->
   </v-container>
 </template>
 

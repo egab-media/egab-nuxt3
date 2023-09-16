@@ -36,7 +36,7 @@ export const FontSize = /* @__PURE__ */ Extension.create<FontSizeOptions>({
       types: ['textStyle'],
       fontSizes: DEFAULT_FONT_SIZE_LIST,
       button: ({ editor, extension, t }) => {
-        const fontSizes = (extension.options?.fontSizes as FontSizeOptions['fontSizes']) || []
+        const fontSizes = (extension.options?.fontSizes) || []
 
         const items: Item[] = [DEFAULT_FONT_SIZE_VALUUE, ...fontSizes].map(k => ({
           title: k === DEFAULT_FONT_SIZE_VALUUE ? t('editor.default') : String(k),
@@ -53,11 +53,11 @@ export const FontSize = /* @__PURE__ */ Extension.create<FontSizeOptions>({
           },
           action: () => {
             if (k === DEFAULT_FONT_SIZE_VALUUE) {
-              editor.commands.unsetFontSize()
+              editor.chain().focus().unsetFontSize().run()
               return
             }
 
-            editor.commands.setFontSize(String(k))
+            editor.chain().focus().setFontSize(String(k)).run()
           },
           divider: k === DEFAULT_FONT_SIZE_VALUUE ?? false,
           default: k === DEFAULT_FONT_SIZE_VALUUE ?? false

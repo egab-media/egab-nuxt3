@@ -19,7 +19,7 @@ export const FontFamily = /* @__PURE__ */ TiptapFontFamily.extend<FontFamilyOpti
       ...this.parent?.(),
       fontFamilies: DEFAULT_FONT_FAMILY_LIST,
       button: ({ editor, extension, t }) => {
-        const fontFamilies = (extension.options?.fontFamilies as FontFamilyProps[]) || []
+        const fontFamilies = (extension.options?.fontFamilies) || []
 
         const items: Item[] = fontFamilies.map(k => ({
           title: t(`editor.fonts.${k.title.toLowerCase()}`),
@@ -35,11 +35,11 @@ export const FontFamily = /* @__PURE__ */ TiptapFontFamily.extend<FontFamilyOpti
           },
           action: () => {
             if (k.value === DEFAULT_FONT_FAMILY_VALUE) {
-              editor.commands.unsetFontFamily()
+              editor.chain().focus().unsetFontFamily().run()
               return
             }
 
-            editor.commands.setFontFamily(k.value)
+            editor.chain().focus().setFontFamily(k.value).run()
           },
           style: { fontFamily: k.value },
           divider: k.divider ?? false,

@@ -21,8 +21,8 @@ export const History = /* @__PURE__ */ TiptapHistory.extend<HistoryOptions>({
           component: ActionButton,
           componentProps: {
             action: () => {
-              if (item === 'undo') { editor.commands.undo() }
-              if (item === 'redo') { editor.commands.redo() }
+              if (item === 'undo') { editor.chain().focus().undo().run() }
+              if (item === 'redo') { editor.chain().focus().redo().run() }
             },
             icon: item,
             tooltip: t(`editor.${item}.tooltip`)

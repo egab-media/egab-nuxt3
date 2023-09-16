@@ -23,7 +23,7 @@ export const Heading = /* @__PURE__ */ TiptapHeading.extend<HeadingOptions>({
         const baseKitExt = extensions.find(k => k.name === 'base-kit') as Extension<BaseKitOptions>
 
         const items: Item[] = levels.map(level => ({
-          action: () => editor.commands.toggleHeading({ level }),
+          action: () => editor.chain().focus().toggleHeading({ level }).run(),
           isActive: () => editor.isActive('heading', { level }) || false,
           icon: `h${level}`,
           title: t(`editor.heading.h${level}.tooltip`)
@@ -31,7 +31,7 @@ export const Heading = /* @__PURE__ */ TiptapHeading.extend<HeadingOptions>({
 
         if (baseKitExt && baseKitExt.options.paragraph !== false) {
           items.unshift({
-            action: () => editor.commands.setParagraph(),
+            action: () => editor.chain().focus().setParagraph().run(),
             isActive: () => editor.isActive('paragraph') || false,
             icon: 'p',
             title: t('editor.paragraph.tooltip'),

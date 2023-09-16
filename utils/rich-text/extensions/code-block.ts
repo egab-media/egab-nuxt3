@@ -16,7 +16,7 @@ export const CodeBlock = /* @__PURE__ */ TiptapCodeBlock.extend<CodeBlockOptions
       button: ({ editor, t }) => ({
         component: ActionButton,
         componentProps: {
-          action: () => editor.commands.toggleCodeBlock(),
+          action: () => editor.chain().focus().toggleCodeBlock().run(),
           isActive: () => editor.isActive('codeBlock') || false,
           icon: 'codeBlock',
           tooltip: t('editor.codeblock.tooltip')
