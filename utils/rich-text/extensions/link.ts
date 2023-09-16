@@ -1,7 +1,7 @@
 import type { LinkOptions as TiptapLinkOptions } from '@tiptap/extension-link'
 import { Link as TiptapLink } from '@tiptap/extension-link'
 
-import LinkActionButton from '@/components/EBtn/Index.vue'
+import LinkActionButton from '@/components/molecules/ERichText/partials/ELinkBtn/Index.client.vue'
 
 import type { ButtonView, GeneralOptions } from '@/utils/rich-text/constants/type'
 

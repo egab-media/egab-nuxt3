@@ -66,13 +66,15 @@ export default defineComponent({
   <v-toolbar v-bind="$attrs" density="compact" flat height="auto" class="py-1 ps-1">
     <template v-for="(item, key) in items" :key="key">
       <v-spacer v-if="item.spacer" />
-      <component
-        :is="item.button.component"
-        v-bind="item.button.componentProps"
-        :editor="editor"
-        :disabled="disabled"
-        color="primary"
-      />
+      <delay-hydration>
+        <component
+          :is="item.button.component"
+          v-bind="item.button.componentProps"
+          :editor="editor"
+          :disabled="disabled"
+          color="primary"
+        />
+      </delay-hydration>
       <v-divider v-if="item.divider" vertical class="mx-1 me-2" />
     </template>
   </v-toolbar>

@@ -1,17 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import vuetify from 'vite-plugin-vuetify'
-import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'
-import { IconProps, IconSet } from 'vuetify/vuetify-labs'
 // @ts-ignore
 import colors from 'vuetify/lib/util/colors.mjs'
 import { langs } from './utils/languages'
-
-const customSVGs: any = {
-  EIconGoogle: () => import('./components/icons/EIconGoogle/Index.vue')
-}
-const custom: IconSet = {
-  component: (props: IconProps) => h(props.tag, [h(customSVGs[props.icon])])
-}
 
 export default defineNuxtConfig({
   // @ts-ignore
@@ -33,6 +23,7 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'render_com',
+    // @ts-ignore
     routing: {
       routeRules: {
         '/assets/': { headers: { 'cache-control': 'maxage=31536000 s-maxage=31536000' } },
@@ -107,7 +98,7 @@ export default defineNuxtConfig({
           /v-tooltip/
         ]
       }
-    }],
+    }]
     // process.env.NODE_ENV === 'production'
     //   ? async (_, nuxt) => {
     //     await nuxt.hooks.hook('vite:extendConfig', config =>
@@ -123,12 +114,18 @@ export default defineNuxtConfig({
 
   vuetify: {
     vuetifyOptions: {
+      ssr: true,
       icons: {
-        defaultSet: 'mdi',
-        aliases,
         sets: {
-          mdi,
-          custom
+          custom: {
+            // @ts-ignore
+            EIconGoogle: {
+              component: () => import('@/components/icons/EIconGoogle/Index.vue'),
+              props: {
+                name: 'EIconGoogle'
+              }
+            }
+          }
         }
       },
       theme: {
@@ -173,8 +170,12 @@ export default defineNuxtConfig({
       }
     },
     moduleOptions: {
+      // @ts-ignore
       treeShaking: true,
-      useIconCDN: false
+      useIconCDN: false,
+      styles: {
+        configFile: 'assets/variables.scss'
+      }
     }
   },
 

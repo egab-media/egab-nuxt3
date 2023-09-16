@@ -2,7 +2,7 @@
 export default defineComponent({
   name: 'EInputWrapper',
   props: {
-    componentName: {
+    type: {
       type: String,
       default: 'text',
       validator: value => value === 'text'
@@ -10,6 +10,10 @@ export default defineComponent({
     modelValue: {
       type: [String, Number, Object, Array],
       default: null
+    },
+    label: {
+      type: String,
+      default: undefined
     }
   },
   emits: ['update:modelValue'],
@@ -19,12 +23,12 @@ export default defineComponent({
     // const select = resolveComponent('lazy-molecules-e-input-wrapper-partials-e-select')
 
     const getComponent = computed(() => {
-      switch (props.componentName) {
+      switch (props.type) {
         case 'text':
           return textField
       }
     })
-    // NOTE: It is important to expose the modelValue props to the grand parent
+    // NOTE: It is important to expose the modelValue props to the grandparent
     expose({ modelValue: props.modelValue })
     return { textField, getComponent }
   }

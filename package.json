@@ -71,7 +71,6 @@
     "firebase-functions": "^4.4.1",
     "pinia": "^2.1.6",
     "sass": "^1.64.2",
-    "typescript": "^5.2.2",
     "vite-plugin-vuetify": "^1.0.2",
     "vuefire": "^3.1.15",
     "vuetify": "3.4.0-alpha.1"
