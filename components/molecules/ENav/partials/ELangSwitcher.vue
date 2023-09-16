@@ -56,8 +56,6 @@ export default defineComponent({
 </script>
 
 <script lang="ts" setup>
-import { VListItem, VListItemTitle } from 'vuetify/components/VList'
-import { VSelect } from 'vuetify/components/VSelect'
 import { useI18n } from 'vue-i18n'
 import { langs } from '~/utils/languages'
 

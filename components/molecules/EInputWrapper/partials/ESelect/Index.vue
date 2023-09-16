@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { VSelect } from 'vuetify/components/VSelect'
 defineEmits(['input'])
 const handleUpdateMenu = (open: boolean) => {
   if (open) {

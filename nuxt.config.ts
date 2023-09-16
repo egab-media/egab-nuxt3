@@ -1,6 +1,17 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import vuetify from 'vite-plugin-vuetify'
+import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'
+import { IconProps, IconSet } from 'vuetify/vuetify-labs'
+// @ts-ignore
+import colors from 'vuetify/lib/util/colors.mjs'
 import { langs } from './utils/languages'
+
+const customSVGs: any = {
+  EIconGoogle: () => import('./components/icons/EIconGoogle/Index.vue')
+}
+const custom: IconSet = {
+  component: (props: IconProps) => h(props.tag, [h(customSVGs[props.icon])])
+}
 
 export default defineNuxtConfig({
   // @ts-ignore
@@ -60,6 +71,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-security',
     '@nuxtjs/eslint-module',
+    '@invictus.codes/nuxt-vuetify',
     ['nuxt-purgecss', {
       enabled: true,
       safelist: {
@@ -96,18 +108,75 @@ export default defineNuxtConfig({
         ]
       }
     }],
-    process.env.NODE_ENV === 'production'
-      ? async (_, nuxt) => {
-        await nuxt.hooks.hook('vite:extendConfig', config =>
-          config.plugins?.push(
-            vuetify({
-              styles: { configFile: 'assets/variables.scss' }
-            })
-          ) as any
-        )
-      }
-      : undefined
+    // process.env.NODE_ENV === 'production'
+    //   ? async (_, nuxt) => {
+    //     await nuxt.hooks.hook('vite:extendConfig', config =>
+    //       config.plugins?.push(
+    //         vuetify({
+    //           styles: { configFile: 'assets/variables.scss' }
+    //         })
+    //       ) as any
+    //     )
+    //   }
+    //   : undefined
   ],
+
+  vuetify: {
+    vuetifyOptions: {
+      icons: {
+        defaultSet: 'mdi',
+        aliases,
+        sets: {
+          mdi,
+          custom
+        }
+      },
+      theme: {
+        themes: {
+          light: {
+            dark: false,
+            colors: {
+              /**
+               * use primary darken-1 for luminescent-green-800
+               * use primary lighten-2 for luminescent-green-400
+               * use primary-50 for luminescent-green-50
+               * use primary-100 for luminescent-green-100
+               */
+              primary: '#77A11D',
+              'primary-20': '#ACCD53',
+              'primary-50': '#F4F8E7',
+              'primary-100': '#e3edc3',
+              accent: colors.grey.darken3,
+              secondary: '#C76758',
+              info: '#4AA1B3',
+              warning: '#F89A35',
+              error: '#DA756C',
+              success: colors.green.accent3
+            }
+          },
+          dark: {
+            dark: true,
+            colors: {
+              primary: '#77A11D',
+              'primary-20': '#ACCD53',
+              'primary-50': '#F4F8E7',
+              'primary-100': '#e3edc3',
+              accent: colors.grey.darken3,
+              secondary: '#C76758',
+              info: '#4AA1B3',
+              warning: colors.amber.base,
+              error: '#DA756C',
+              success: colors.green.accent3
+            }
+          }
+        }
+      }
+    },
+    moduleOptions: {
+      treeShaking: true,
+      useIconCDN: false
+    }
+  },
 
   security: {
     headers: {

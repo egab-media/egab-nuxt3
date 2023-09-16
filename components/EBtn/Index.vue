@@ -1,9 +1,6 @@
 <script lang="ts">
 import { storeToRefs } from 'pinia'
 import { RouteLocationRaw } from 'vue-router'
-import { VBtn } from 'vuetify/components/VBtn'
-import { VIcon } from 'vuetify/components/VIcon'
-import { VTooltip } from 'vuetify/components/VTooltip'
 import { useLanguageStore } from '~/store/language'
 import { ButtonViewReturnComponentProps } from '~/utils/rich-text/constants/type'
 import { getIcon, IconsOptions } from '~/utils/rich-text/constants/icons'
@@ -11,7 +8,6 @@ import { isString } from '~/utils/rich-text/utils'
 
 export default defineComponent({
   name: 'EBtn',
-  components: { VBtn, VIcon, VTooltip },
   props: {
     dataTest: {
       type: String,

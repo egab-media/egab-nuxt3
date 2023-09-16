@@ -3,11 +3,6 @@ import { Editor, JSONContent, AnyExtension } from '@tiptap/vue-3'
 import { Editor as CoreEditor } from '@tiptap/core'
 import throttle from 'lodash/throttle'
 import isequal from 'lodash/isEqual'
-
-import { VThemeProvider } from 'vuetify/components/VThemeProvider'
-import { VInput } from 'vuetify/components/VInput'
-import { VCard, VCardTitle } from 'vuetify/components/VCard'
-import { VDivider } from 'vuetify/components/VDivider'
 import {
   EDITOR_UPDATE_THROTTLE_WAIT_TIME, EDITOR_UPDATE_WATCH_THROTTLE_WAIT_TIME
 } from '~/utils/rich-text/constants/define'
@@ -36,13 +31,6 @@ import {
 
 export default defineComponent({
   name: 'ERichText',
-  components: {
-    VThemeProvider,
-    VInput,
-    VCard,
-    VCardTitle,
-    VDivider
-  },
   props: {
     modelValue: {
       type: [String, Object as () => JSONContent],

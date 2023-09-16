@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { VAppBar, VAppBarTitle } from 'vuetify/components/VAppBar'
 import ELangSwitcher from './partials/ELangSwitcher.vue'
 </script>
 

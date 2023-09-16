@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { VTextField } from 'vuetify/components/VTextField'
-import { VProgressLinear } from 'vuetify/components/VProgressLinear'
 import { mdiEye, mdiEyeOff } from '@mdi/js'
 import { useGetProgress } from '~/composables/input-progress'
 import { useRules } from '~/composables/rules'

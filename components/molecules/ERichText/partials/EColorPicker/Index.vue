@@ -1,15 +1,9 @@
 <script lang="ts">
-import { VMenu } from 'vuetify/components/VMenu'
-import { VSheet } from 'vuetify/components/VSheet'
-import { VIcon } from 'vuetify/components/VIcon'
-import { VList } from 'vuetify/components/VList'
-import { VBtn } from 'vuetify/components/VBtn'
 import { COLORS_LIST } from '~/utils/rich-text/constants/define'
 import { getIcon } from '~/utils/rich-text/constants/icons'
 
 export default defineComponent({
   name: 'EColorPicker',
-  components: { VMenu, VSheet, VIcon, VList, VBtn },
   props: {
     modelValue: {
       type: String,

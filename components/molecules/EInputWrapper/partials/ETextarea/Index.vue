@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { VTextarea } from 'vuetify/components/VTextarea'
 import { useRules } from '~/composables/rules'
 
 defineEmits(['update:modelValue'])

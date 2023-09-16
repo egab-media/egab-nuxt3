@@ -18,6 +18,7 @@
     "proxy": "mkcert -install && mkcert localhost && local-ssl-proxy --source 3010 --target 3000 --cert nash-dev.local.pem --key nash-dev.local-key.pem"
   },
   "devDependencies": {
+    "@invictus.codes/nuxt-vuetify": "^0.3.0",
     "@mdi/js": "^7.2.96",
     "@nuxt/devtools": "latest",
     "@nuxt/image": "^1.0.0-rc.1",

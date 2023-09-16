@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { VContainer } from 'vuetify/components/VGrid'
-
 const { locale } = useI18n()
 useHead({
   htmlAttrs: {

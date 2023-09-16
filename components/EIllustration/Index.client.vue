@@ -1,12 +1,6 @@
 <script lang="ts">
-import { VImg } from 'vuetify/components/VImg'
-
 export default defineComponent({
   name: 'EIllustration',
-
-  components: {
-    VImg
-  },
 
   props: {
     imageName: {

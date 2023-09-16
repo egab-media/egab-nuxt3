@@ -1,10 +1,6 @@
 <script lang="ts">
 import { Editor } from '@tiptap/vue-3'
 import { StyleValue } from 'vue'
-import { VMenu } from 'vuetify/components/VMenu'
-import { VList, VListItem, VListItemTitle } from 'vuetify/components/VList'
-import { VIcon } from 'vuetify/components/VIcon'
-import { VDivider } from 'vuetify/components/VDivider'
 import { ButtonViewReturnComponentProps } from '~/utils/rich-text/constants/type'
 import { getIcon, IconsOptions } from '~/utils/rich-text/constants/icons'
 
@@ -20,14 +16,6 @@ export interface Item {
 
 export default defineComponent({
   name: 'EMenuBtn',
-  components: {
-    VMenu,
-    VList,
-    VListItem,
-    VIcon,
-    VListItemTitle,
-    VDivider
-  },
   props: {
     editor: {
       type: Object as () => Editor,

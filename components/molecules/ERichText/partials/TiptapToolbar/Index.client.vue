@@ -1,7 +1,4 @@
 <script lang="ts">
-import { VToolbar } from 'vuetify/components/VToolbar'
-import { VSpacer } from 'vuetify/components/VGrid'
-import { VDivider } from 'vuetify/components/VDivider'
 import { Editor } from '@tiptap/vue-3'
 import { ButtonViewReturn } from '~/utils/rich-text/constants/type'
 import { isFunction } from '~/utils/rich-text/utils'
@@ -14,7 +11,6 @@ interface Menu {
 
 export default defineComponent({
   name: 'TiptapToolbar',
-  components: { VToolbar, VSpacer, VDivider },
   props: {
     editor: {
       type: Editor,

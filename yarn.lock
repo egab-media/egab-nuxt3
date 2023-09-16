@@ -1537,6 +1537,16 @@
   dependencies:
     vue-demi "^0.13.5"
 
+"@invictus.codes/nuxt-vuetify@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@invictus.codes/nuxt-vuetify/-/nuxt-vuetify-0.3.0.tgz#f473081a90464fff177cce99b3311b6a2bd414a9"
+  integrity sha512-Rc2fIzq4CFUlmUHudQBBjyy+yVTlZeevsqh4cuGqPcIdUNWYJRrWFHl5bsp/lfNS5iDYElSBxefWJOD4wFc4gA==
+  dependencies:
+    "@nuxt/kit" "^3.6.2"
+    defu "^6.1.2"
+    vite-plugin-vuetify "^1.0.2"
+    vuetify "^3.3.7"
+
 "@ioredis/commands@^1.1.1":
   version "1.2.0"
   resolved "https://registry.npmjs.org/@ioredis/commands/-/commands-1.2.0.tgz"
@@ -1868,6 +1878,30 @@
     unimport "^3.2.0"
     untyped "^1.4.0"
 
+"@nuxt/kit@^3.6.2":
+  version "3.7.3"
+  resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.7.3.tgz#24a32bdf2eaa3f8f6c81079fb2a3543980b55d26"
+  integrity sha512-bhP02i6CNti15Z4ix3LpR3fd1ANtTcpfS3CDSaCja24hDt3UxIasyp52mqD9LRC+OxrUVHJziB18EwUtS6RLDQ==
+  dependencies:
+    "@nuxt/schema" "3.7.3"
+    c12 "^1.4.2"
+    consola "^3.2.3"
+    defu "^6.1.2"
+    globby "^13.2.2"
+    hash-sum "^2.0.0"
+    ignore "^5.2.4"
+    jiti "^1.20.0"
+    knitwork "^1.0.0"
+    mlly "^1.4.2"
+    pathe "^1.1.1"
+    pkg-types "^1.0.3"
+    scule "^1.0.0"
+    semver "^7.5.4"
+    ufo "^1.3.0"
+    unctx "^2.3.1"
+    unimport "^3.3.0"
+    untyped "^1.4.0"
+
 "@nuxt/schema@3.6.5", "@nuxt/schema@^3.6.5":
   version "3.6.5"
   resolved "https://registry.npmjs.org/@nuxt/schema/-/schema-3.6.5.tgz"
@@ -1897,6 +1931,22 @@
     std-env "^3.4.3"
     ufo "^1.3.0"
     unimport "^3.2.0"
+    untyped "^1.4.0"
+
+"@nuxt/schema@3.7.3":
+  version "3.7.3"
+  resolved "https://registry.yarnpkg.com/@nuxt/schema/-/schema-3.7.3.tgz#84b2ee481200f764ac76201ba92de0a2fa04f3f1"
+  integrity sha512-Uqe3Z9RnAROzv5owQo//PztD9d4csKK6ulwQO1hIAinCh34X7z2zrv9lhm14hlRYU1n7ISEi4S7UeHgL/r8d8A==
+  dependencies:
+    "@nuxt/ui-templates" "^1.3.1"
+    defu "^6.1.2"
+    hookable "^5.5.3"
+    pathe "^1.1.1"
+    pkg-types "^1.0.3"
+    postcss-import-resolver "^2.0.0"
+    std-env "^3.4.3"
+    ufo "^1.3.0"
+    unimport "^3.3.0"
     untyped "^1.4.0"
 
 "@nuxt/telemetry@^2.3.0":
@@ -2285,7 +2335,7 @@
     estree-walker "^2.0.2"
     picomatch "^2.3.1"
 
-"@rollup/pluginutils@^5.0.3":
+"@rollup/pluginutils@^5.0.3", "@rollup/pluginutils@^5.0.4":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-5.0.4.tgz#74f808f9053d33bafec0cc98e7b835c9667d32ba"
   integrity sha512-0KJnIoRI8A+a1dqOYLxH8vBf8bphDmty5QvIm2hqm7oFCFYKCAZWWd2hXgMibaPsNDhI0AtpYfQZJG47pt/k4g==
@@ -7004,6 +7054,11 @@ jiti@^1.19.3:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.19.3.tgz#ef554f76465b3c2b222dc077834a71f0d4a37569"
   integrity sha512-5eEbBDQT/jF1xg6l36P+mWGGoH9Spuy0PCdSr2dtWRDGC6ph/w9ZCL4lmESW8f8F7MwT3XKescfP0wnZWAKL9w==
 
+jiti@^1.20.0:
+  version "1.20.0"
+  resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.20.0.tgz#2d823b5852ee8963585c8dd8b7992ffc1ae83b42"
+  integrity sha512-3TV69ZbrvV6U5DfQimop50jE9Dl6J8O1ja1dvBbMba/sZ3YBEQqJ2VZRoQPVnhlzjNtU1vaXRZVrVjU4qtm8yA==
+
 joi@^17.7.0:
   version "17.9.2"
   resolved "https://registry.npmjs.org/joi/-/joi-17.9.2.tgz"
@@ -7799,6 +7854,16 @@ mlly@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/mlly/-/mlly-1.4.1.tgz#7ab9cbb040bf8bd8205a0c341ce9acc3ae0c3a74"
   integrity sha512-SCDs78Q2o09jiZiE2WziwVBEqXQ02XkGdUy45cbJf+BpYRIjArXRJ1Wbowxkb+NaM9DWvS3UC9GiO/6eqvQ/pg==
+  dependencies:
+    acorn "^8.10.0"
+    pathe "^1.1.1"
+    pkg-types "^1.0.3"
+    ufo "^1.3.0"
+
+mlly@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/mlly/-/mlly-1.4.2.tgz#7cf406aa319ff6563d25da6b36610a93f2a8007e"
+  integrity sha512-i/Ykufi2t1EZ6NaPLdfnZk2AX8cs0d+mTzVKuPfqPKPatxLApaBoxJQ9x1/uckXtrS/U5oisPMDkNs0yQTaBRg==
   dependencies:
     acorn "^8.10.0"
     pathe "^1.1.1"
@@ -10753,6 +10818,23 @@ unimport@^3.2.0:
     strip-literal "^1.3.0"
     unplugin "^1.4.0"
 
+unimport@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/unimport/-/unimport-3.3.0.tgz#46b0eb5f83fe5b3cd7e3004b0fae5cb589a6794a"
+  integrity sha512-3jhq3ZG5hFZzrWGDCpx83kjPzefP/EeuKkIO1T0MA4Zwj+dO/Og1mFvZ4aZ5WSDm0FVbbdVIRH1zKBG7c4wOpg==
+  dependencies:
+    "@rollup/pluginutils" "^5.0.4"
+    escape-string-regexp "^5.0.0"
+    fast-glob "^3.3.1"
+    local-pkg "^0.4.3"
+    magic-string "^0.30.3"
+    mlly "^1.4.1"
+    pathe "^1.1.1"
+    pkg-types "^1.0.3"
+    scule "^1.0.0"
+    strip-literal "^1.3.0"
+    unplugin "^1.4.0"
+
 unique-filename@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/unique-filename/-/unique-filename-3.0.0.tgz"
@@ -11290,6 +11372,11 @@ vuetify@3.4.0-alpha.1:
   version "3.4.0-alpha.1"
   resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-3.4.0-alpha.1.tgz#838beddaeda34d46d89a8eaeb93d3212e93e76d7"
   integrity sha512-m0aULcy8VFkkpx7KQ6XkOyHRJCrCkpQNlsnSqocdzypgCRcUOwJG/7kgUy6ugMd433EL2GiDaWGuwt8r1bzTqA==
+
+vuetify@^3.3.7:
+  version "3.3.16"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-3.3.16.tgz#b51a6f304a9cec8e997a3cf505314bf5eaa9ad3a"
+  integrity sha512-vVfUroT5lSU+yOZAf7JlGm2j3dCR4BQml8Al27+/Uh0YW+97/CyUqOzo6IzMCt/bXLvnRerJ5fCAJtQYWnwfLA==
 
 w3c-keyname@^2.2.0:
   version "2.2.8"

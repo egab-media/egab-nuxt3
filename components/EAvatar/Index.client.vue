@@ -1,11 +1,8 @@
 <script lang="ts">
 import { mdiAccountCircle } from '@mdi/js'
-import { VAvatar } from 'vuetify/components/VAvatar'
-import { VIcon } from 'vuetify/components/VIcon'
 
 export default defineComponent({
   name: 'EAvatar',
-  components: { VAvatar, VIcon },
   props: {
     imgSrc: {
       type: String,

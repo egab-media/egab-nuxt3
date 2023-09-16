@@ -2,15 +2,12 @@
 import { NodeSelection } from '@tiptap/pm/state'
 import { BubbleMenu, Editor } from '@tiptap/vue-3'
 import { Extension } from '@tiptap/core'
-import { VCard, VCardText } from 'vuetify/components/VCard'
-import { VToolbar } from 'vuetify/components/VToolbar'
-import { VDivider } from 'vuetify/components/VDivider'
 import { BubbleTypeMenu, NodeTypeKey } from '~/utils/rich-text/extensions/components/bubble'
 import { BaseKitOptions } from '~/utils/rich-text/extensions/base-kit'
 
 export default defineComponent({
   name: 'ERichTextBubbleMenu',
-  components: { BubbleMenu, VCard, VCardText, VToolbar, VDivider },
+  components: { BubbleMenu },
   props: {
     editor: {
       type: Object as () => Editor,
