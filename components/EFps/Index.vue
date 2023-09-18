@@ -32,7 +32,10 @@ export default defineComponent({
 </script>
 
 <template>
-  <div color="dark" class="fps-counter">
+  <div
+    color="dark"
+    class="fps-counter"
+  >
     {{ fps }}
   </div>
 </template>

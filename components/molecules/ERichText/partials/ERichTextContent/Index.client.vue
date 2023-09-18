@@ -28,11 +28,11 @@ export default defineComponent({
     },
     minHeight: {
       type: [String, Number],
-      default: 100
+      default: undefined
     },
     maxHeight: {
       type: [String, Number],
-      default: undefined
+      default: 300
     },
     editor: { type: Object as () => Editor, required: true },
     editorClass: {
@@ -53,15 +53,15 @@ export default defineComponent({
       }
     }
 
-    const contentDynamicClasses = () => {
+    const contentDynamicClasses = computed(() => {
       const values: Record<string, any> = {
         __dark: unref(props.dark),
         ...unref(markdownThemeStyle)
       }
       return [values, props.editorClass]
-    }
+    })
 
-    const contentDynamicStyles = () => {
+    const contentDynamicStyles = computed(() => {
       const maxWidth = getUnitWithPxAsDefault(props.maxWidth)
       const maxHeightStyle = {
         maxWidth,
@@ -78,7 +78,7 @@ export default defineComponent({
         overflow: 'auto',
         maxHeightStyle
       }
-    }
+    })
     expose({ markdownTheme })
     return { contentDynamicClasses, contentDynamicStyles }
   }
@@ -87,6 +87,7 @@ export default defineComponent({
 
 <template>
   <editor-content
+    id="content"
     class="vuetify-pro-tiptap-editor__content"
     :class="contentDynamicClasses"
     :style="contentDynamicStyles"
@@ -95,6 +96,8 @@ export default defineComponent({
   />
 </template>
 
-<style scoped>
-
+<style lang="scss">
+.tiptap {
+  min-height: 100px;
+}
 </style>

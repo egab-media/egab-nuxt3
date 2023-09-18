@@ -1,5 +1,10 @@
 <template>
-  <v-card data-test="auth-wrapper" class="rounded-xl mx-auto" :class="$vuetify.display.mobile ? '' : 'px-6'" width="600">
+  <v-card
+    data-test="auth-wrapper"
+    class="rounded-xl mx-auto"
+    :class="$vuetify.display.mobile ? '' : 'px-6'"
+    width="600"
+  >
     <v-container fluid>
       <!-- SECTION: Title -->
       <!--      <e-auth-title :is-editor="isEditor" :is-register="isRegister" />-->
@@ -19,7 +24,11 @@
         * I am using one form entity for (register/login)
         * within each, a simple data structure is used
       -->
-      <v-form ref="auth" v-model="valid" data-test="form">
+      <v-form
+        ref="auth"
+        v-model="valid"
+        data-test="form"
+      >
         <v-card-text>
           <v-row no-gutters>
             <!-- SECTION: Email field -->

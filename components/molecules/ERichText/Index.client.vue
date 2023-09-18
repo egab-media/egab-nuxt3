@@ -168,12 +168,24 @@ export default defineComponent({
 </script>
 
 <template>
-  <div v-if="editor" :class="{ dense }">
+  <div
+    v-if="editor"
+    :class="{ dense }"
+  >
     <v-theme-provider :theme="dark ? 'dark' : 'light'">
       <!-- TODO: Add Bubble Menu component -->
-      <lazy-molecules-e-rich-text-partials-e-rich-text-bubble-menu :editor="editor" :disabled="hideToolbar" />
+      <lazy-molecules-e-rich-text-partials-e-rich-text-bubble-menu
+        :editor="editor"
+        :disabled="hideToolbar"
+      />
 
-      <v-input :rules="rules" class="pt-0" :error="!!$attrs['error-messages']" :error-messages="$attrs['error-messages']" hide-details="auto">
+      <v-input
+        :rules="rules"
+        class="pt-0"
+        :error="!!$attrs['error-messages']"
+        :error-messages="$attrs['error-messages']"
+        hide-details="auto"
+      >
         <v-card
           :flat="flat"
           :outlined="outlined"
@@ -205,11 +217,17 @@ export default defineComponent({
             v-bind="{ editor, props: { class: 'vuetify-pro-tiptap-editor__content', 'data-test': 'value' } }"
           >
             <delay-hydration>
-              <lazy-molecules-e-rich-text-partials-e-rich-text-content :editor="editor" :is-fullscreen="isFullscreen" />
+              <lazy-molecules-e-rich-text-partials-e-rich-text-content
+                :editor="editor"
+                :is-fullscreen="isFullscreen"
+              />
             </delay-hydration>
           </slot>
 
-          <slot name="bottom" v-bind="editor">
+          <slot
+            name="bottom"
+            v-bind="editor"
+          >
             <delay-hydration>
               <lazy-molecules-e-rich-text-partials-e-rich-text-footer :editor="editor" />
             </delay-hydration>
@@ -220,6 +238,6 @@ export default defineComponent({
   </div>
 </template>
 
-<style scoped>
+<style lang="scss">
 
 </style>

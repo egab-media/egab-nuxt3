@@ -13,9 +13,19 @@
     :menu-props="{ bottom: true, offsetY: true, closeOnContentClick: true }"
   >
     <template #item="{ item }">
-      <v-list-item height="30" dense :to="switchLocalePath(item.value.code)" @click="handleClick(item.value.code)">
+      <v-list-item
+        data-test="language-item"
+        height="30"
+        dense
+        :to="switchLocalePath(item.value.code)"
+        @click="handleClick(item.value.code)"
+      >
         <template #prepend>
-          <nuxt-img :src="item.value.flag" width="40px" height="25px" />
+          <nuxt-img
+            :src="item.value.flag"
+            width="40px"
+            height="25px"
+          />
         </template>
         <v-list-item-title :class="item.value.name === 'Arabic' ? 'atom-font__arabic' : ''">
           {{ item.value.name === 'Arabic' ? 'العربية' : item.value.name }}
@@ -23,9 +33,17 @@
       </v-list-item>
     </template>
     <template #selection="{ item }">
-      <v-list-item dense max-height="10" class="pa-0">
+      <v-list-item
+        dense
+        max-height="10"
+        class="pa-0"
+      >
         <template #prepend>
-          <nuxt-img :src="item.value.flag" width="40px" height="25px" />
+          <nuxt-img
+            :src="item.value.flag"
+            width="40px"
+            height="25px"
+          />
         </template>
         <v-list-item-title class="text-body-2 font-weight-bold">
           {{ item.value.name === 'Arabic' ? 'العربية' : item.value.name }}

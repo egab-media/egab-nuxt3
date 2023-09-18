@@ -46,16 +46,32 @@ export default defineComponent({
 </script>
 
 <template>
-  <v-dialog v-model="dialog" max-width="400" activator="parent" @click:outside="close">
+  <v-dialog
+    v-model="dialog"
+    max-width="400"
+    activator="parent"
+    attach="#content"
+    @click:outside="close"
+  >
     <v-card>
-      <v-toolbar class="px-6" density="compact">
+      <v-toolbar
+        class="px-6"
+        density="compact"
+      >
         <span class="headline">{{ $t('editor.link.dialog.title') }}</span>
         <v-spacer />
-        <e-btn icon="close" @click="close" />
+        <e-btn
+          icon="close"
+          @click="close"
+        />
       </v-toolbar>
 
       <v-card-text>
-        <molecules-e-input-wrapper v-model="link" type="text" :label="$t('editor.link.dialog.link')" />
+        <molecules-e-input-wrapper
+          v-model="link"
+          type="text"
+          :label="$t('editor.link.dialog.link')"
+        />
       </v-card-text>
 
       <v-card-actions>

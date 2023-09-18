@@ -202,7 +202,12 @@ export default defineComponent({
       :icon="btnIcon"
     />
 
-    <v-tooltip :eager="false" activator="parent" location="top" :text="tooltip" />
+    <v-tooltip
+      :eager="false"
+      activator="parent"
+      location="top"
+      :text="tooltip"
+    />
 
     <!-- custom icon here -->
     <slot />

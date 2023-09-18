@@ -63,13 +63,35 @@ export default defineComponent({
 </script>
 
 <template>
-  <bubble-menu v-if="items.length > 0" :editor="editor" :tippy-options="tippyOptions">
+  <bubble-menu
+    v-if="items.length > 0"
+    :editor="editor"
+    :tippy-options="tippyOptions"
+  >
     <v-card class="vuetify-pro-tiptap-editor__menu-bubble">
       <v-card-text class="d-flex pa-0">
-        <v-toolbar density="compact" flat height="auto" class="py-1 ps-1">
-          <template v-for="(item, key) in items" :key="key">
-            <v-divider v-if="item.type === 'divider'" vertical class="mx-1 me-2" />
-            <component :is="item.component" v-else v-bind="item.componentProps" :editor="editor" :disabled="disabled" />
+        <v-toolbar
+          density="compact"
+          flat
+          height="auto"
+          class="py-1 ps-1"
+        >
+          <template
+            v-for="(item, key) in items"
+            :key="key"
+          >
+            <v-divider
+              v-if="item.type === 'divider'"
+              vertical
+              class="mx-1 me-2"
+            />
+            <component
+              :is="item.component"
+              v-else
+              v-bind="item.componentProps"
+              :editor="editor"
+              :disabled="disabled"
+            />
           </template>
         </v-toolbar>
       </v-card-text>

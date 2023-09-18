@@ -114,7 +114,6 @@ export default defineNuxtConfig({
 
   vuetify: {
     vuetifyOptions: {
-      ssr: true,
       icons: {
         sets: {
           custom: {

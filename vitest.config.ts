@@ -41,7 +41,7 @@ export default {
     alias: {
       '@': fileURLToPath(new URL('./', import.meta.url)),
       '~': fileURLToPath(new URL('./', import.meta.url))
-      // '@': path.resolve(__dirname, '.'),
+      // '#components': fileURLToPath(new URL('./.nuxt/components', import.meta.url))
     }
   },
   test: {

@@ -36,7 +36,12 @@ export default defineComponent({
     :tile="tile"
     :rounded="rounded"
   >
-    <v-icon v-if="!(imgSrc)" dark data-test="avatar-icon" :icon="mdiAccountCircle" />
+    <v-icon
+      v-if="!(imgSrc)"
+      dark
+      data-test="avatar-icon"
+      :icon="mdiAccountCircle"
+    />
 
     <img
       v-if="imgSrc && imgSrc.length"

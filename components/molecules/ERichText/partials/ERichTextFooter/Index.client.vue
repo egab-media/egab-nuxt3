@@ -13,12 +13,22 @@ export default defineComponent({
 </script>
 
 <template>
-  <v-toolbar class="px-4" density="compact" flat>
+  <v-toolbar
+    class="px-4"
+    density="compact"
+    flat
+  >
     <v-spacer />
-    <span data-test="words" class="text-overline me-4">
+    <span
+      data-test="words"
+      class="text-overline me-4"
+    >
       {{ editor.storage.characterCount.words() }} Words
     </span>
-    <span data-test="chars" class="text-overline">
+    <span
+      data-test="chars"
+      class="text-overline"
+    >
       {{ editor.storage.characterCount.characters() }} characters
     </span>
   </v-toolbar>

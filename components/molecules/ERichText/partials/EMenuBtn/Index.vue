@@ -76,12 +76,28 @@ export default defineComponent({
     :color="color"
     :is-active="active.isActive"
   >
-    <v-menu v-model="menu" activator="parent">
-      <v-list density="compact" :max-height="maxHeight">
-        <template v-for="(item, i) in items" :key="i">
-          <v-list-item :active="item.isActive()" @click="item.action">
+    <v-menu
+      v-model="menu"
+      activator="parent"
+      attach="#content"
+    >
+      <v-list
+        density="compact"
+        :max-height="maxHeight"
+      >
+        <template
+          v-for="(item, i) in items"
+          :key="i"
+        >
+          <v-list-item
+            :active="item.isActive()"
+            @click="item.action"
+          >
             <template #prepend>
-              <v-icon v-if="item.icon" :icon="getIcon(item.icon)" />
+              <v-icon
+                v-if="item.icon"
+                :icon="getIcon(item.icon)"
+              />
             </template>
 
             <v-list-item-title :style="item.style">

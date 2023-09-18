@@ -45,9 +45,15 @@ export default defineComponent({
     transition="scale-transition"
     :origin="!nudgeLeft ? 'top right' : 'top left'"
     activator="parent"
+    attach="#content"
+    :width="230"
   >
     <v-list>
-      <v-sheet class="d-flex flex-wrap justify-between ma-1" fluid :max-width="230">
+      <v-sheet
+        class="d-flex flex-wrap justify-between ma-1"
+        fluid
+        :max-width="230"
+      >
         <v-btn
           v-for="color in COLORS_LIST"
           :key="color"
@@ -56,7 +62,10 @@ export default defineComponent({
           icon
           @click="setColor(color)"
         >
-          <v-icon :icon="getIcon('circle')" :color="color" />
+          <v-icon
+            :icon="getIcon('circle')"
+            :color="color"
+          />
         </v-btn>
       </v-sheet>
     </v-list>
