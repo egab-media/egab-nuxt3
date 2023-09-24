@@ -21,13 +21,12 @@ export default defineComponent({
 </script>
 
 <template>
-  <v-container>
+  <v-card>
     <e-fps />
-    <molecules-e-rich-text
-      v-model="inputVal"
-      :error-messages="['message-one']"
+    <molecules-e-input-wrapper
+      type="select"
     />
-  </v-container>
+  </v-card>
 </template>
 
 <style scoped>

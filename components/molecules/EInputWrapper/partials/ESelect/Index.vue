@@ -2,7 +2,10 @@
 defineEmits(['input'])
 const handleUpdateMenu = (open: boolean) => {
   if (open) {
-    setTimeout(() => window.dispatchEvent(new Event('resize')), 50)
+    setTimeout(
+      () => window.dispatchEvent(new Event('resize')),
+      100
+    )
   }
 }
 </script>

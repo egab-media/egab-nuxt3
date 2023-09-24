@@ -5,7 +5,7 @@ export default defineComponent({
     type: {
       type: String,
       default: 'text',
-      validator: value => value === 'text'
+      validator: (value: string) => ['text', 'select'].includes(value)
     },
     modelValue: {
       type: [String, Number, Object, Array],
@@ -14,18 +14,24 @@ export default defineComponent({
     label: {
       type: String,
       default: undefined
+    },
+    cols: {
+      type: [String, Number],
+      default: 12
     }
   },
   emits: ['update:modelValue'],
   setup(props, { expose }) {
     const textField = resolveComponent('lazy-molecules-e-input-wrapper-partials-e-text-field')
     // TODO: check vuetify open issue for select menus before using all dropdowns
-    // const select = resolveComponent('lazy-molecules-e-input-wrapper-partials-e-select')
+    const select = resolveComponent('lazy-molecules-e-input-wrapper-partials-e-select')
 
     const getComponent = computed(() => {
       switch (props.type) {
         case 'text':
           return textField
+        case 'select':
+          return select
       }
     })
     // NOTE: It is important to expose the modelValue props to the grandparent
@@ -36,12 +42,14 @@ export default defineComponent({
 </script>
 
 <template>
-  <component
-    :is="getComponent"
-    v-bind="$props"
-    :model-value="modelValue"
-    @update:model-value="$emit('update:modelValue', $event)"
-  />
+  <v-col :cols="cols">
+    <component
+      :is="getComponent"
+      v-bind="$props"
+      :model-value="modelValue"
+      @update:model-value="$emit('update:modelValue', $event)"
+    />
+  </v-col>
 </template>
 
 <style scoped>
