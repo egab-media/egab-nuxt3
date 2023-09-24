@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { VTextField } from 'vuetify/components/VTextField'
-import { VProgressLinear } from 'vuetify/components/VProgressLinear'
 import { mdiEye, mdiEyeOff } from '@mdi/js'
 import { useGetProgress } from '~/composables/input-progress'
 import { useRules } from '~/composables/rules'
@@ -86,15 +84,29 @@ export default defineComponent({
       v-for="(_, inputSlot) in $slots"
       #[inputSlot]="slotScope"
     >
-      <slot :name="inputSlot" v-bind="slotScope" />
+      <slot
+        :name="inputSlot"
+        v-bind="slotScope"
+      />
     </template>
 
     <template #label="{label}">
-      <span v-if="rules.includes('required')" data-test="input-asterisk" class="red--text" v-text="'* '" />
-      <span data-test="input-label" v-text="label" />
+      <span
+        v-if="rules.includes('required')"
+        data-test="input-asterisk"
+        class="red--text"
+        v-text="'* '"
+      />
+      <span
+        data-test="input-label"
+        v-text="label"
+      />
     </template>
 
-    <template v-if="type === 'password'" #loader>
+    <template
+      v-if="type === 'password'"
+      #loader
+    >
       <v-progress-linear
         v-for="(_rule, index) in rules"
         :key="index"

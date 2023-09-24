@@ -1,9 +1,11 @@
 <script lang="ts" setup>
-import { VSelect } from 'vuetify/components/VSelect'
 defineEmits(['input'])
 const handleUpdateMenu = (open: boolean) => {
   if (open) {
-    setTimeout(() => window.dispatchEvent(new Event('resize')), 50)
+    setTimeout(
+      () => window.dispatchEvent(new Event('resize')),
+      100
+    )
   }
 }
 </script>
@@ -47,12 +49,23 @@ export default defineComponent({
       v-for="(_, inputSlot) in $slots"
       #[inputSlot]="slotScope"
     >
-      <slot :name="inputSlot" v-bind="slotScope" />
+      <slot
+        :name="inputSlot"
+        v-bind="slotScope"
+      />
     </template>
 
     <template #label="{label}">
-      <span v-if="rules.includes('required')" data-test="input-asterisk" class="red--text" v-text="'* '" />
-      <span data-test="input-label" v-text="label" />
+      <span
+        v-if="rules.includes('required')"
+        data-test="input-asterisk"
+        class="red--text"
+        v-text="'* '"
+      />
+      <span
+        data-test="input-label"
+        v-text="label"
+      />
     </template>
   </v-select>
 </template>

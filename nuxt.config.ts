@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import vuetify from 'vite-plugin-vuetify'
+// @ts-ignore
+import colors from 'vuetify/lib/util/colors.mjs'
 import { langs } from './utils/languages'
 
 export default defineNuxtConfig({
@@ -22,6 +23,7 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'render_com',
+    // @ts-ignore
     routing: {
       routeRules: {
         '/assets/': { headers: { 'cache-control': 'maxage=31536000 s-maxage=31536000' } },
@@ -60,6 +62,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-security',
     '@nuxtjs/eslint-module',
+    '@invictus.codes/nuxt-vuetify',
     ['nuxt-purgecss', {
       enabled: true,
       safelist: {
@@ -91,22 +94,89 @@ export default defineNuxtConfig({
           /v-input/,
           /v-progress-linear/,
           /v-label/,
-          /v-list-item/
+          /v-list-item/,
+          /v-tooltip/
         ]
       }
-    }],
-    process.env.NODE_ENV === 'production'
-      ? async (_, nuxt) => {
-        await nuxt.hooks.hook('vite:extendConfig', config =>
-          config.plugins?.push(
-            vuetify({
-              styles: { configFile: 'assets/variables.scss' }
-            })
-          ) as any
-        )
-      }
-      : undefined
+    }]
+    // process.env.NODE_ENV === 'production'
+    //   ? async (_, nuxt) => {
+    //     await nuxt.hooks.hook('vite:extendConfig', config =>
+    //       config.plugins?.push(
+    //         vuetify({
+    //           styles: { configFile: 'assets/variables.scss' }
+    //         })
+    //       ) as any
+    //     )
+    //   }
+    //   : undefined
   ],
+
+  vuetify: {
+    vuetifyOptions: {
+      icons: {
+        sets: {
+          custom: {
+            // @ts-ignore
+            EIconGoogle: {
+              component: () => import('@/components/icons/EIconGoogle/Index.vue'),
+              props: {
+                name: 'EIconGoogle'
+              }
+            }
+          }
+        }
+      },
+      theme: {
+        themes: {
+          light: {
+            dark: false,
+            colors: {
+              /**
+               * use primary darken-1 for luminescent-green-800
+               * use primary lighten-2 for luminescent-green-400
+               * use primary-50 for luminescent-green-50
+               * use primary-100 for luminescent-green-100
+               */
+              primary: '#77A11D',
+              'primary-20': '#ACCD53',
+              'primary-50': '#F4F8E7',
+              'primary-100': '#e3edc3',
+              accent: colors.grey.darken3,
+              secondary: '#C76758',
+              info: '#4AA1B3',
+              warning: '#F89A35',
+              error: '#DA756C',
+              success: colors.green.accent3
+            }
+          },
+          dark: {
+            dark: true,
+            colors: {
+              primary: '#77A11D',
+              'primary-20': '#ACCD53',
+              'primary-50': '#F4F8E7',
+              'primary-100': '#e3edc3',
+              accent: colors.grey.darken3,
+              secondary: '#C76758',
+              info: '#4AA1B3',
+              warning: colors.amber.base,
+              error: '#DA756C',
+              success: colors.green.accent3
+            }
+          }
+        }
+      }
+    },
+    moduleOptions: {
+      // @ts-ignore
+      treeShaking: true,
+      useIconCDN: false,
+      styles: {
+        configFile: 'assets/variables.scss'
+      }
+    }
+  },
 
   security: {
     headers: {
@@ -147,7 +217,7 @@ export default defineNuxtConfig({
       display: 'standalone'
     },
     workbox: {
-      globPatterns: ['**/*.{svg,png,woff2}'],
+      globPatterns: ['**/*.{png,woff2}'],
       runtimeCaching: [
         {
           urlPattern: './fonts/panton/5920187ef0bf42859293e1ea01545b96.woff2',
@@ -159,6 +229,14 @@ export default defineNuxtConfig({
         },
         {
           urlPattern: 'https://flagcdn.com/w40/us.png',
+          handler: 'CacheFirst',
+          method: 'GET',
+          options: {
+            cacheableResponse: { statuses: [0, 200] }
+          }
+        },
+        {
+          urlPattern: 'https://flagcdn.com/w40/sa.png',
           handler: 'CacheFirst',
           method: 'GET',
           options: {

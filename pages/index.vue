@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-import { VContainer } from 'vuetify/components/VGrid'
-import { VIcon } from 'vuetify/components'
-
 const { locale } = useI18n()
 useHead({
   htmlAttrs: {
@@ -24,17 +21,12 @@ export default defineComponent({
 </script>
 
 <template>
-  <v-container>
+  <v-card>
     <e-fps />
     <molecules-e-input-wrapper
-      v-model="inputVal"
-      label="meow"
+      type="select"
     />
-    <e-btn text="dadfa" />
-    <v-icon icon="custom:EIconGoogle" />
-    <e-illustration />
-    <e-avatar img-src="https://placehold.co/600x400" size="100" />
-  </v-container>
+  </v-card>
 </template>
 
 <style scoped>

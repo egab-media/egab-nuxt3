@@ -477,6 +477,52 @@
     },
     "label": "قم بسحب الملف من جهازك أو انقر على \"اختر ملفاتك\" أدناه"
   },
+  "editor": {
+    "blockquote": {
+      "tooltip": "اقتباس"
+    },
+    "bold": {
+      "tooltip": "سميك"
+    },
+    "bulletlist": {
+      "tooltip": "قائمة منقوطة"
+    },
+    "clear": {
+      "tooltip": "إزالة التنسيقات"
+    },
+    "code": {
+      "tooltip": "كود"
+    },
+    "codeblock": {
+      "tooltip": "ملف كود"
+    },
+    "color": {
+      "tooltip": "لون النص"
+    },
+    "fontFamily": {
+      "tooltip": "الخط"
+    },
+    "fonts": {
+      "arial": "Arial",
+      "arial-black": "Arial Black",
+      "courier-new": "Courier New",
+      "default": "الافتراضي",
+      "georgia": "Georgia",
+      "helvetica": "Helvetica",
+      "impact": "Impact",
+      "monaco": "Monaco",
+      "monospace": "Monospace",
+      "tahoma": "Tahoma",
+      "times-new-roman": "Times New Roman",
+      "verdana": "Verdana"
+    },
+    "fullscreen": {
+      "tooltip": {
+        "fullscreen": "عرض في شاشة كاملة",
+        "exit": "خروج"
+      }
+    }
+  },
   "emergency": "ستخضع صفحة المقترحات لبعض الاصلاحات ونعود في أقرب وقت",
   "emergencyTitle": "تحديثات صفحة المقترحات",
   "faq": {

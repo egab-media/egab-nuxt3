@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { VTextarea } from 'vuetify/components/VTextarea'
 import { useRules } from '~/composables/rules'
 
 defineEmits(['update:modelValue'])
@@ -59,12 +58,23 @@ export default defineComponent({
       v-for="(_, inputSlot) in $slots"
       #[inputSlot]="slotScope"
     >
-      <slot :name="inputSlot" v-bind="slotScope" />
+      <slot
+        :name="inputSlot"
+        v-bind="slotScope"
+      />
     </template>
 
     <template #label="{label}">
-      <span v-if="rules.includes('required')" data-test="input-asterisk" class="red--text" v-text="'* '" />
-      <span data-test="input-label" v-text="label" />
+      <span
+        v-if="rules.includes('required')"
+        data-test="input-asterisk"
+        class="red--text"
+        v-text="'* '"
+      />
+      <span
+        data-test="input-label"
+        v-text="label"
+      />
     </template>
   </v-textarea>
 </template>

@@ -7,15 +7,15 @@ let wrapper: VueWrapper<typeof EIllustration>
 let vueContext: any
 
 describe('EIllustration', () => {
-    vueContext = bootstrapVueContext(compositeConfiguration(addVuetify))
-    beforeEach(() => {
-        wrapper = mountWrapper(EIllustration, vueContext)
-    })
-    afterEach(() => { vueContext.teardownVueContext() })
+  vueContext = bootstrapVueContext(compositeConfiguration(addVuetify))
+  beforeEach(() => {
+    wrapper = mountWrapper(EIllustration, vueContext)
+  })
+  afterEach(() => { vueContext.teardownVueContext() })
 
-    it('should load', () => {
-        expect(wrapper.vm).toBeTruthy()
-        const image = wrapper.find('img')
-        expect(image.attributes('src')).toEqual('/svg/empty.svg')
-    })
+  it('should load', () => {
+    expect(wrapper.vm).toBeTruthy()
+    const image = wrapper.find('img')
+    expect(image.attributes('src')).toEqual('/svg/empty.svg')
+  })
 })

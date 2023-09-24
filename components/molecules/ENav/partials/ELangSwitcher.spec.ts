@@ -7,7 +7,7 @@ import {
   compositeConfiguration,
   addI18n,
   addPinia,
-  mountWrapper
+  mountWrapper,
 } from '~/test-utils'
 import { langs } from '~/utils/languages'
 
@@ -37,7 +37,13 @@ describe('ELangSwitcher', () => {
     expect(selection2.text()).toEqual('العربية')
   })
 
-  it.todo('should try methods', function () {
+  it('should try methods', async function () {
+    expect(wrapper.html()).toMatchSnapshot()
+    const select = wrapper.find('.v-select__selection')
+    const languageItems = wrapper.findAll('[data-test="language-item"]')
+
+    await select.trigger('click')
+    console.log(languageItems)
     // wrapper.vm.useI18n().setLocale('en')
     // const selection = wrapper.find('.v-select__selection').find('.v-list-item-title')
     // expect(selection.text()).toEqual('English')

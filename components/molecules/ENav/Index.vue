@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { VAppBar, VAppBarTitle } from 'vuetify/components/VAppBar'
 import ELangSwitcher from './partials/ELangSwitcher.vue'
 </script>
 
@@ -11,7 +10,10 @@ export default defineComponent({
 </script>
 
 <template>
-  <v-app-bar fixed app>
+  <v-app-bar
+    fixed
+    app
+  >
     <!-- TODO: May be needed in mobile screens -->
     <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
     <v-app-bar-title>

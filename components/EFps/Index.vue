@@ -1,18 +1,6 @@
-<template>
-  <div color="dark" class="fps-counter">
-    {{ fps }}
-  </div>
-</template>
-
 <script lang="ts">
-import { VCard } from 'vuetify/components/VCard'
-
 export default defineComponent({
   name: 'EFps',
-
-  components: {
-    VCard
-  },
 
   data() {
     return {
@@ -42,6 +30,15 @@ export default defineComponent({
   }
 })
 </script>
+
+<template>
+  <div
+    color="dark"
+    class="fps-counter"
+  >
+    {{ fps }}
+  </div>
+</template>
 
 <style scoped lang="scss">
 .fps-counter {
