@@ -53,7 +53,6 @@ export default defineComponent({
     <!-- TODO: add color picker component -->
     <lazy-molecules-e-rich-text-partials-e-color-picker
       v-model="color"
-      activator="parent"
       :nudge-top="-4"
       :nudge-left="8"
       @change="action?.(color)"

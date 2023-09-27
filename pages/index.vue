@@ -24,7 +24,7 @@ export default defineComponent({
   <v-card>
     <e-fps />
     <molecules-e-input-wrapper
-      type="select"
+      type="phone"
     />
   </v-card>
 </template>
