@@ -25,7 +25,7 @@ export default defineComponent({
     },
     imageWidth: {
       type: [String, Number],
-      default: '80%'
+      default: '30%'
     },
     imageHeight: {
       type: [String, Number],
@@ -76,9 +76,9 @@ export default defineComponent({
         />
       </v-col>
 
-      <v-col class="text-center" cols="10">
+      <v-col class="text-center mx-auto" cols="10">
         <v-row justify="center">
-          <v-col data-test="state-text-col" :cols="textCols ? textCols : 7">
+          <v-col data-test="state-text-col" class="mx-auto" :cols="textCols ? textCols : 7">
             <h5 data-test="title" class="font-weight-bold mb-3 black--text text-h6">
               {{ title }}
             </h5>
@@ -88,7 +88,8 @@ export default defineComponent({
           </v-col>
         </v-row>
       </v-col>
-      <v-col data-test="state-btn-col" :cols="btnCols ? btnCols : 4">
+
+      <v-col data-test="state-btn-col" class="mx-auto" :cols="btnCols ? btnCols : 4">
         <v-row justify="center">
           <e-btn
             v-if="withButton"
