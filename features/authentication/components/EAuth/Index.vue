@@ -1,17 +1,63 @@
+<script lang="ts" setup>
+import { EAuthTitle, EAuthSubtitle } from '@/features/authentication/components/partials'
+import { useDisplay } from 'vuetify'
+const { mobile } = useDisplay()
+</script>
+
+<script lang="ts">
+export default defineComponent({
+  name: 'EAuth',
+
+  props: {
+    isRegister: {
+      type: Boolean,
+      default: true
+    },
+    isEditor: {
+      type: Boolean,
+      default: true
+    }
+  },
+
+  data: () => ({
+    openTerms: false,
+    valid: true,
+    loading: false,
+    error: null as any,
+    form: {
+      email: '',
+      name: '',
+      password: '',
+      surveyValue: ''
+    },
+    firestoreListener: null as any
+  })
+})
+</script>
+
 <template>
   <v-card
     data-test="auth-wrapper"
     class="rounded-xl mx-auto"
-    :class="$vuetify.display.mobile ? '' : 'px-6'"
+    :class="mobile ? '' : 'px-6'"
     width="600"
   >
     <v-container fluid>
       <!-- SECTION: Title -->
-      <!--      <e-auth-title :is-editor="isEditor" :is-register="isRegister" />-->
+      <e-auth-title
+        :is-editor="isEditor"
+        :is-register="isRegister"
+      />
       <!-- SECTION ./Title -->
 
       <!-- SECTION Subheader with social media login -->
-      <!--      <e-auth-subtitle :form="form" :is-editor="isEditor" :is-register="isRegister" @loading="loading = $event" @error="error = $event" />-->
+      <e-auth-subtitle
+        :form="form"
+        :is-editor="isEditor"
+        :is-register="isRegister"
+        @loading="loading = $event"
+        @error="error = $event"
+      />
       <!-- SECTION ./Subheader with social media login -->
 
       <!--      <v-alert v-if="error" data-test="error" type="error">-->
@@ -32,10 +78,9 @@
         <v-card-text>
           <v-row no-gutters>
             <!-- SECTION: Email field -->
-            <e-text-field
+            <molecules-e-input-wrapper
               id="email"
               v-model="form.email"
-              data-test="email"
               type="email"
               :hint="isRegister && isEditor ? $t('auth.form.email.hint', { openTag: '<a>', closeTag: '</a>' }) : undefined"
               dense
@@ -48,15 +93,16 @@
                   {{ message }}
                 </span>
               </template>
-            </e-text-field>
+            </molecules-e-input-wrapper>
             <!-- SECTION: ./Email field -->
 
-            <e-text-field
+            <molecules-e-input-wrapper
               v-if="isRegister"
               id="name"
               v-model="form.name"
               data-test="name-input"
               autocomplete="name"
+              type="text"
               dense
               persistent-hint
               :label="$t('auth.form.name.label')"
@@ -137,43 +183,6 @@
     </v-container>
   </v-card>
 </template>
-
-<script lang="ts">
-export default {
-  name: 'EAuth',
-  props: {
-    isRegister: {
-      type: Boolean,
-      default: true
-    },
-    isEditor: {
-      type: Boolean,
-      default: true
-    }
-  },
-  data: () => ({
-    openTerms: false,
-    valid: true,
-    loading: false,
-    // error
-    error: null as any,
-    // form
-    form: {
-      email: '',
-      name: '',
-      password: '',
-      surveyValue: ''
-    },
-    firestoreListener: null as any
-  })
-}
-</script>
-
-<script lang="ts" setup>
-import { VCard, VCardText } from 'vuetify/components/VCard'
-import { VForm } from 'vuetify/components/VForm'
-import { VContainer, VRow } from 'vuetify/components/VGrid'
-</script>
 
 <style scoped>
 

@@ -22,10 +22,6 @@ export default defineComponent({
       type: String,
       default: null
     },
-    label: {
-      type: String,
-      default: null
-    },
     type: {
       type: String,
       default: undefined
@@ -173,7 +169,6 @@ export default defineComponent({
     :type="type"
     :fab="fab"
     :dark="dark"
-    :text="text"
     :block="block"
     :disabled="disabled"
     :large="large"
@@ -212,7 +207,7 @@ export default defineComponent({
     <!-- custom icon here -->
     <slot />
 
-    {{ !(fab || icon) ? label : '' }}
+    {{ !(fab || icon) ? text : '' }}
   </v-btn>
 </template>
 

@@ -21,12 +21,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <v-card>
-    <e-fps />
-    <molecules-e-input-wrapper
-      type="phone"
-    />
-  </v-card>
+  <e-fps />
+  <molecules-e-state with-button />
 </template>
 
 <style scoped>

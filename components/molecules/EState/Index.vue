@@ -1,8 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineEmits(['click'])
+</script>
 
 <script lang="ts">
-import { useDisplay } from 'vuetify'
-
 export default defineComponent({
   name: 'EState',
 
@@ -25,7 +25,7 @@ export default defineComponent({
     },
     imageWidth: {
       type: [String, Number],
-      default: '30%'
+      default: '25%'
     },
     imageHeight: {
       type: [String, Number],
@@ -51,13 +51,6 @@ export default defineComponent({
       type: [String, Number],
       default: undefined
     }
-  },
-
-  setup () {
-    const { mobile } = useDisplay()
-    return {
-      mobile
-    }
   }
 })
 </script>
@@ -68,18 +61,30 @@ export default defineComponent({
       <v-col cols="12">
         <v-img
           data-test="state-image"
-          class="mx-auto"
           :width="imageWidth"
           :height="imageHeight"
-          lazy-src=""
           :src="`/svg/${imageName}.svg`"
+          class="mx-auto"
+          aspect-ratio="16/9"
+          alt="journalist image"
+          lazy-src="https://fakeimg.pl/400x400/cccccc/b8b8b8?text=Journalist&font=bebas"
         />
       </v-col>
 
-      <v-col class="text-center mx-auto" cols="10">
+      <v-col
+        class="text-center mx-auto"
+        cols="10"
+      >
         <v-row justify="center">
-          <v-col data-test="state-text-col" class="mx-auto" :cols="textCols ? textCols : 7">
-            <h5 data-test="title" class="font-weight-bold mb-3 black--text text-h6">
+          <v-col
+            data-test="state-text-col"
+            class="mx-auto"
+            :cols="textCols ? textCols : 7"
+          >
+            <h5
+              data-test="title"
+              class="font-weight-bold mb-3 black--text text-h6"
+            >
               {{ title }}
             </h5>
             <p class="text-body-1">
@@ -89,7 +94,11 @@ export default defineComponent({
         </v-row>
       </v-col>
 
-      <v-col data-test="state-btn-col" class="mx-auto" :cols="btnCols ? btnCols : 4">
+      <v-col
+        data-test="state-btn-col"
+        class="mx-auto"
+        :cols="btnCols ? btnCols : 4"
+      >
         <v-row justify="center">
           <e-btn
             v-if="withButton"

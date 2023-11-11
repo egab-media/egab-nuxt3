@@ -2,10 +2,14 @@
 export default defineComponent({
   name: 'EInputWrapper',
   props: {
+    id: {
+      type: String,
+      required: true
+    },
     type: {
       type: String,
       default: 'text',
-      validator: (value: string) => ['text', 'select'].includes(value)
+      validator: (value: string) => ['text', 'textarea', 'email', 'password', 'select'].includes(value)
     },
     modelValue: {
       type: [String, Number, Object, Array],
@@ -23,12 +27,18 @@ export default defineComponent({
   emits: ['update:modelValue'],
   setup(props, { expose }) {
     const textField = resolveComponent('lazy-molecules-e-input-wrapper-partials-e-text-field')
-    // TODO: check vuetify open issue for select menus before using all dropdowns
+    const textArea = resolveComponent('lazy-molecules-e-input-wrapper-partials-e-textarea')
     const select = resolveComponent('lazy-molecules-e-input-wrapper-partials-e-select')
 
     const getComponent = computed(() => {
       switch (props.type) {
         case 'text':
+          return textField
+        case 'textarea':
+          return textArea
+        case 'password':
+          return textField
+        case 'email':
           return textField
         case 'select':
           return select

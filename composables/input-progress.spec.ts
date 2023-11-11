@@ -7,6 +7,7 @@ describe('useGetProgress', () => {
     const { getProgress } = useGetProgress()
     const meow = await getProgress({ validate: () => false }, ['required'], toRef(0))
     await flushPromises()
-    console.log('input progress => ', meow)
+    // console.log('input progress => ', meow)
+    //   TODO: continue this test
   })
 })

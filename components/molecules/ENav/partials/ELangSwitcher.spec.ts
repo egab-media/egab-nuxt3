@@ -40,10 +40,9 @@ describe('ELangSwitcher', () => {
   it('should try methods', async function () {
     expect(wrapper.html()).toMatchSnapshot()
     const select = wrapper.find('.v-select__selection')
-    const languageItems = wrapper.findAll('[data-test="language-item"]')
+    // const languageItems = wrapper.findAll('[data-test="language-item"]')
 
     await select.trigger('click')
-    console.log(languageItems)
     // wrapper.vm.useI18n().setLocale('en')
     // const selection = wrapper.find('.v-select__selection').find('.v-list-item-title')
     // expect(selection.text()).toEqual('English')

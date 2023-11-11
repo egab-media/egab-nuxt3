@@ -8,8 +8,8 @@ import {
   bootstrapVueContext,
   compositeConfiguration,
   mountWrapper
-} from '@/test-utils'
-import ETextField from '@/components/molecules/EInputWrapper/partials/ETextField/Index.vue'
+} from '~/test-utils'
+import ETextField from '~/components/molecules/EInputWrapper/partials/ETextField/Index.vue'
 
 type RelaxedVue = typeof EAuth & {
     form: {
