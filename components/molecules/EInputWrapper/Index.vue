@@ -22,6 +22,10 @@ export default defineComponent({
     cols: {
       type: [String, Number],
       default: 12
+    },
+    rules: {
+      type: Array as () => Array<string>,
+      default: () => []
     }
   },
   emits: ['update:modelValue'],

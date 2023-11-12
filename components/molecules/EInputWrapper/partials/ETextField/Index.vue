@@ -7,7 +7,6 @@ const { getProgress } = useGetProgress()
 const progress = ref(0)
 defineEmits(['update:modelValue'])
 const initProgress = async (inputRef: any, rules: string[]) => await getProgress(inputRef, rules, progress)
-
 const { handleRules } = useRules()
 
 // exposing all for unit tests
@@ -64,6 +63,7 @@ export default defineComponent({
 </script>
 
 <template>
+  {{progress}}
   <v-text-field
     v-bind="$props"
     :id="id"
@@ -72,7 +72,7 @@ export default defineComponent({
     :append-inner-icon="type === 'password' ? showPass ? mdiEye : mdiEyeOff : appendIcon"
     density="compact"
     :type="showPass ? 'text' : type"
-    flat
+    :flat="true"
     :title="id"
     variant="outlined"
     :rules="handleRules(rules)"

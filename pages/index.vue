@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { EAuthPassword } from '~/features/authentication/components/partials'
+
 const { locale } = useI18n()
 useHead({
   htmlAttrs: {
@@ -21,8 +23,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <e-fps />
-  <molecules-e-state with-button />
+  <e-auth-password is-register />
 </template>
 
 <style scoped>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { EAuthTitle, EAuthSubtitle } from '@/features/authentication/components/partials'
+import { EAuthTitle, EAuthSubtitle, EAuthPassword } from '@/features/authentication/components/partials'
 import { useDisplay } from 'vuetify'
 const { mobile } = useDisplay()
 </script>
@@ -31,7 +31,11 @@ export default defineComponent({
       surveyValue: ''
     },
     firestoreListener: null as any
-  })
+  }),
+
+  methods: {
+    handleAuthUsingEmailAndPassword() {}
+  }
 })
 </script>
 
@@ -119,7 +123,11 @@ export default defineComponent({
 
               * Id must be assigned as it will be used as a reference for progress calculation
             -->
-            <!--            <e-auth-password :is-register="isRegister" :password.sync="form.password" @auth="handleAuthUsingEmailAndPassword" />-->
+            <e-auth-password
+              v-model:password="form.password"
+              :is-register="isRegister"
+              @auth="handleAuthUsingEmailAndPassword"
+            />
 
             <!--            <e-select-->
             <!--                v-if="isRegister"-->

@@ -34,10 +34,10 @@ export default defineNuxtConfig({
   },
 
   devServer: {
-    https: {
-      key: 'nash-dev.local-key.pem',
-      cert: 'nash-dev.local.pem'
-    }
+    // https: {
+    //   key: 'nash-dev.local-key.pem',
+    //   cert: 'nash-dev.local.pem'
+    // }
   },
 
   devtools: { enabled: false },
@@ -220,7 +220,7 @@ export default defineNuxtConfig({
       globPatterns: ['**/*.{png,woff2}'],
       runtimeCaching: [
         {
-          urlPattern: './fonts/panton/5920187ef0bf42859293e1ea01545b96.woff2',
+          urlPattern: '/_nuxt/fonts/panton/5920187ef0bf42859293e1ea01545b96.woff2',
           handler: 'CacheFirst',
           method: 'GET',
           options: {

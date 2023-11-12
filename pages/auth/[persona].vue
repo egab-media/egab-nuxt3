@@ -1,19 +1,12 @@
 <script setup lang="ts">
 import { EAuth } from '@/features/authentication'
+import { useDisplay } from 'vuetify'
+const { mobile } = useDisplay()
 </script>
 
 <script lang="ts">
-import { useDisplay } from 'vuetify'
-
 export default defineComponent({
   name: 'AuthPage',
-
-  setup() {
-    const { mobile } = useDisplay()
-    return {
-      mobile
-    }
-  },
 
   data() {
     return {
@@ -57,6 +50,7 @@ export default defineComponent({
       justify="center"
       align="center"
     >
+      <e-fps />
       <!-- SECTION: Persona Illustration with text (left column) -->
       <v-col
         cols="5"
@@ -73,12 +67,12 @@ export default defineComponent({
       <!-- SECTION: Persona login (right column) -->
       <v-col :cols="'auto'">
         <!-- SECTION: AuthForm -->
-
         <!-- NOTE: Authentication mechanics are encapsulated in this form (login/signup) -->
         <e-auth
           v-if="$route.path !== '/auth/reset-password'"
           :is-editor="isEditor"
           :is-register="isRegister"
+          class="mb-3"
         />
         <!-- SECTION: ./AuthForm -->
 
@@ -124,7 +118,10 @@ export default defineComponent({
               />
             </v-row>
 
-            <!-- NOTE: if user needs to switch to signup per role -->
+            <!--
+              NOTE: if user needs to switch to signup per role.
+              TODO: Enable when implementing Editor User Scope
+            -->
             <!--            <v-row justify="center" align="center">-->
             <!--              <span class="mx-2">{{ isEditor ? $t('auth.looking-for-pitches') : $t('auth.create-pitches') }} </span>-->
             <!--              <e-btn-->
