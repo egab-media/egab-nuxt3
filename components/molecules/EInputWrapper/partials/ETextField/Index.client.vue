@@ -51,7 +51,7 @@ export default defineComponent({
     v-bind="$props"
     :id="id"
     :model-value="modelValue"
-    :append-inner-icon="type === 'password' ? showPass ? mdiEye : mdiEyeOff : appendIcon"
+    :append-inner-icon="`svg:${type === 'password' ? showPass ? mdiEye : mdiEyeOff : appendIcon}`"
     density="compact"
     :type="showPass ? 'text' : type"
     :flat="true"

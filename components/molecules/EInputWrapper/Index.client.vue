@@ -1,42 +1,10 @@
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n'
-import * as ruleSpecs from '~/utils/allRules'
 import { useGetProgress } from '~/composables/input-progress'
 import { useRules } from '~/composables/rules'
-import { ComputedRef } from 'vue'
 const { getProgress } = useGetProgress()
 
 const { t } = useI18n()
-const reservedRules = {
-  required: (val: string) => ruleSpecs.required(val, t('auth.form.validation.required') as string),
-  blank: (val: string) => ruleSpecs.blank(val, 'cannot be blank') as string,
-  email: (val: string) => ruleSpecs.email(val, t('auth.form.validation.email') as string),
-  alpha: (val: string) => ruleSpecs.alpha(val, t('auth.form.validation.alpha') as string),
-  titleMinChars: (val: string) => ruleSpecs.titleMinChars(val, t('auth.form.validation.titleMinChars') as string),
-  fullNameMinChars: (val: string) => ruleSpecs.fullNameMinChars(val, t('auth.form.validation.fullNameMinChars') as string),
-  hasLowercase: (val: string) => ruleSpecs.hasLowercase(val, t('auth.form.validation.hasLowercase') as string),
-  hasUppercase: (val: string) => ruleSpecs.hasUppercase(val, t('auth.form.validation.hasUppercase') as string),
-  hasNumber: (val: string) => ruleSpecs.hasNumber(val, t('auth.form.validation.hasNumber') as string),
-  hasSpecial: (val: string) => ruleSpecs.hasSpecial(val, t('auth.form.validation.hasSpecial') as string),
-  minchars: (val: string) => ruleSpecs.minchars(val, t('auth.form.validation.minchars') as string),
-  url: (val: string) => ruleSpecs.url(val)
-} as any
-
-// const handleRules = (rules: Array<string>) => {
-//   const finalRules: any = []
-//
-//   rules.forEach((key: string | any) => {
-//     if (typeof key !== 'string') {
-//       finalRules.push(key)
-//     }
-//
-//     if (key in reservedRules) {
-//       finalRules.push(reservedRules[key])
-//     }
-//   })
-//   return finalRules
-// }
-
 const progress = ref(0)
 const { handleRules } = useRules()
 
@@ -124,6 +92,16 @@ export default defineComponent({
       :rules="handleRules(rules)"
       @keyup="type === 'password' ? initProgress(inputRef, rules) : false"
     >
+      <template
+        v-for="(_, inputSlot) in $slots"
+        #[inputSlot]="slotScope"
+      >
+        <slot
+          :name="inputSlot"
+          v-bind="slotScope"
+        />
+      </template>
+
       <template
         v-if="type === 'password'"
         #loader

@@ -33,7 +33,7 @@
         },
         "hint": {
           "login": "Forgot Password {openTag} Reset Password {closeTag}",
-          "register": "Must have at least 6 characters {icon}"
+          "register": "Must have at least 6 characters"
         },
         "label": "password"
       },
@@ -518,8 +518,8 @@
     },
     "fullscreen": {
       "tooltip": {
-        "fullscreen": "Fullscreen",
-        "exit": "Exit"
+        "exit": "Exit",
+        "fullscreen": "Fullscreen"
       }
     }
   },
