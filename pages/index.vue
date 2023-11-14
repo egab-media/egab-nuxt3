@@ -17,13 +17,15 @@ useSeoMeta({
 export default defineComponent({
   name: 'HomePage',
   data: () => ({
-    inputVal: ''
+    form: {
+      email: ''
+    }
   })
 })
 </script>
 
 <template>
-  <e-auth-password is-register />
+  <molecules-e-input-wrapper id="email" label="email" type="email" :model-value="form.email" :rules="['required', 'email']" />
 </template>
 
 <style scoped>

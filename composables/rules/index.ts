@@ -31,7 +31,7 @@ export function useRules() {
      * ---
      * @returns Array<Function>
      */
-  function handleRules(rules: Array<string>) {
+  const handleRules = (rules: Array<string>) => {
     const finalRules: any = []
 
     rules.forEach((key: string | any) => {

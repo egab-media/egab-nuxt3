@@ -1,16 +1,7 @@
 <script lang="ts" setup>
 import { mdiEye, mdiEyeOff } from '@mdi/js'
-import { useGetProgress } from '~/composables/input-progress'
-import { useRules } from '~/composables/rules'
 
-const { getProgress } = useGetProgress()
-const progress = ref(0)
 defineEmits(['update:modelValue'])
-const initProgress = async (inputRef: any, rules: string[]) => await getProgress(inputRef, rules, progress)
-const { handleRules } = useRules()
-
-// exposing all for unit tests
-defineExpose({ progress: progress.value, getProgress, handleRules })
 </script>
 
 <script lang="ts">
@@ -49,25 +40,16 @@ export default defineComponent({
   },
 
   data: () => ({
-    inputRef: null,
     showPass: false
   }),
 
-  mounted() {
-    // Cache the input ref based on the passed id prop for handling validation and progress
-    if (this.$refs && this.$refs[this.id]) {
-      (this as any).inputRef = this.$refs[this.id]
-    }
-  }
 })
 </script>
 
 <template>
-  {{progress}}
   <v-text-field
     v-bind="$props"
     :id="id"
-    :ref="id"
     :model-value="modelValue"
     :append-inner-icon="type === 'password' ? showPass ? mdiEye : mdiEyeOff : appendIcon"
     density="compact"
@@ -75,8 +57,7 @@ export default defineComponent({
     :flat="true"
     :title="id"
     variant="outlined"
-    :rules="handleRules(rules)"
-    @keyup="type === 'password' ? initProgress(inputRef, rules) : false"
+    :rules="rules"
     @input="$emit('update:modelValue', $event.target.value)"
     @click:append-inner="showPass = !showPass"
   >
@@ -100,21 +81,6 @@ export default defineComponent({
       <span
         data-test="input-label"
         v-text="label"
-      />
-    </template>
-
-    <template
-      v-if="type === 'password'"
-      #loader
-    >
-      <v-progress-linear
-        v-for="(_rule, index) in rules"
-        :key="index"
-        :model-value="progress"
-        :color="progress === 100 ? 'primary' : progress < 50 ? 'error' : progress < 70 ? 'orange' : 'warning'"
-        :absolute="true"
-        height="5"
-        style="margin-top: 5px;"
       />
     </template>
   </v-text-field>

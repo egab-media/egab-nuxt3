@@ -1,9 +1,5 @@
 <script lang="ts" setup>
-import { useRules } from '~/composables/rules'
-
 defineEmits(['update:modelValue'])
-const { handleRules } = useRules()
-defineExpose({ handleRules })
 </script>
 
 <script lang="ts">

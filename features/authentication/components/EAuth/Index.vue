@@ -19,19 +19,21 @@ export default defineComponent({
     }
   },
 
-  data: () => ({
-    openTerms: false,
-    valid: true,
-    loading: false,
-    error: null as any,
-    form: {
-      email: '',
-      name: '',
-      password: '',
-      surveyValue: ''
-    },
-    firestoreListener: null as any
-  }),
+  data() {
+    return {
+      openTerms: false,
+      valid: true,
+      loading: false,
+      error: null as any,
+      form: {
+        email: '',
+        name: '',
+        password: '',
+        surveyValue: ''
+      },
+      firestoreListener: null as any
+    }
+  },
 
   methods: {
     handleAuthUsingEmailAndPassword() {}
@@ -84,26 +86,36 @@ export default defineComponent({
             <!-- SECTION: Email field -->
             <molecules-e-input-wrapper
               id="email"
-              v-model="form.email"
               type="email"
+              :model-value="form.email"
               :hint="isRegister && isEditor ? $t('auth.form.email.hint', { openTag: '<a>', closeTag: '</a>' }) : undefined"
-              dense
-              persistent-hint
               :label="$t('auth.form.email.label', { type: isRegister ? isEditor ? $t('auth.status.work') : $t('auth.status.contact') : $t('auth.status.your') })"
+              persistent-hint
+              dense
               :rules="['required', 'email']"
-            >
-              <template #message="{ message }">
-                <span>
-                  {{ message }}
-                </span>
-              </template>
-            </molecules-e-input-wrapper>
+            />
+<!--            <molecules-e-input-wrapper-->
+<!--              id="email"-->
+<!--              type="email"-->
+<!--              :model-value="form.email"-->
+<!--              :hint="isRegister && isEditor ? $t('auth.form.email.hint', { openTag: '<a>', closeTag: '</a>' }) : undefined"-->
+<!--              dense-->
+<!--              persistent-hint-->
+<!--              :label="$t('auth.form.email.label', { type: isRegister ? isEditor ? $t('auth.status.work') : $t('auth.status.contact') : $t('auth.status.your') })"-->
+<!--              :rules="['required', 'email']"-->
+<!--            >-->
+<!--              <template #message="{ message }">-->
+<!--                <span>-->
+<!--                  {{ message }}-->
+<!--                </span>-->
+<!--              </template>-->
+<!--            </molecules-e-input-wrapper>-->
             <!-- SECTION: ./Email field -->
 
             <molecules-e-input-wrapper
               v-if="isRegister"
               id="name"
-              v-model="form.name"
+              :model-value="form.name"
               data-test="name-input"
               autocomplete="name"
               type="text"
