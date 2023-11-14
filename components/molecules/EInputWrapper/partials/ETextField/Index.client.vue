@@ -1,7 +1,14 @@
 <script lang="ts" setup>
 import { mdiEye, mdiEyeOff } from '@mdi/js'
-
+// import { useGetProgress } from '~/composables/input-progress'
+// const { getProgress } = useGetProgress()
+//
 defineEmits(['update:modelValue'])
+//  TODO: add the following to the text field
+// @keyup="type === 'password' ? initProgress($refs[id], rules) : false"
+// TODO: Enable the following when vuetify update the validate function for refs
+// const progress = ref(0)
+// const initProgress = async (inputRef: any, rules: string[]) => await getProgress(inputRef, rules, progress)
 </script>
 
 <script lang="ts">
@@ -41,8 +48,7 @@ export default defineComponent({
 
   data: () => ({
     showPass: false
-  }),
-
+  })
 })
 </script>
 
@@ -50,6 +56,7 @@ export default defineComponent({
   <v-text-field
     v-bind="$props"
     :id="id"
+    :ref="id"
     :model-value="modelValue"
     :append-inner-icon="`svg:${type === 'password' ? showPass ? mdiEye : mdiEyeOff : appendIcon}`"
     density="compact"
@@ -65,9 +72,10 @@ export default defineComponent({
       v-for="(_, inputSlot) in $slots"
       #[inputSlot]="slotScope"
     >
+      <!-- NOTE: use v-bind={ ...slotScope } to avoid TypeError: Cannot read property 'key' of null -->
       <slot
         :name="inputSlot"
-        v-bind="slotScope"
+        v-bind="{ ...slotScope }"
       />
     </template>
 
@@ -83,6 +91,21 @@ export default defineComponent({
         v-text="label"
       />
     </template>
+
+    <!--    <template-->
+    <!--      v-if="type === 'password'"-->
+    <!--      #loader-->
+    <!--    >-->
+    <!--      <v-progress-linear-->
+    <!--        v-for="(_rule, index) in rules"-->
+    <!--        :key="index"-->
+    <!--        :model-value="progress"-->
+    <!--        :color="progress === 100 ? 'primary' : progress < 50 ? 'error' : progress < 70 ? 'orange' : 'warning'"-->
+    <!--        :absolute="true"-->
+    <!--        height="5"-->
+    <!--        style="margin-top: 5px;"-->
+    <!--      />-->
+    <!--    </template>-->
   </v-text-field>
 </template>
 
