@@ -58,7 +58,7 @@ export default defineComponent({
     :id="id"
     :ref="id"
     :model-value="modelValue"
-    :append-inner-icon="`svg:${type === 'password' ? showPass ? mdiEye : mdiEyeOff : appendIcon}`"
+    :append-inner-icon="type === 'password' ? `svg:${type === 'password' ? showPass ? mdiEye : mdiEyeOff : appendIcon}` : undefined"
     density="compact"
     :type="showPass ? 'text' : type"
     :flat="true"
@@ -72,7 +72,6 @@ export default defineComponent({
       v-for="(_, inputSlot) in $slots"
       #[inputSlot]="slotScope"
     >
-      <!-- NOTE: use v-bind={ ...slotScope } to avoid TypeError: Cannot read property 'key' of null -->
       <slot
         :name="inputSlot"
         v-bind="{ ...slotScope }"

@@ -29,6 +29,22 @@ export default defineComponent({
     id: {
       type: String,
       default: 'select'
+    },
+    itemValue: {
+      type: String,
+      default: undefined
+    },
+    itemText: {
+      type: String,
+      default: undefined
+    },
+    fullWidth: {
+      type: Boolean,
+      default: false
+    },
+    menuProps: {
+      type: Object,
+      default: () => ({})
     }
   }
 })
@@ -40,8 +56,9 @@ export default defineComponent({
     :id="id"
     :model-value="modelValue"
     :eager="true"
-    dense
     density="compact"
+    :item-value="itemValue"
+    :item-text="itemText"
     @update:model-value="$emit('input', $event)"
     @update:menu="handleUpdateMenu"
   >
@@ -51,7 +68,7 @@ export default defineComponent({
     >
       <slot
         :name="inputSlot"
-        v-bind="slotScope"
+        v-bind="{ ...slotScope }"
       />
     </template>
 

@@ -29,7 +29,7 @@ export default {
     }),
     VueI18nPlugin({
       globalSFCScope: false,
-      fullInstall: true,
+      fullInstall: false,
       runtimeOnly: false,
       useVueI18nImportName: true,
       allowDynamic: true,

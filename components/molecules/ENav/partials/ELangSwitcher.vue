@@ -1,11 +1,10 @@
 <template>
-  <v-select
+  <molecules-e-input-wrapper
     v-model="localeSelection"
+    type="select"
+    id="language"
     :items="langs"
-    dense
-    cols="12"
     background-color="transparent"
-    flat
     class="mt-5"
     item-text="value.name"
     item-value="value.code"
@@ -50,7 +49,7 @@
         </v-list-item-title>
       </v-list-item>
     </template>
-  </v-select>
+  </molecules-e-input-wrapper>
 </template>
 
 <script lang="ts">

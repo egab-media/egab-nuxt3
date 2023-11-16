@@ -1,16 +1,19 @@
-<script lang="ts">
+<script lang="ts" setup>
 import { useRules } from '~/composables/rules'
+const { handleRules } = useRules()
+</script>
 
+<script lang="ts">
 export default defineComponent({
   name: 'EInputWrapper',
 
-  emits: ['update:modelValue'],
-
   props: {
+    /** @property {String} id => Input ID */
     id: {
       type: String,
       required: true
     },
+    /** @property {String} type => Input type */
     type: {
       type: String,
       default: 'text',
@@ -32,6 +35,10 @@ export default defineComponent({
       type: Array as () => Array<string>,
       default: () => []
     },
+    items: {
+      type: Array,
+      default: undefined
+    },
     hint: {
       type: String,
       default: undefined
@@ -42,31 +49,47 @@ export default defineComponent({
     }
   },
 
+  emits: ['update:modelValue'],
+
   setup(props, { emit, expose }) {
-    const { handleRules } = useRules()
+    /**
+     * Cached components for dynamic rendering
+     * NOTE: It is important to expose the components to the grandparent so that they can be used in the parent component
+     */
+    // const textField = resolveComponent('molecules-e-input-wrapper-partials-e-text-field')
+    // const textArea = resolveComponent('molecules-e-input-wrapper-partials-e-textarea')
+    // const select = resolveComponent('molecules-e-input-wrapper-partials-e-select')
 
-
-    const textField = resolveComponent('lazy-molecules-e-input-wrapper-partials-e-text-field')
-    const textArea = resolveComponent('lazy-molecules-e-input-wrapper-partials-e-textarea')
-    const select = resolveComponent('lazy-molecules-e-input-wrapper-partials-e-select')
-
-    const getComponent = computed(() => {
-      if (['text', 'password', 'email'].includes(props.type)) {
-        return textField
-      } else if (props.type === 'textarea') {
-        return textArea
-      } else if (props.type === 'select') {
-        return select
-      }
-    })
-
-    const reactiveModelValue = computed({
-      get() { return props.modelValue },
-      set(newValue) { emit('update:modelValue', newValue) }
-    })
     // NOTE: It is important to expose the modelValue props to the grandparent
     expose({ modelValue: props.modelValue, rules: props.rules })
-    return { getComponent, reactiveModelValue, handleRules }
+  },
+
+  computed: {
+    /**
+     * @method getComponent => Dynamically render the correct component based on the type prop
+     * @description Computed property to determine which component to render
+     * @returns {Component}
+     */
+    getComponent() {
+      if (['text', 'password', 'email'].includes(this.type)) {
+        return resolveComponent('molecules-e-input-wrapper-partials-e-text-field')
+      } else if (this.type === 'textarea') {
+        return resolveComponent('molecules-e-input-wrapper-partials-e-textarea')
+      } else if (this.type === 'select') {
+        return resolveComponent('molecules-e-input-wrapper-partials-e-select')
+      } else {
+        return resolveComponent('molecules-e-input-wrapper-partials-e-text-field')
+      }
+    },
+    /**
+     * @method reactiveModelValue => Reactively update the modelValue prop
+     * @description Computed property to determine which component to render
+     * @returns {Component}
+     */
+    reactiveModelValue: {
+      get() { return this.modelValue },
+      set(newValue: any) { this.$emit('update:modelValue', newValue) }
+    }
   }
 })
 </script>
