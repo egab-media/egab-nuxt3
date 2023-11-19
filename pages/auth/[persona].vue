@@ -108,11 +108,11 @@ export default defineComponent({
               justify="center"
               align="center"
             >
-              <span class="mx-2">{{ isRegister ? $t('auth.has-account') : $t('auth.new') }}</span>
+              <span>{{ isRegister ? $t('auth.has-account') : $t('auth.new') }}</span>
               <e-btn
-                type="text"
                 color="primary"
-                :label="isRegister ? $t('auth.login-here') : $t('auth.signup-here')"
+                variant="text"
+                :text="isRegister ? $t('auth.login-here') : $t('auth.signup-here')"
                 underline
                 @click="handleSwitchAuth"
               />
