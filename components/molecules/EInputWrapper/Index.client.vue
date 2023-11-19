@@ -46,23 +46,22 @@ export default defineComponent({
     persistentHint: {
       type: Boolean,
       default: false
-    }
+    },
+    counter: {
+      type: Boolean,
+      default: false
+    },
+    counterValue: {
+      type: [Number, Function],
+      default: undefined
+    },
+    returnObject: {
+      type: Boolean,
+      default: false
+    },
   },
 
   emits: ['update:modelValue'],
-
-  setup(props, { emit, expose }) {
-    /**
-     * Cached components for dynamic rendering
-     * NOTE: It is important to expose the components to the grandparent so that they can be used in the parent component
-     */
-    // const textField = resolveComponent('molecules-e-input-wrapper-partials-e-text-field')
-    // const textArea = resolveComponent('molecules-e-input-wrapper-partials-e-textarea')
-    // const select = resolveComponent('molecules-e-input-wrapper-partials-e-select')
-
-    // NOTE: It is important to expose the modelValue props to the grandparent
-    expose({ modelValue: props.modelValue, rules: props.rules })
-  },
 
   computed: {
     /**

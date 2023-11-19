@@ -11,139 +11,150 @@ export default defineComponent({
   props: {
     dataTest: {
       type: String,
-      default: 'btn'
+      default: 'btn',
     },
     icon: {
       type: [String as () => keyof IconsOptions, Boolean],
-      default: undefined
+      default: undefined,
     },
     // adds color
     color: {
       type: String,
-      default: null
+      default: null,
     },
-    type: {
-      type: String,
-      default: undefined
+    variant: {
+      type: String as NonNullable<any>,
+      default: 'elevated',
+      validator: (value: string) => [
+        'elevated',
+        'outlined',
+        'plain',
+        'tonal',
+        'flat',
+        'text',
+      ].includes(value),
+    },
+    size: {
+      type: [String],
     },
     depressed: {
       type: Boolean,
-      default: false
+      default: false,
     },
     google: {
       type: Boolean,
-      default: false
+      default: false,
     },
     outlined: {
       type: Boolean,
-      default: false
+      default: false,
     },
     plain: {
       type: Boolean,
-      default: false
+      default: false,
     },
     rounded: {
       type: Boolean,
-      default: false
+      default: false,
     },
     fab: {
       type: Boolean,
-      default: false
+      default: false,
     },
     dark: {
       type: Boolean,
-      default: false
+      default: false,
     },
     text: {
       type: String,
-      default: 'egab button'
+      default: 'egab button',
     },
     block: {
       type: Boolean,
-      default: false
+      default: false,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     large: {
       type: Boolean,
-      default: false
+      default: false,
     },
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     small: {
       type: Boolean,
-      default: false
+      default: false,
     },
     xLarge: {
       type: Boolean,
-      default: false
+      default: false,
     },
     xSmall: {
       type: Boolean,
-      default: false
+      default: false,
     },
     link: {
       type: Boolean,
-      default: false
+      default: false,
     },
     nuxt: {
       type: Boolean,
-      default: false
+      default: false,
     },
     to: {
       type: [String as () => RouteLocationRaw, Object as () => RouteLocationRaw],
-      default: undefined
+      default: undefined,
     },
     removePadding: {
       type: Boolean,
-      default: false
+      default: false,
     },
     underline: {
       type: Boolean,
-      default: false
+      default: false,
     },
     iconName: {
       type: String,
-      default: null
+      default: null,
     },
     href: {
       type: String,
-      default: undefined
+      default: undefined,
     },
     width: {
       type: [String, Number],
-      default: null
+      default: null,
     },
     height: {
       type: [String, Number],
-      default: null
+      default: null,
     },
     title: {
       type: String,
-      default: undefined
+      default: undefined,
     },
     action: {
       type: Function as ButtonViewReturnComponentProps['action'],
-      default: undefined
+      default: undefined,
     },
     isActive: {
       type: Function,
-      default: undefined
+      default: undefined,
     },
     tooltip: {
       type: String,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   emits: ['click'],
   setup() {
     const languageStore = useLanguageStore()
-    const { getDir } = storeToRefs(languageStore)
-    return { getDir }
+    const {getDir} = storeToRefs(languageStore)
+    return {getDir}
   },
   data: () => ({}),
   computed: {
@@ -152,8 +163,8 @@ export default defineComponent({
         return getIcon(this.icon)
       }
       return null
-    }
-  }
+    },
+  },
 })
 </script>
 
@@ -166,7 +177,7 @@ export default defineComponent({
     :outlined="outlined"
     :plain="plain"
     :rounded="rounded"
-    :type="type"
+    :variant="variant"
     :fab="fab"
     :dark="dark"
     :block="block"
@@ -205,7 +216,7 @@ export default defineComponent({
     />
 
     <!-- custom icon here -->
-    <slot />
+    <slot/>
 
     {{ !(fab || icon) ? text : '' }}
   </v-btn>

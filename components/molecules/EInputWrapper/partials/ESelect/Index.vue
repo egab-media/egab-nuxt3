@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-defineEmits(['input'])
+defineEmits(['input', 'update:modelValue'])
 const handleUpdateMenu = (open: boolean) => {
   if (open) {
     setTimeout(
@@ -46,6 +46,17 @@ export default defineComponent({
       type: Object,
       default: () => ({})
     }
+  },
+
+  computed: {
+    reactiveModelValue: {
+      get () {
+        return this.modelValue
+      },
+      set (value: any) {
+        this.$emit('update:modelValue', value)
+      }
+    }
   }
 })
 </script>
@@ -54,12 +65,11 @@ export default defineComponent({
   <v-select
     v-bind="$props"
     :id="id"
-    :model-value="modelValue"
+    :model-value="reactiveModelValue"
     :eager="true"
     density="compact"
     :item-value="itemValue"
     :item-text="itemText"
-    @update:model-value="$emit('input', $event)"
     @update:menu="handleUpdateMenu"
   >
     <template
@@ -75,12 +85,13 @@ export default defineComponent({
     <template #label="{label}">
       <span
         v-if="rules.includes('required')"
-        data-test="input-asterisk"
+        data-test="select-asterisk"
         class="red--text"
         v-text="'* '"
       />
       <span
-        data-test="input-label"
+        data-test="select-label"
+        class="text-capitalize text-caption font-weight-bold"
         v-text="label"
       />
     </template>

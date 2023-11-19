@@ -86,40 +86,22 @@ export default defineComponent({
             <!-- SECTION: Email field -->
             <molecules-e-input-wrapper
               id="email"
+              v-model="form.email"
               type="email"
-              :model-value="form.email"
               :hint="isRegister && isEditor ? $t('auth.form.email.hint', { openTag: '<a>', closeTag: '</a>' }) : undefined"
               :label="$t('auth.form.email.label', { type: isRegister ? isEditor ? $t('auth.status.work') : $t('auth.status.contact') : $t('auth.status.your') })"
               persistent-hint
               dense
               :rules="['required', 'email']"
             />
-<!--            <molecules-e-input-wrapper-->
-<!--              id="email"-->
-<!--              type="email"-->
-<!--              :model-value="form.email"-->
-<!--              :hint="isRegister && isEditor ? $t('auth.form.email.hint', { openTag: '<a>', closeTag: '</a>' }) : undefined"-->
-<!--              dense-->
-<!--              persistent-hint-->
-<!--              :label="$t('auth.form.email.label', { type: isRegister ? isEditor ? $t('auth.status.work') : $t('auth.status.contact') : $t('auth.status.your') })"-->
-<!--              :rules="['required', 'email']"-->
-<!--            >-->
-<!--              <template #message="{ message }">-->
-<!--                <span>-->
-<!--                  {{ message }}-->
-<!--                </span>-->
-<!--              </template>-->
-<!--            </molecules-e-input-wrapper>-->
-            <!-- SECTION: ./Email field -->
 
             <molecules-e-input-wrapper
               v-if="isRegister"
               id="name"
-              :model-value="form.name"
+              v-model="form.name"
               data-test="name-input"
               autocomplete="name"
               type="text"
-              dense
               persistent-hint
               :label="$t('auth.form.name.label')"
               counter
@@ -141,39 +123,36 @@ export default defineComponent({
               @auth="handleAuthUsingEmailAndPassword"
             />
 
-            <!--            <e-select-->
-            <!--                v-if="isRegister"-->
-            <!--                v-model="form.surveyValue"-->
-            <!--                data-test="survey-select"-->
-            <!--                :label="$t('auth.form.survey.label')"-->
-            <!--                outlined-->
-            <!--                dense-->
-            <!--                return-object-->
-            <!--                :items="[-->
-            <!--                { id: 'search', text: $t('auth.form.survey.option1') },-->
-            <!--                { id: 'referral', text: $t('auth.form.survey.option2') },-->
-            <!--                { id: 'social', text: $t('auth.form.survey.option3') },-->
-            <!--                { id: 'blog', text: $t('auth.form.survey.option4') },-->
-            <!--                { id: 'other', text: $t('auth.form.survey.option5'), data: '' }-->
-            <!--              ]"-->
-            <!--                item-text="text"-->
-            <!--                item-value="id"-->
-            <!--                :placeholder="$t('auth.form.survey.placeholder')"-->
-            <!--                :rules="['required']"-->
-            <!--                class="mt-5"-->
-            <!--            />-->
+            <molecules-e-input-wrapper
+              v-if="isRegister"
+              id="survey"
+              v-model="form.surveyValue"
+              type="select"
+              data-test="survey-select"
+              :label="$t('auth.form.survey.label')"
+              return-object
+              :items="[
+                { title: 'search', value: $t('auth.form.survey.option1') },
+                { title: 'referral', value: $t('auth.form.survey.option2') },
+                { title: 'social', value: $t('auth.form.survey.option3') },
+                { title: 'blog', value: $t('auth.form.survey.option4') },
+                { title: 'other', value: $t('auth.form.survey.option5'), data: '' }
+              ]"
+              :placeholder="$t('auth.form.survey.placeholder')"
+              :rules="['required']"
+              class="mt-5"
+            />
 
-            <!--            <e-input-->
-            <!--                v-if="isRegister && (form.surveyValue.id === 'other')"-->
-            <!--                v-model="form.surveyValue.data"-->
-            <!--                data-test="survey-other"-->
-            <!--                id="survey"-->
-            <!--                :label="$t('auth.form.survey.other.label')"-->
-            <!--                :placeholder="$t('auth.form.survey.other.placeholder')"-->
-            <!--                dense-->
-            <!--                persistent-hint-->
-            <!--                :rules="['required']"-->
-            <!--            />-->
+            <molecules-e-input-wrapper
+              v-if="isRegister && (form.surveyValue.id === 'other')"
+              v-model="form.surveyValue.data"
+              id="survey"
+              data-test="survey-other"
+              :label="$t('auth.form.survey.other.label')"
+              :placeholder="$t('auth.form.survey.other.placeholder')"
+              persistent-hint
+              :rules="['required']"
+            />
           </v-row>
 
           <!--          <v-row v-if="isRegister" data-test="disclaimer" class="text-body-2" align="center">-->
@@ -186,18 +165,18 @@ export default defineComponent({
           <!--          </v-row>-->
         </v-card-text>
 
-        <!--        <v-card-actions>-->
-        <!--          <e-btn-->
-        <!--              data-test="action-btn"-->
-        <!--              large-->
-        <!--              block-->
-        <!--              color="primary"-->
-        <!--              rounded-->
-        <!--              :loading="loading"-->
-        <!--              :label="isRegister ? $t('auth.form.actions.continue') : $t('auth.form.actions.login')"-->
-        <!--              @click.native="handleAuthUsingEmailAndPassword"-->
-        <!--          />-->
-        <!--        </v-card-actions>-->
+        <v-card-actions>
+          <e-btn
+            data-test="action-btn"
+            large
+            block
+            color="primary"
+            rounded
+            :loading="loading"
+            :text="isRegister ? $t('auth.form.actions.continue') : $t('auth.form.actions.login')"
+            @click="handleAuthUsingEmailAndPassword"
+          />
+        </v-card-actions>
       </v-form>
       <!-- SECTION: Form -->
     </v-container>

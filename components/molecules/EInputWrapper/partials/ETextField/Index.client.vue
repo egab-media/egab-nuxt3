@@ -87,6 +87,7 @@ export default defineComponent({
       />
       <span
         data-test="input-label"
+        class="text-capitalize text-caption font-weight-bold"
         v-text="label"
       />
     </template>
