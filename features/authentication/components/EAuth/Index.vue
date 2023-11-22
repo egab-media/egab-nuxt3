@@ -1,43 +1,66 @@
 <script lang="ts" setup>
 import { EAuthTitle, EAuthSubtitle, EAuthPassword } from '@/features/authentication/components/partials'
 import { useDisplay } from 'vuetify'
-const { mobile } = useDisplay()
+
+const {mobile} = useDisplay()
 </script>
 
 <script lang="ts">
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+
 export default defineComponent({
   name: 'EAuth',
 
   props: {
     isRegister: {
       type: Boolean,
-      default: true
+      default: true,
     },
     isEditor: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
 
   data() {
     return {
-      openTerms: false,
-      valid: true,
-      loading: false,
-      error: null as any,
       form: {
         email: '',
         name: '',
         password: '',
-        surveyValue: ''
+        surveyValue: {id: null, data: null},
       },
-      firestoreListener: null as any
+      openTerms: false,
+      valid: true,
+      loading: false,
+      error: null as any,
+      firestoreListener: null as any,
     }
   },
 
   methods: {
-    handleAuthUsingEmailAndPassword() {}
-  }
+    async handleAuthUsingEmailAndPassword(form: any) {
+      const {$firebaseAuth} = useNuxtApp()
+
+      if (this.isRegister) {
+        console.log('registering user')
+        try {
+          await createUserWithEmailAndPassword($firebaseAuth, form.email, form.password)
+          this.$router.push('/')
+        } catch (error) {
+          console.warn('error registering user => ', error)
+        }
+      } else {
+        console.log('logging in user')
+        try {
+          await signInWithEmailAndPassword($firebaseAuth, form.email, form.password)
+          this.$router.push('/')
+        } catch (error) {
+          console.warn('error logging in user => ', error)
+        }
+      }
+    },
+  },
 })
 </script>
 
@@ -120,7 +143,6 @@ export default defineComponent({
             <e-auth-password
               v-model:password="form.password"
               :is-register="isRegister"
-              @auth="handleAuthUsingEmailAndPassword"
             />
 
             <molecules-e-input-wrapper
@@ -145,8 +167,8 @@ export default defineComponent({
 
             <molecules-e-input-wrapper
               v-if="isRegister && (form.surveyValue.id === 'other')"
-              v-model="form.surveyValue.data"
               id="survey"
+              v-model="form.surveyValue.data"
               data-test="survey-other"
               :label="$t('auth.form.survey.other.label')"
               :placeholder="$t('auth.form.survey.other.placeholder')"
@@ -174,7 +196,7 @@ export default defineComponent({
             rounded
             :loading="loading"
             :text="isRegister ? $t('auth.form.actions.continue') : $t('auth.form.actions.login')"
-            @click="handleAuthUsingEmailAndPassword"
+            @click="handleAuthUsingEmailAndPassword(form)"
           />
         </v-card-actions>
       </v-form>

@@ -43,7 +43,7 @@ export default defineComponent({
 <template>
   <molecules-e-input-wrapper
     id="password"
-    :model-value="reactivePassword"
+    v-model="reactivePassword"
     data-test="password"
     type="password"
     autocomplete="new-password"

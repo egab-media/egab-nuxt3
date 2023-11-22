@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { EAuthPassword } from '~/features/authentication/components/partials'
+import { useCurrentUserStore } from '~/store/auth/current-user'
+import { storeToRefs } from 'pinia'
 
 const { locale } = useI18n()
 useHead({
@@ -11,6 +12,14 @@ useHead({
 useSeoMeta({
   title: 'Egab Portal'
 })
+
+const { $firebaseAuth } = useNuxtApp()
+const { getUser, user } = storeToRefs(useCurrentUserStore())
+const router = useRouter()
+const logout = async () => {
+  await $firebaseAuth.signOut()
+  await router.push('/auth/journalist')
+}
 </script>
 
 <script lang="ts">
@@ -25,7 +34,19 @@ export default defineComponent({
 </script>
 
 <template>
-  <molecules-e-input-wrapper id="email" label="email" type="email" :model-value="form.email" :rules="['required', 'email']" />
+  <v-card>
+    <v-card-title>
+      Welcome, {{ getUser?.email }}
+    </v-card-title>
+    <v-card-text>Data: {{ getUser }}</v-card-text>
+    <v-card-text>Data: {{ user }}</v-card-text>
+    <v-card-actions>
+      <v-btn
+        text="logout"
+        @click="logout"
+      />
+    </v-card-actions>
+  </v-card>
 </template>
 
 <style scoped>

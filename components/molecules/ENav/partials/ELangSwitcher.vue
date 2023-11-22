@@ -1,8 +1,8 @@
 <template>
   <molecules-e-input-wrapper
+    id="language"
     v-model="localeSelection"
     type="select"
-    id="language"
     :items="langs"
     background-color="transparent"
     class="mt-5"

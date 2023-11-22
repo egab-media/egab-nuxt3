@@ -216,7 +216,7 @@ export default defineComponent({
     />
 
     <!-- custom icon here -->
-    <slot/>
+    <slot />
 
     {{ !(fab || icon) ? text : '' }}
   </v-btn>

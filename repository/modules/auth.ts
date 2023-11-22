@@ -1,4 +1,4 @@
-import HttpFactory from "repository/factory";
+import HttpFactory from '@/repository/factory';
 
 interface ILoginCredentials {
   email: string;
