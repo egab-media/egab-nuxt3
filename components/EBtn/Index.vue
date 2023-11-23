@@ -36,6 +36,7 @@ export default defineComponent({
     },
     size: {
       type: [String],
+      default: undefined
     },
     depressed: {
       type: Boolean,

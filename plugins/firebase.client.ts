@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { useCurrentUserStore } from '~/store/auth/current-user'
 
-const setServerSession = (token: string) => {
+const setServerSession = (token: string | undefined) => {
   return $fetch('/api/session', {
     method: 'POST',
     body: { token }
@@ -25,7 +25,6 @@ export default defineNuxtPlugin((nuxtApp) => {
         await setServerSession(tokenRes)
         setCurrentUser(user)
       } else {
-        await setServerSession('')
         setCurrentUser(null)
       }
     })

@@ -47,7 +47,7 @@ export default defineComponent({
       default: () => ({})
     }
   },
-
+  emits: ['update:modelValue'],
   computed: {
     reactiveModelValue: {
       get () {

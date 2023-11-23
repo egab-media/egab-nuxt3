@@ -42,6 +42,7 @@
     "jsdom": "^22.1.0",
     "nuxt": "^3.6.5",
     "nuxt-delay-hydration": "^1.2.1",
+    "nuxt-lodash": "^2.5.3",
     "nuxt-purgecss": "^2.0.0",
     "nuxt-security": "^0.14.4",
     "playwright": "^1.37.1",

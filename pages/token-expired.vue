@@ -15,13 +15,16 @@ const setServerSession = (token: string) => {
 }
 
 onMounted(() => {
-  $firebaseAuth.onIdTokenChanged(async (user: User) => {
+  $firebaseAuth.onIdTokenChanged(async (user: User | null) => {
     if (user) {
       const redirectUrl = route.query.redirectUrl as string
       const token = await user.getIdToken()
       await setServerSession(token)
       setTokenExpired(false)
-      if (redirectUrl) { navigateTo(redirectUrl) }
+      if (redirectUrl) {
+        console.log('redirect url => ', redirectUrl)
+        navigateTo(redirectUrl)
+      }
       else { navigateTo('/') }
     }
   })

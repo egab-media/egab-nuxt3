@@ -8,7 +8,6 @@ useHead({
     lang: locale
   }
 })
-
 useSeoMeta({
   title: 'Egab Portal'
 })
@@ -16,9 +15,10 @@ useSeoMeta({
 const { $firebaseAuth } = useNuxtApp()
 const { getUser, user } = storeToRefs(useCurrentUserStore())
 const router = useRouter()
+
 const logout = async () => {
   await $firebaseAuth.signOut()
-  await router.push('/auth/journalist')
+  await navigateTo({ name: `auth-persona___${locale}`, params: { persona: 'journalist' } })
 }
 </script>
 

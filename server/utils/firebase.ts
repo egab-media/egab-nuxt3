@@ -1,9 +1,10 @@
 import { initializeApp, applicationDefault } from 'firebase-admin/app'
-import { auth } from 'firebase-admin'
+import { getAuth } from 'firebase-admin/auth'
 
 export const adminApp = initializeApp({
-  credential: applicationDefault()
+  credential: applicationDefault(),
+  projectId: 'egab-staging'
   // databaseURL: process.env.FIREBASE_DATABASE_URL
 })
 
-export const adminAuth = auth()
+export const adminAuth = getAuth()

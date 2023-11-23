@@ -46,7 +46,7 @@ export default defineComponent({
         console.log('registering user')
         try {
           await createUserWithEmailAndPassword($firebaseAuth, form.email, form.password)
-          this.$router.push('/')
+          this.$router.push({ name: `index___${this.$i18n.locale}` })
         } catch (error) {
           console.warn('error registering user => ', error)
         }
@@ -54,7 +54,7 @@ export default defineComponent({
         console.log('logging in user')
         try {
           await signInWithEmailAndPassword($firebaseAuth, form.email, form.password)
-          this.$router.push('/')
+          this.$router.push({ name: `index___${this.$i18n.locale}` })
         } catch (error) {
           console.warn('error logging in user => ', error)
         }

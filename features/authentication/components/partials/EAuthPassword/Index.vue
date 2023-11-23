@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-defineEmits(['auth'])
+defineEmits(['auth', 'update:password'])
 </script>
 
 <script lang="ts">

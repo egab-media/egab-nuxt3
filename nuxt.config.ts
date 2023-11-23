@@ -80,6 +80,7 @@ export default defineNuxtConfig({
     'nuxt-security',
     '@nuxtjs/eslint-module',
     '@invictus.codes/nuxt-vuetify',
+    'nuxt-lodash',
     ['nuxt-purgecss', {
       enabled: true,
       safelist: {
