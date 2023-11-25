@@ -1,10 +1,27 @@
-import { USER_TOKEN_NAME } from '~/utils/constants'
+import { User } from 'firebase/auth'
+import { useCurrentUserStore } from '~/store/auth/current-user'
 
-// TODO: check for a way to use the cookies instead of using store
 export default defineNuxtRouteMiddleware(async (to) => {
-  console.log('running global middleware')
-  const userToken = useCookie(USER_TOKEN_NAME)
-  if (userToken) {
-    console.log('user token exists => ', userToken.value)
+  useCsrf()
+  const { $pinia } = useNuxtApp()
+  const { setCurrentUser } = useCurrentUserStore($pinia)
+  // $firebaseAuth.onAuthStateChanged(user => {
+  //   if (!user) {
+  //
+  //   }
+  // })
+  const { data, status, error, pending } = await useCsrfFetch('/api/auth/me', {
+    method: 'GET',
+    headers: useRequestHeaders(['cookie'])
+  })
+  console.log('middleware/data.value? => ', data)
+  if (!data.value) {
+    setCurrentUser(null)
+    if (!to.name?.includes('auth')) navigateTo({ name: 'auth-persona___en', params: { persona: 'journalist' } })
+  } else if (!!data.value) {
+    setCurrentUser(data.value as User)
+    if (to.name?.includes('auth')) navigateTo({ name: 'index' })
+  } else if (!!error.value) {
+    console.warn(error)
   }
 })

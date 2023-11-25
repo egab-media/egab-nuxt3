@@ -1,13 +1,5 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
-import { useCurrentUserStore } from '~/store/auth/current-user'
-
-const setServerSession = (token: string | undefined) => {
-  return $fetch('/api/session', {
-    method: 'POST',
-    body: { token }
-  })
-}
 
 export default defineNuxtPlugin((nuxtApp) => {
   // Initialize firebase client
@@ -15,20 +7,6 @@ export default defineNuxtPlugin((nuxtApp) => {
   const { firebase } = config.public
   const app = initializeApp(firebase)
   const auth = getAuth(app)
-
-  // get current user information
-  const { setCurrentUser } = useCurrentUserStore()
-  nuxtApp.hooks.hook('app:mounted', () => {
-    auth.onIdTokenChanged(async (user) => {
-      if (user) {
-        const tokenRes = await user.getIdToken()
-        await setServerSession(tokenRes)
-        setCurrentUser(user)
-      } else {
-        setCurrentUser(null)
-      }
-    })
-  })
 
   // Inject firebase modules into runtime
   return {

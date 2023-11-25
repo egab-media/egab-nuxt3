@@ -1,66 +1,60 @@
 <script lang="ts" setup>
 import { EAuthTitle, EAuthSubtitle, EAuthPassword } from '@/features/authentication/components/partials'
 import { useDisplay } from 'vuetify'
+import useAuth from '~/composables/auth'
 
 const {mobile} = useDisplay()
+
+const props = defineProps({
+  isRegister: {
+    type: Boolean,
+  default: true,
+  },
+  isEditor: {
+    type: Boolean,
+  default: true,
+  },
+})
+
+const form =  reactive({
+  email: ref(''),
+  name: ref(''),
+  password: ref(''),
+  surveyValue: ref({id: null, data: null}),
+})
+
+const { loginWithEmailAndPassword, registerWithEmailAndPassword } = useAuth()
+
+const handleAuthUsingEmailAndPassword = async () => {
+  if (props.isRegister) {
+    console.log('registering user')
+    await registerWithEmailAndPassword(form.email, form.password)
+  } else {
+    console.log('logging in user')
+      await loginWithEmailAndPassword(form.email, form.password)
+  }
+}
 </script>
 
 <script lang="ts">
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
-
 export default defineComponent({
   name: 'EAuth',
 
-  props: {
-    isRegister: {
-      type: Boolean,
-      default: true,
-    },
-    isEditor: {
-      type: Boolean,
-      default: true,
-    },
-  },
-
   data() {
     return {
-      form: {
-        email: '',
-        name: '',
-        password: '',
-        surveyValue: {id: null, data: null},
-      },
+      // form: {
+      //   email: '',
+      //   name: '',
+      //   password: '',
+      //   surveyValue: {id: null, data: null},
+      // },
       openTerms: false,
       valid: true,
       loading: false,
       error: null as any,
       firestoreListener: null as any,
     }
-  },
-
-  methods: {
-    async handleAuthUsingEmailAndPassword(form: any) {
-      const {$firebaseAuth} = useNuxtApp()
-
-      if (this.isRegister) {
-        console.log('registering user')
-        try {
-          await createUserWithEmailAndPassword($firebaseAuth, form.email, form.password)
-          this.$router.push({ name: `index___${this.$i18n.locale}` })
-        } catch (error) {
-          console.warn('error registering user => ', error)
-        }
-      } else {
-        console.log('logging in user')
-        try {
-          await signInWithEmailAndPassword($firebaseAuth, form.email, form.password)
-          this.$router.push({ name: `index___${this.$i18n.locale}` })
-        } catch (error) {
-          console.warn('error logging in user => ', error)
-        }
-      }
-    },
-  },
+  }
 })
 </script>
 
@@ -196,7 +190,7 @@ export default defineComponent({
             rounded
             :loading="loading"
             :text="isRegister ? $t('auth.form.actions.continue') : $t('auth.form.actions.login')"
-            @click="handleAuthUsingEmailAndPassword(form)"
+            @click="handleAuthUsingEmailAndPassword"
           />
         </v-card-actions>
       </v-form>

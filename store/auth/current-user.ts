@@ -19,11 +19,6 @@ export const useCurrentUserStore = defineStore('current-user', {
   actions: {
     setCurrentUser(value: null | User) {
       this.user = value
-      if (value) {
-        this.setToken(value.accessToken)
-      } else {
-        this.setToken(null)
-      }
     },
     setToken(value: string | null) {
       this.token = value

@@ -47,6 +47,8 @@ export default defineNuxtConfig({
     apiKey: process.env.API_KEY,
     authDomain: process.env.AUTH_DOMAIN,
     projectId: process.env.PROJECT_ID,
+    clientEmail: process.env.CLIENT_EMAIL,
+    privateKey: process.env.PRIVATE_KEY,
     public: {
       firebase: {
         apiKey: process.env.API_KEY,
@@ -81,6 +83,7 @@ export default defineNuxtConfig({
     '@nuxtjs/eslint-module',
     '@invictus.codes/nuxt-vuetify',
     'nuxt-lodash',
+    'nuxt-csurf',
     ['nuxt-purgecss', {
       enabled: true,
       safelist: {

@@ -2388,7 +2388,7 @@
     unimport "^3.3.0"
     untyped "^1.4.0"
 
-"@nuxt/kit@^3.8.0":
+"@nuxt/kit@^3.8.0", "@nuxt/kit@^3.8.2":
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.8.2.tgz#f4548f3449d2566dbd2febe2b84f47060f7c668c"
   integrity sha512-LrXCm8hAkw+zpX8teUSD/LqXRarlXjbRiYxDkaqw739JSHFReWzBFgJbojsJqL4h1XIEScDGGOWiEgO4QO1sMg==
@@ -9441,6 +9441,15 @@ nuxt-csurf@^1.1.0:
     "@nuxt/kit" "^3.1.0"
     defu "^6.1.1"
 
+nuxt-csurf@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/nuxt-csurf/-/nuxt-csurf-1.3.2.tgz#88d0ef026ea88e8fc168748092db0434392296e7"
+  integrity sha512-/+hqg3clZ+YXeXMz3wdx9aGtk03APQNO6lkgjWSzCB87rVn/TBxSYWXw7Pi8Gl8DgbJiUTC9yy7UzCmXrJTFLQ==
+  dependencies:
+    "@nuxt/kit" "^3.8.2"
+    defu "^6.1.3"
+    uncsrf "^1.1.1"
+
 nuxt-delay-hydration@^1.2.1:
   version "1.2.1"
   resolved "https://registry.npmjs.org/nuxt-delay-hydration/-/nuxt-delay-hydration-1.2.1.tgz"
@@ -12120,6 +12129,11 @@ uncrypto@^0.1.3:
   version "0.1.3"
   resolved "https://registry.npmjs.org/uncrypto/-/uncrypto-0.1.3.tgz"
   integrity sha512-Ql87qFHB3s/De2ClA9e0gsnS6zXG27SkTiSJwjCc9MebbfapQfuPzumMIUMi38ezPZVNFcHI9sUIepeQfw8J8Q==
+
+uncsrf@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/uncsrf/-/uncsrf-1.1.1.tgz#8c9888cd158105d5cc663af6313bc6bbceb54172"
+  integrity sha512-wH9+N3oNdr2XB3egUKxCR26XTVfYywv2STZYtZLIp8votOf0/9b0axA9gpIHdYfgq/Myfh/HS5e0lQ/+27dj9A==
 
 unctx@^2.3.1:
   version "2.3.1"

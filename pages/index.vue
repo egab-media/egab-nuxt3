@@ -18,7 +18,7 @@ const router = useRouter()
 
 const logout = async () => {
   await $firebaseAuth.signOut()
-  await navigateTo({ name: `auth-persona___${locale}`, params: { persona: 'journalist' } })
+  await router.push({ name: `auth-persona___en`, params: { persona: 'journalist' } })
 }
 </script>
 
