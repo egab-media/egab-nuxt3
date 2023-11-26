@@ -10,7 +10,11 @@ import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 export default {
   plugins: [
     vue({
-      customElement: /e-/
+      // template: {
+      //   compilerOptions: {
+      //     isCustomElement: tag => tag.startsWith('e-'),
+      //   }
+      // }
     }),
     vuetify(),
     Components({
@@ -40,7 +44,7 @@ export default {
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./', import.meta.url)),
-      '~': fileURLToPath(new URL('./', import.meta.url))
+      '~': fileURLToPath(new URL('./', import.meta.url)),
       // '#components': fileURLToPath(new URL('./.nuxt/components', import.meta.url))
     }
   },

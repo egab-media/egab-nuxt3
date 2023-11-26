@@ -7,10 +7,12 @@ import {
   addVuetify,
   bootstrapVueContext,
   compositeConfiguration,
-  mountWrapper,
+  mountWrapper, shallowMount
 } from '~/test-utils'
-import EInputWrapper from '~/components/molecules/EInputWrapper/Index.client.vue'
-import EBtn from '~/components/EBtn/Index.vue'
+import EInputWrapper from '@/components/molecules/EInputWrapper/Index.client.vue'
+import EBtn from '@/components/EBtn/Index.vue'
+import { ESelect, ETextField } from '@/components/molecules/EInputWrapper/partials'
+import TestComponentWrapper from '#app/components/test-component-wrapper'
 
 type RelaxedVue = typeof EAuth & {
   form: {
@@ -28,6 +30,13 @@ let vueContext: any
 
 describe('EAuth', () => {
   vueContext = bootstrapVueContext(compositeConfiguration(addVuetify, addI18n, addPinia))
+  const DummyComponent = {
+    template: `
+      <div>
+        <slot></slot>
+      </div>
+    `
+  }
 
   beforeEach(() => {
     vueContext.propsData = {
@@ -60,9 +69,13 @@ describe('EAuth', () => {
         }
       }
     }
+    vueContext.stubs = ['client-only']
     vueContext.components = {
       'molecules-e-input-wrapper': EInputWrapper,
-      'e-btn': EBtn
+      'molecules-e-input-wrapper-partials-e-text-field': ETextField,
+      'molecules-e-input-wrapper-partials-e-select': ESelect,
+      'e-btn': EBtn,
+      'client-only': DummyComponent
     }
 
     wrapper = mountWrapper(EAuth, vueContext)
@@ -75,40 +88,39 @@ describe('EAuth', () => {
   describe('DOM', () => {
     describe('Mounting', () => {
       it('should test wrapper', async () => {
-        console.log(wrapper.vm.form)
-        // expect(findAuthWrapper().attributes('class')).not.toContain('px-6')
-        // wrapper.vm.$vuetify.display.mobile = false
-        // wrapper.vm.$vuetify.display.lg = true
-        // await nextTick()
-        // expect(findAuthWrapper().attributes('class')).toContain('px-6')
+        expect(findAuthWrapper().attributes('class')).not.toContain('px-6')
+        wrapper.vm.$vuetify.display.mobile = false
+        wrapper.vm.$vuetify.display.lg = true
+        await nextTick()
+        expect(findAuthWrapper().attributes('class')).toContain('px-6')
       })
-      it.todo('should render correct options', function () {
+      it('should render correct options', function () {
         expect(wrapper.vm.$options.name).toEqual('EAuth')
         expect(wrapper.vm.$options.props.isRegister).toEqual({ type: Boolean, default: true })
         expect(wrapper.vm.$options.props.isEditor).toEqual({ type: Boolean, default: true })
       })
     })
 
-    describe.todo('form', () => {
+    describe('form', () => {
       it('should load the email input', async () => {
         expect(findEmailInput().exists()).toBe(true)
-        expect(findEmailInput().find('label').text()).toBe('* work email')
-        expect(findEmailInput().find('.v-messages__message').text()).toBe('Can\'t find your company? Please,  register here')
-        await wrapper.setProps({
-          isEditor: false
-        })
-        await nextTick()
-        expect(findEmailInput().find('label').text()).toBe('* contact email')
-        await wrapper.setProps({
-          isRegister: false
-        })
-        await nextTick()
-        expect(findEmailInput().find('label').text()).toBe('* your email')
-        await findEmailInput().find('input').setValue('meow@me.com')
-        expect(wrapper.vm.form.email).toBe('meow@me.com')
+        expect(findEmailInput().find('molecules-e-input-wrapper-partials-e-text-field').attributes('label')).toBe('work email')
+        // expect(findEmailInput().find('.v-messages__message').text()).toBe('Can\'t find your company? Please,  register here')
+        // await wrapper.setProps({
+        //   isEditor: false
+        // })
+        // await nextTick()
+        // expect(findEmailInput().find('label').text()).toBe('* contact email')
+        // await wrapper.setProps({
+        //   isRegister: false
+        // })
+        // await nextTick()
+        // expect(findEmailInput().find('label').text()).toBe('* your email')
+        // await findEmailInput().find('input').setValue('meow@me.com')
+        // expect(wrapper.vm.form.email).toBe('meow@me.com')
       })
 
-      it('should load name input', async function () {
+      it.todo('should load name input', async function () {
         expect(findNameInput().exists()).toBeTruthy()
         expect(findNameInput().find('label').text()).toEqual('* first and last name')
         await findNameInput().find('input').setValue('vitest')

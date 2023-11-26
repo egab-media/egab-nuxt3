@@ -7,7 +7,7 @@ export default defineComponent({
   name: 'EAuthPassword',
 
   props: {
-    password: {
+    modelValue: {
       type: String,
       required: true
     },
@@ -17,7 +17,7 @@ export default defineComponent({
     }
   },
 
-  emits: ['update:password'],
+  emits: ['update:modelValue'],
 
   data: () => ({
     svgTest: `
@@ -30,10 +30,10 @@ export default defineComponent({
   computed: {
     reactivePassword: {
       get() {
-        return this.password
+        return this.modelValue
       },
       set(newValue: string) {
-        this.$emit('update:password', newValue)
+        this.$emit('update:modelValue', newValue)
       }
     }
   }
