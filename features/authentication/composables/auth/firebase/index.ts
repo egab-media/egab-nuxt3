@@ -4,18 +4,24 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, User } from
 
 export const useAuth = () => {
   const { $firebaseAuth, $pinia } = useNuxtApp()
-  const { setCurrentUser } = useCurrentUserStore($pinia)
+  const config = useRuntimeConfig()
+  const { setCurrentUser, setTokenExpired } = useCurrentUserStore($pinia)
 
   const registerWithEmailAndPassword = async (email: string, password: string) => {
     try {
       const result = await createUserWithEmailAndPassword($firebaseApp, email, password)
       const firebaseIdToken = await getIdToken(result.user)
-      // send token
-      const { data } = await useCsrfFetch('/api/auth/login', {
-        method: 'POST',
-        body: JSON.stringify({ firebaseIdToken })
-      })
-      setCurrentUser(data.user)
+
+      if (config.public.usingSSR) {
+        // send token to server
+        const { data, error } = await useCsrfFetch('/api/auth/login', {
+          method: 'POST',
+          body: JSON.stringify({ firebaseIdToken })
+        })
+        setCurrentUser(data.user)
+        setTokenExpired(false)
+      }
+      navigateTo({ name: 'index___en' })
     } catch (error) {
       setCurrentUser(null)
     }
@@ -25,12 +31,16 @@ export const useAuth = () => {
     try {
       const result = await signInWithEmailAndPassword($firebaseAuth, email, password)
       const firebaseIdToken = await getIdToken(result.user)
-      //  send token to server
-      const { data } = await useCsrfFetch('/api/auth/login', {
-        method: 'POST',
-        body: JSON.stringify({ firebaseIdToken })
-      })
-      setCurrentUser(data.value as User)
+
+      if (config.public.usingSSR) {
+        //  send token to server
+        const { data } = await useCsrfFetch('/api/auth/login', {
+          method: 'POST',
+          body: JSON.stringify({ firebaseIdToken })
+        })
+        setCurrentUser(data.value as User)
+        setTokenExpired(false)
+      }
       navigateTo({ name: 'index___en' })
     } catch (error) {
       setCurrentUser(null)
@@ -43,13 +53,17 @@ export const useAuth = () => {
       const result = await signInWithPopup($firebaseAuth, provider)
       const firebaseIdToken = await getIdToken(result.user)
 
-      //  Send token to server
-      const { data } = await useCsrfFetch('/api/auth/login', {
-        method: 'POST',
-        body: JSON.stringify({ firebaseIdToken })
-      })
+      if (config.public.usingSSR) {
+        //  Send token to server
+        const { data } = await useCsrfFetch('/api/auth/login', {
+          method: 'POST',
+          body: JSON.stringify({ firebaseIdToken })
+        })
 
-      setCurrentUser(data.user)
+        setCurrentUser(data.user)
+        setTokenExpired(false)
+      }
+      navigateTo({ name: 'index___en' })
     } catch (error) {
       setCurrentUser(null)
     }

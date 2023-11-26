@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { EAuthTitle, EAuthSubtitle, EAuthPassword } from '@/features/authentication/components/partials'
 import { useDisplay } from 'vuetify'
-import useAuth from '~/composables/auth'
+import { useAuth } from '../../composables/auth/firebase'
+import { reactive, ref } from 'vue'
 
 const {mobile} = useDisplay()
 
@@ -16,11 +17,16 @@ const props = defineProps({
   },
 })
 
+// const email = ref('')
+// const name = ref('')
+// const password = ref('')
+// const surveyValue = ref({ id: null, data: null })
+
 const form =  reactive({
-  email: ref(''),
-  name: ref(''),
-  password: ref(''),
-  surveyValue: ref({id: null, data: null}),
+  email: '',
+  name: '',
+  password: '',
+  surveyValue: { id: null, data: null },
 })
 
 const { loginWithEmailAndPassword, registerWithEmailAndPassword } = useAuth()
@@ -59,144 +65,146 @@ export default defineComponent({
 </script>
 
 <template>
-  <v-card
-    data-test="auth-wrapper"
-    class="rounded-xl mx-auto"
-    :class="mobile ? '' : 'px-6'"
-    width="600"
-  >
-    <v-container fluid>
-      <!-- SECTION: Title -->
-      <e-auth-title
-        :is-editor="isEditor"
-        :is-register="isRegister"
-      />
-      <!-- SECTION ./Title -->
+  <client-only>
+    <v-card
+      data-test="auth-wrapper"
+      class="rounded-xl mx-auto"
+      :class="mobile ? '' : 'px-6'"
+      width="600"
+    >
+      <v-container fluid>
+        <!-- SECTION: Title -->
+        <e-auth-title
+          :is-editor="isEditor"
+          :is-register="isRegister"
+        />
+        <!-- SECTION ./Title -->
 
-      <!-- SECTION Subheader with social media login -->
-      <e-auth-subtitle
-        :form="form"
-        :is-editor="isEditor"
-        :is-register="isRegister"
-        @loading="loading = $event"
-        @error="error = $event"
-      />
-      <!-- SECTION ./Subheader with social media login -->
+        <!-- SECTION Subheader with social media login -->
+        <e-auth-subtitle
+          :form="form"
+          :is-editor="isEditor"
+          :is-register="isRegister"
+          @loading="loading = $event"
+          @error="error = $event"
+        />
+        <!-- SECTION ./Subheader with social media login -->
 
-      <!--      <v-alert v-if="error" data-test="error" type="error">-->
-      <!--        {{ error }}-->
-      <!--      </v-alert>-->
+        <!--      <v-alert v-if="error" data-test="error" type="error">-->
+        <!--        {{ error }}-->
+        <!--      </v-alert>-->
 
-      <!-- SECTION: Form -->
-      <!--
-        * NOTE: Current implementation is experimental
-        * I am using one form entity for (register/login)
-        * within each, a simple data structure is used
-      -->
-      <v-form
-        ref="auth"
-        v-model="valid"
-        data-test="form"
-      >
-        <v-card-text>
-          <v-row no-gutters>
-            <!-- SECTION: Email field -->
-            <molecules-e-input-wrapper
-              id="email"
-              v-model="form.email"
-              type="email"
-              :hint="isRegister && isEditor ? $t('auth.form.email.hint', { openTag: '<a>', closeTag: '</a>' }) : undefined"
-              :label="$t('auth.form.email.label', { type: isRegister ? isEditor ? $t('auth.status.work') : $t('auth.status.contact') : $t('auth.status.your') })"
-              persistent-hint
-              dense
-              :rules="['required', 'email']"
+        <!-- SECTION: Form -->
+        <!--
+          * NOTE: Current implementation is experimental
+          * I am using one form entity for (register/login)
+          * within each, a simple data structure is used
+        -->
+        <v-form
+          ref="auth"
+          v-model="valid"
+          data-test="form"
+        >
+          <v-card-text>
+            <v-row no-gutters>
+              <!-- SECTION: Email field -->
+              <molecules-e-input-wrapper
+                id="email"
+                v-model="form.email"
+                type="email"
+                :hint="isRegister && isEditor ? $t('auth.form.email.hint', { openTag: '<a>', closeTag: '</a>' }) : undefined"
+                :label="$t('auth.form.email.label', { type: isRegister ? isEditor ? $t('auth.status.work') : $t('auth.status.contact') : $t('auth.status.your') })"
+                persistent-hint
+                dense
+                :rules="['required', 'email']"
+              />
+
+              <molecules-e-input-wrapper
+                v-if="isRegister"
+                id="name"
+                v-model="form.name"
+                data-test="name-input"
+                autocomplete="name"
+                type="text"
+                persistent-hint
+                :label="$t('auth.form.name.label')"
+                counter
+                :counter-value="v => v.trim().split(' ').length"
+                :rules="['required', 'alpha', 'fullNameMinChars']"
+              />
+
+              <!--
+                NOTE:
+                * All rules are registered in the ETextField component.
+                  This empowers the validation scenarios & progress calculation.
+                  For more information, @see @/components/ETextField.vue
+
+                * Id must be assigned as it will be used as a reference for progress calculation
+              -->
+              <e-auth-password
+                v-model:password="form.password"
+                :is-register="isRegister"
+              />
+
+              <molecules-e-input-wrapper
+                v-if="isRegister"
+                id="survey"
+                v-model="form.surveyValue"
+                type="select"
+                data-test="survey-select"
+                :label="$t('auth.form.survey.label')"
+                return-object
+                :items="[
+                  { title: 'search', value: $t('auth.form.survey.option1') },
+                  { title: 'referral', value: $t('auth.form.survey.option2') },
+                  { title: 'social', value: $t('auth.form.survey.option3') },
+                  { title: 'blog', value: $t('auth.form.survey.option4') },
+                  { title: 'other', value: $t('auth.form.survey.option5'), data: '' }
+                ]"
+                :placeholder="$t('auth.form.survey.placeholder')"
+                :rules="['required']"
+                class="mt-5"
+              />
+
+              <molecules-e-input-wrapper
+                v-if="isRegister && (form.surveyValue.id === 'other')"
+                id="survey"
+                v-model="form.surveyValue.data"
+                data-test="survey-other"
+                :label="$t('auth.form.survey.other.label')"
+                :placeholder="$t('auth.form.survey.other.placeholder')"
+                persistent-hint
+                :rules="['required']"
+              />
+            </v-row>
+
+            <!--          <v-row v-if="isRegister" data-test="disclaimer" class="text-body-2" align="center">-->
+            <!--            <span class="mx-1">{{ $t('privacy.text') }}</span>-->
+            <!--            <e-terms-->
+            <!--                class="mx-1"-->
+            <!--            />-->
+            <!--            <span class="mx-1">{{ $t('privacy.and') }}</span>-->
+            <!--            <e-privacy-policy />-->
+            <!--          </v-row>-->
+          </v-card-text>
+
+          <v-card-actions>
+            <e-btn
+              data-test="action-btn"
+              large
+              block
+              color="primary"
+              rounded
+              :loading="loading"
+              :text="isRegister ? $t('auth.form.actions.continue') : $t('auth.form.actions.login')"
+              @click="handleAuthUsingEmailAndPassword"
             />
-
-            <molecules-e-input-wrapper
-              v-if="isRegister"
-              id="name"
-              v-model="form.name"
-              data-test="name-input"
-              autocomplete="name"
-              type="text"
-              persistent-hint
-              :label="$t('auth.form.name.label')"
-              counter
-              :counter-value="v => v.trim().split(' ').length"
-              :rules="['required', 'alpha', 'fullNameMinChars']"
-            />
-
-            <!--
-              NOTE:
-              * All rules are registered in the ETextField component.
-                This empowers the validation scenarios & progress calculation.
-                For more information, @see @/components/ETextField.vue
-
-              * Id must be assigned as it will be used as a reference for progress calculation
-            -->
-            <e-auth-password
-              v-model:password="form.password"
-              :is-register="isRegister"
-            />
-
-            <molecules-e-input-wrapper
-              v-if="isRegister"
-              id="survey"
-              v-model="form.surveyValue"
-              type="select"
-              data-test="survey-select"
-              :label="$t('auth.form.survey.label')"
-              return-object
-              :items="[
-                { title: 'search', value: $t('auth.form.survey.option1') },
-                { title: 'referral', value: $t('auth.form.survey.option2') },
-                { title: 'social', value: $t('auth.form.survey.option3') },
-                { title: 'blog', value: $t('auth.form.survey.option4') },
-                { title: 'other', value: $t('auth.form.survey.option5'), data: '' }
-              ]"
-              :placeholder="$t('auth.form.survey.placeholder')"
-              :rules="['required']"
-              class="mt-5"
-            />
-
-            <molecules-e-input-wrapper
-              v-if="isRegister && (form.surveyValue.id === 'other')"
-              id="survey"
-              v-model="form.surveyValue.data"
-              data-test="survey-other"
-              :label="$t('auth.form.survey.other.label')"
-              :placeholder="$t('auth.form.survey.other.placeholder')"
-              persistent-hint
-              :rules="['required']"
-            />
-          </v-row>
-
-          <!--          <v-row v-if="isRegister" data-test="disclaimer" class="text-body-2" align="center">-->
-          <!--            <span class="mx-1">{{ $t('privacy.text') }}</span>-->
-          <!--            <e-terms-->
-          <!--                class="mx-1"-->
-          <!--            />-->
-          <!--            <span class="mx-1">{{ $t('privacy.and') }}</span>-->
-          <!--            <e-privacy-policy />-->
-          <!--          </v-row>-->
-        </v-card-text>
-
-        <v-card-actions>
-          <e-btn
-            data-test="action-btn"
-            large
-            block
-            color="primary"
-            rounded
-            :loading="loading"
-            :text="isRegister ? $t('auth.form.actions.continue') : $t('auth.form.actions.login')"
-            @click="handleAuthUsingEmailAndPassword"
-          />
-        </v-card-actions>
-      </v-form>
-      <!-- SECTION: Form -->
-    </v-container>
-  </v-card>
+          </v-card-actions>
+        </v-form>
+        <!-- SECTION: Form -->
+      </v-container>
+    </v-card>
+  </client-only>
 </template>
 
 <style scoped>

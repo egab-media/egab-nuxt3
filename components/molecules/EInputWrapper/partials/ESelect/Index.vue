@@ -45,6 +45,10 @@ export default defineComponent({
     menuProps: {
       type: Object,
       default: () => ({})
+    },
+    multiple: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue'],

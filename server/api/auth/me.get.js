@@ -6,11 +6,17 @@ export default defineEventHandler(async (event) => {
         return null;
     try {
         const token = await getAuth().verifySessionCookie(firebaseIdToken, true);
-        console.log('from server => token is => ', token);
         const user = await getAuth().getUser(token.uid);
         return user;
     }
     catch (error) {
-        throw createError(error);
+        const knownError = error;
+        throw createError({
+            statusCode: 401,
+            message: knownError.message,
+            stack: knownError.stack,
+            statusMessage: knownError.code,
+            statusText: knownError.code
+        });
     }
 });

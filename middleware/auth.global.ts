@@ -1,27 +1,20 @@
-import { User } from 'firebase/auth'
 import { useCurrentUserStore } from '~/store/auth/current-user'
+import { callWithNuxt } from '#app'
 
 export default defineNuxtRouteMiddleware(async (to) => {
   useCsrf()
-  const { $pinia } = useNuxtApp()
-  const { setCurrentUser } = useCurrentUserStore($pinia)
-  // $firebaseAuth.onAuthStateChanged(user => {
-  //   if (!user) {
-  //
-  //   }
-  // })
-  const { data, status, error, pending } = await useCsrfFetch('/api/auth/me', {
-    method: 'GET',
-    headers: useRequestHeaders(['cookie'])
+  const nuxtApp = useNuxtApp()
+  const { getTokenExpired, getUser } = useCurrentUserStore(nuxtApp.$pinia)
+  //  TODO: add internationalization for navigation routes/names
+  nuxtApp.hooks.hook('app:beforeMount', () => {
+    if (getTokenExpired || !getUser) {
+      if (to.name !== 'auth-persona___en') {
+        callWithNuxt(nuxtApp, navigateTo, ['/en/auth/journalist'])
+      }
+    } else {
+      if (to.name === 'auth-persona___en') {
+        callWithNuxt(nuxtApp, navigateTo, ['/'])
+      }
+    }
   })
-  console.log('middleware/data.value? => ', data)
-  if (!data.value) {
-    setCurrentUser(null)
-    if (!to.name?.includes('auth')) navigateTo({ name: 'auth-persona___en', params: { persona: 'journalist' } })
-  } else if (!!data.value) {
-    setCurrentUser(data.value as User)
-    if (to.name?.includes('auth')) navigateTo({ name: 'index' })
-  } else if (!!error.value) {
-    console.warn(error)
-  }
 })

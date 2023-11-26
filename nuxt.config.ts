@@ -50,6 +50,8 @@ export default defineNuxtConfig({
     clientEmail: process.env.CLIENT_EMAIL,
     privateKey: process.env.PRIVATE_KEY,
     public: {
+      usingFirebase: true,
+      usingSSR: true,
       firebase: {
         apiKey: process.env.API_KEY,
         authDomain: process.env.AUTH_DOMAIN,
