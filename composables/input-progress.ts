@@ -22,7 +22,6 @@ export function useGetProgress() {
       // Listening
       worker.addEventListener('message', (event: { data: number }) => {
         progress.value = event.data
-        console.log(progress.value)
         worker.terminate()
       })
 

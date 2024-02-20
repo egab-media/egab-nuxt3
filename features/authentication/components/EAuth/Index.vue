@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { EAuthTitle, EAuthSubtitle, EAuthPassword } from '@/features/authentication/components/partials'
 import { useDisplay } from 'vuetify'
+import ETextField from '~/components/ETextField/Index.client.vue'
+import ESelect from '~/components/ESelect/Index.vue'
 
 const {mobile} = useDisplay()
 </script>
@@ -22,20 +24,9 @@ export default defineComponent({
     },
   },
 
-  setup(props) {
-    const {loginWithEmailAndPassword, registerWithEmailAndPassword} = useAuth()
-
-    const handleAuthUsingEmailAndPassword = async (form: any) => {
-      if (props.isRegister) {
-        console.log('registering user')
-        await registerWithEmailAndPassword(form.email, form.password)
-      } else {
-        console.log('logging in user')
-        await loginWithEmailAndPassword(form.email, form.password)
-      }
-    }
-
-    return {handleAuthUsingEmailAndPassword}
+  setup(_, { expose }) {
+    const { loginWithEmailAndPassword, registerWithEmailAndPassword } = useAuth()
+    return { loginWithEmailAndPassword, registerWithEmailAndPassword }
   },
 
   data() {
@@ -53,6 +44,18 @@ export default defineComponent({
       firestoreListener: null as any,
     }
   },
+
+  methods: {
+    async handleAuthUsingEmailAndPassword(form: any) {
+      if (this.isRegister) {
+        console.log('registering user')
+        await this.registerWithEmailAndPassword(form.email, form.password)
+      } else {
+        console.log('logging in user')
+        await this.loginWithEmailAndPassword(form.email, form.password)
+      }
+    }
+  }
 })
 </script>
 
@@ -99,31 +102,35 @@ export default defineComponent({
         <v-card-text>
           <v-row no-gutters>
             <!-- SECTION: Email field -->
-            <molecules-e-input-wrapper
-              id="email"
-              v-model="form.email"
-              data-test="email"
-              type="email"
-              :hint="isRegister && isEditor ? $t('auth.form.email.hint', { openTag: '<a>', closeTag: '</a>' }) : undefined"
-              :label="$t('auth.form.email.label', { type: isRegister ? isEditor ? $t('auth.status.work') : $t('auth.status.contact') : $t('auth.status.your') })"
-              persistent-hint
-              dense
-              :rules="['required', 'email']"
-            />
+            <v-col cols="12">
+              <e-text-field
+                id="email"
+                v-model="form.email"
+                data-test="email"
+                type="email"
+                :hint="isRegister && isEditor ? $t('auth.form.email.hint', { openTag: '<a>', closeTag: '</a>' }) : undefined"
+                :label="$t('auth.form.email.label', { type: isRegister ? isEditor ? $t('auth.status.work') : $t('auth.status.contact') : $t('auth.status.your') })"
+                persistent-hint
+                dense
+                :rules="['required', 'email']"
+              />
+            </v-col>
 
-            <molecules-e-input-wrapper
-              v-if="isRegister"
-              id="name"
-              v-model="form.name"
-              data-test="name-input"
-              autocomplete="name"
-              type="text"
-              persistent-hint
-              :label="$t('auth.form.name.label')"
-              counter
-              :counter-value="v => v.trim().split(' ').length"
-              :rules="['required', 'alpha', 'fullNameMinChars']"
-            />
+            <v-col cols="12">
+              <e-text-field
+                v-if="isRegister"
+                id="name"
+                v-model="form.name"
+                data-test="name-input"
+                autocomplete="name"
+                type="text"
+                persistent-hint
+                :label="$t('auth.form.name.label')"
+                counter
+                :counter-value="v => v.trim().split(' ').length"
+                :rules="['required', 'alpha', 'fullNameMinChars']"
+              />
+            </v-col>
 
             <!--
               NOTE:
@@ -133,14 +140,16 @@ export default defineComponent({
 
               * Id must be assigned as it will be used as a reference for progress calculation
             -->
-            <e-auth-password
-              v-model="form.password"
-              type="password"
-              data-test="password"
-              :is-register="isRegister"
-            />
+            <v-col cols="12">
+              <e-auth-password
+                v-model="form.password"
+                type="password"
+                data-test="password"
+                :is-register="isRegister"
+              />
+            </v-col>
 
-            <molecules-e-input-wrapper
+            <e-select
               v-if="isRegister"
               id="survey"
               v-model="form.surveyValue"
@@ -149,18 +158,18 @@ export default defineComponent({
               :label="$t('auth.form.survey.label')"
               return-object
               :items="[
-                  { title: 'search', value: $t('auth.form.survey.option1') },
-                  { title: 'referral', value: $t('auth.form.survey.option2') },
-                  { title: 'social', value: $t('auth.form.survey.option3') },
-                  { title: 'blog', value: $t('auth.form.survey.option4') },
-                  { title: 'other', value: $t('auth.form.survey.option5'), data: '' }
-                ]"
+                { title: 'search', value: $t('auth.form.survey.option1') },
+                { title: 'referral', value: $t('auth.form.survey.option2') },
+                { title: 'social', value: $t('auth.form.survey.option3') },
+                { title: 'blog', value: $t('auth.form.survey.option4') },
+                { title: 'other', value: $t('auth.form.survey.option5'), data: '' }
+              ]"
               :placeholder="$t('auth.form.survey.placeholder')"
               :rules="['required']"
               class="mt-5"
             />
 
-            <molecules-e-input-wrapper
+            <e-select
               v-if="isRegister && (form.surveyValue.id === 'other')"
               id="survey"
               v-model="form.surveyValue.data"

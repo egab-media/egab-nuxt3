@@ -6,6 +6,7 @@ import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
 import ar from '~/locales/ar-SA.json'
 import en from '~/locales/en-US.json'
+import App from './app.vue'
 
 export const addVuetify = (context: any) => {
   context.vuetifyInstance = createVuetify({})
@@ -54,7 +55,10 @@ export const bootstrapVueContext = (configureContext: (arg0: {}) => any) => {
   }
 
   context.vueTestUtils = vueTestUtils
-  context.vue = createApp({})
+  context.vueTestUtils.config.global.stubs.nuxt = { template: '<div />' }
+  context.vueTestUtils.config.global.stubs['nuxt-link'] = { template: '<a><slot /></a>' }
+  context.vueTestUtils.config.global.stubs['no-ssr'] = { template: '<span><slot /></span>' }
+  context.vue = createApp(App)
 
   vi.doMock('vue', () => context.vue)
 

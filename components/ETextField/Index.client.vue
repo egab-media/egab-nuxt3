@@ -1,14 +1,17 @@
 <script lang="ts" setup>
 import { mdiEye, mdiEyeOff } from '@mdi/js'
-// import { useGetProgress } from '~/composables/input-progress'
-// const { getProgress } = useGetProgress()
-//
-defineEmits(['update:modelValue'])
+import { useGetProgress } from '~/composables/input-progress'
+import { useRules } from '~/composables/rules'
+const { getProgress } = useGetProgress()
+
+const { handleRules } = useRules()
+
+defineEmits(['onUpdate:modelValue'])
 //  TODO: add the following to the text field
 // @keyup="type === 'password' ? initProgress($refs[id], rules) : false"
 // TODO: Enable the following when vuetify update the validate function for refs
-// const progress = ref(0)
-// const initProgress = async (inputRef: any, rules: string[]) => await getProgress(inputRef, rules, progress)
+const progress = ref(0)
+const initProgress = async (inputRef: any, rules: string[]) => await getProgress(inputRef, rules, progress)
 </script>
 
 <script lang="ts">
@@ -64,9 +67,10 @@ export default defineComponent({
     :flat="true"
     :title="id"
     variant="outlined"
-    :rules="rules"
+    :rules="handleRules(rules)"
     @input="$emit('update:modelValue', $event.target.value)"
     @click:append-inner="showPass = !showPass"
+    @keyup="type === 'password' ? initProgress($refs[id], rules) : false"
   >
     <template
       v-for="(_, inputSlot) in $slots"
@@ -92,20 +96,20 @@ export default defineComponent({
       />
     </template>
 
-    <!--    <template-->
-    <!--      v-if="type === 'password'"-->
-    <!--      #loader-->
-    <!--    >-->
-    <!--      <v-progress-linear-->
-    <!--        v-for="(_rule, index) in rules"-->
-    <!--        :key="index"-->
-    <!--        :model-value="progress"-->
-    <!--        :color="progress === 100 ? 'primary' : progress < 50 ? 'error' : progress < 70 ? 'orange' : 'warning'"-->
-    <!--        :absolute="true"-->
-    <!--        height="5"-->
-    <!--        style="margin-top: 5px;"-->
-    <!--      />-->
-    <!--    </template>-->
+    <template
+      v-if="type === 'password'"
+      #loader
+    >
+      <v-progress-linear
+        v-for="(_rule, index) in rules"
+        :key="index"
+        :model-value="progress"
+        :color="progress === 100 ? 'primary' : progress < 50 ? 'error' : progress < 70 ? 'orange' : 'warning'"
+        :absolute="true"
+        height="5"
+        style="margin-top: 5px;"
+      />
+    </template>
   </v-text-field>
 </template>
 
