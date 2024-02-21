@@ -22,7 +22,6 @@ onMounted(() => {
       await setServerSession(token)
       setTokenExpired(false)
       if (redirectUrl) {
-        console.log('redirect url => ', redirectUrl)
         navigateTo(redirectUrl)
       }
       else { navigateTo('/') }

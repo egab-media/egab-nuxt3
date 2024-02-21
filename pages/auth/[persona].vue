@@ -64,7 +64,7 @@ export default defineComponent({
         justify="center"
         align="center"
       >
-        <e-fps/>
+        <e-fps />
         <!-- SECTION: Persona Illustration with text (left column) -->
         <v-col
           cols="5"

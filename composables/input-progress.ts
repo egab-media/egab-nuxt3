@@ -15,7 +15,6 @@ export function useGetProgress() {
       if (inputRef) {
         const cached = await inputRef.validate()
         errs = toRaw(cached)
-        console.log('errors by vuetify => ', errs, 'rules => ', rules)
       }
 
       const worker = new Worker('/js/password-progress.worker.js')

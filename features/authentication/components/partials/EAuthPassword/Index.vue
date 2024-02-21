@@ -72,7 +72,11 @@ export default defineComponent({
   >
     <template #message="{ message }">
       <!--          TODO: work on tooltips later -->
-      <v-tooltip v-if="isRegister" data-test="password-tips" right>
+      <v-tooltip
+        v-if="isRegister"
+        data-test="password-tips"
+        right
+      >
         <template #activator="{ on, attrs }">
           <span
             v-if="checkHTML(message)"

@@ -1,17 +1,17 @@
 <script lang="ts" setup>
 import { mdiEye, mdiEyeOff } from '@mdi/js'
-import { useGetProgress } from '~/composables/input-progress'
-import { useRules } from '~/composables/rules'
-const { getProgress } = useGetProgress()
+// import { useGetProgress } from '~/composables/input-progress'
+// const { getProgress } = useGetProgress()
 
+import { useRules } from '~/composables/rules'
 const { handleRules } = useRules()
 
-defineEmits(['onUpdate:modelValue'])
+defineEmits(['update:modelValue'])
 //  TODO: add the following to the text field
 // @keyup="type === 'password' ? initProgress($refs[id], rules) : false"
 // TODO: Enable the following when vuetify update the validate function for refs
-const progress = ref(0)
-const initProgress = async (inputRef: any, rules: string[]) => await getProgress(inputRef, rules, progress)
+// const progress = ref(0)
+// const initProgress = async (inputRef: any, rules: string[]) => await getProgress(inputRef, rules, progress)
 </script>
 
 <script lang="ts">
@@ -70,7 +70,6 @@ export default defineComponent({
     :rules="handleRules(rules)"
     @input="$emit('update:modelValue', $event.target.value)"
     @click:append-inner="showPass = !showPass"
-    @keyup="type === 'password' ? initProgress($refs[id], rules) : false"
   >
     <template
       v-for="(_, inputSlot) in $slots"

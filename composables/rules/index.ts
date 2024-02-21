@@ -1,8 +1,6 @@
-// import { useI18n } from 'vue-i18n'
 import * as ruleSpecs from '~/utils/allRules'
 
 export function useRules() {
-  // const { t } = useI18n()
   /**
    * @method handleRules
    * This takes the string values of the passed 'rules' prop
@@ -27,5 +25,5 @@ export function useRules() {
     return finalRules
   }
 
-  return {handleRules}
+  return { handleRules }
 }
