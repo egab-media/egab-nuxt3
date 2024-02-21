@@ -2,6 +2,7 @@
 // @ts-ignore
 import colors from 'vuetify/lib/util/colors.mjs'
 import { langs } from './utils/languages'
+import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'
 
 export default defineNuxtConfig({
   // @ts-ignore
@@ -15,10 +16,10 @@ export default defineNuxtConfig({
           as: 'font',
           href: './fonts/panton/5920187ef0bf42859293e1ea01545b96.woff2',
           type: 'font/woff2',
-          crossorigin: 'anonymous'
-        }
-      ]
-    }
+          crossorigin: 'anonymous',
+        },
+      ],
+    },
   },
 
   nitro: {
@@ -26,32 +27,52 @@ export default defineNuxtConfig({
     // @ts-ignore
     routing: {
       routeRules: {
-        '/assets/': { headers: { 'cache-control': 'maxage=31536000 s-maxage=31536000' } },
-        '/public/': { headers: { 'cache-control': 'maxage=31536000 s-maxage=31536000' } }
-      }
+        '/assets/': {headers: {'cache-control': 'maxage=31536000 s-maxage=31536000'}},
+        '/public/': {headers: {'cache-control': 'maxage=31536000 s-maxage=31536000'}},
+      },
     },
-    compressPublicAssets: true
+    compressPublicAssets: true,
   },
 
   devServer: {
-    https: {
-      key: 'nash-dev.local-key.pem',
-      cert: 'nash-dev.local.pem'
-    }
+    // https: {
+    //   key: 'nash-dev.local-key.pem',
+    //   cert: 'nash-dev.local.pem'
+    // }
   },
 
-  devtools: { enabled: false },
+  devtools: {enabled: false},
+
+  runtimeConfig: {
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID,
+    clientEmail: process.env.CLIENT_EMAIL,
+    privateKey: process.env.PRIVATE_KEY,
+    public: {
+      usingFirebase: true,
+      usingSSR: true,
+      firebase: {
+        apiKey: process.env.API_KEY,
+        authDomain: process.env.AUTH_DOMAIN,
+        projectId: process.env.PROJECT_ID,
+        storageBucket: process.env.STORAGE_BUCKET,
+        messagingSenderId: process.env.MESSAGING_SENDER_ID,
+        appId: process.env.APP_ID,
+      }
+    }
+  },
 
   components: true,
   // @ts-ignore
   css: ['@/assets/main.scss'],
 
   build: {
-    transpile: ['vuetify']
+    transpile: ['vuetify'],
   },
 
   delayHydration: {
-    mode: 'manual'
+    mode: 'manual',
   },
 
   modules: [
@@ -63,6 +84,8 @@ export default defineNuxtConfig({
     'nuxt-security',
     '@nuxtjs/eslint-module',
     '@invictus.codes/nuxt-vuetify',
+    'nuxt-lodash',
+    'nuxt-csurf',
     ['nuxt-purgecss', {
       enabled: true,
       safelist: {
@@ -95,10 +118,10 @@ export default defineNuxtConfig({
           /v-progress-linear/,
           /v-label/,
           /v-list-item/,
-          /v-tooltip/
-        ]
-      }
-    }]
+          /v-tooltip/,
+        ],
+      },
+    }],
     // process.env.NODE_ENV === 'production'
     //   ? async (_, nuxt) => {
     //     await nuxt.hooks.hook('vite:extendConfig', config =>
@@ -115,17 +138,20 @@ export default defineNuxtConfig({
   vuetify: {
     vuetifyOptions: {
       icons: {
+        defaultSet: 'mdi',
+        aliases,
         sets: {
+          mdi,
           custom: {
             // @ts-ignore
             EIconGoogle: {
               component: () => import('@/components/icons/EIconGoogle/Index.vue'),
               props: {
-                name: 'EIconGoogle'
-              }
-            }
-          }
-        }
+                name: 'EIconGoogle',
+              },
+            },
+          },
+        },
       },
       theme: {
         themes: {
@@ -147,8 +173,8 @@ export default defineNuxtConfig({
               info: '#4AA1B3',
               warning: '#F89A35',
               error: '#DA756C',
-              success: colors.green.accent3
-            }
+              success: colors.green.accent3,
+            },
           },
           dark: {
             dark: true,
@@ -162,20 +188,20 @@ export default defineNuxtConfig({
               info: '#4AA1B3',
               warning: colors.amber.base,
               error: '#DA756C',
-              success: colors.green.accent3
-            }
-          }
-        }
-      }
+              success: colors.green.accent3,
+            },
+          },
+        },
+      },
     },
     moduleOptions: {
       // @ts-ignore
       treeShaking: true,
       useIconCDN: false,
       styles: {
-        configFile: 'assets/variables.scss'
-      }
-    }
+        configFile: 'assets/variables.scss',
+      },
+    },
   },
 
   security: {
@@ -190,9 +216,9 @@ export default defineNuxtConfig({
         'object-src': ["'none'"],
         'script-src-attr': ["'none'"],
         'style-src': ["'self'", 'https:', "'unsafe-inline'"],
-        'upgrade-insecure-requests': true
-      }
-    }
+        'upgrade-insecure-requests': true,
+      },
+    },
   },
 
   pwa: {
@@ -204,59 +230,59 @@ export default defineNuxtConfig({
         {
           src: 'android-chrome-192x192.png',
           sizes: '192x192',
-          type: 'image/png'
+          type: 'image/png',
         },
         {
           src: 'android-chrome-256x256.png',
           sizes: '256x256',
-          type: 'image/png'
-        }
+          type: 'image/png',
+        },
       ],
       theme_color: '#ffffff',
       background_color: '#ffffff',
-      display: 'standalone'
+      display: 'standalone',
     },
     workbox: {
       globPatterns: ['**/*.{png,woff2}'],
       runtimeCaching: [
         {
-          urlPattern: './fonts/panton/5920187ef0bf42859293e1ea01545b96.woff2',
+          urlPattern: '/_nuxt/fonts/panton/5920187ef0bf42859293e1ea01545b96.woff2',
           handler: 'CacheFirst',
           method: 'GET',
           options: {
-            cacheableResponse: { statuses: [0, 200] }
-          }
+            cacheableResponse: {statuses: [0, 200]},
+          },
         },
         {
           urlPattern: 'https://flagcdn.com/w40/us.png',
           handler: 'CacheFirst',
           method: 'GET',
           options: {
-            cacheableResponse: { statuses: [0, 200] }
-          }
+            cacheableResponse: {statuses: [0, 200]},
+          },
         },
         {
           urlPattern: 'https://flagcdn.com/w40/sa.png',
           handler: 'CacheFirst',
           method: 'GET',
           options: {
-            cacheableResponse: { statuses: [0, 200] }
-          }
-        }
-      ]
+            cacheableResponse: {statuses: [0, 200]},
+          },
+        },
+      ],
     },
     client: {
-      installPrompt: true
+      installPrompt: true,
     },
     devOptions: {
       enabled: true,
       navigateFallbackAllowlist: [/^\/$/],
-      type: 'module'
-    }
+      type: 'module',
+    },
   },
 
   i18n: {
     locales: langs,
-    vueI18n: './locales/i18n.config.ts'
-  }
+    vueI18n: './locales/i18n.config.ts',
+  },
 })

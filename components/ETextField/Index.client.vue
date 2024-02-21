@@ -1,17 +1,17 @@
 <script lang="ts" setup>
 import { mdiEye, mdiEyeOff } from '@mdi/js'
-import { useGetProgress } from '~/composables/input-progress'
+// import { useGetProgress } from '~/composables/input-progress'
+// const { getProgress } = useGetProgress()
+
 import { useRules } from '~/composables/rules'
-
-const { getProgress } = useGetProgress()
-const progress = ref(0)
-defineEmits(['update:modelValue'])
-const initProgress = async (inputRef: any, rules: string[]) => await getProgress(inputRef, rules, progress)
-
 const { handleRules } = useRules()
 
-// exposing all for unit tests
-defineExpose({ progress: progress.value, getProgress, handleRules })
+defineEmits(['update:modelValue'])
+//  TODO: add the following to the text field
+// @keyup="type === 'password' ? initProgress($refs[id], rules) : false"
+// TODO: Enable the following when vuetify update the validate function for refs
+// const progress = ref(0)
+// const initProgress = async (inputRef: any, rules: string[]) => await getProgress(inputRef, rules, progress)
 </script>
 
 <script lang="ts">
@@ -50,16 +50,8 @@ export default defineComponent({
   },
 
   data: () => ({
-    inputRef: null,
     showPass: false
-  }),
-
-  mounted() {
-    // Cache the input ref based on the passed id prop for handling validation and progress
-    if (this.$refs && this.$refs[this.id]) {
-      (this as any).inputRef = this.$refs[this.id]
-    }
-  }
+  })
 })
 </script>
 
@@ -69,14 +61,13 @@ export default defineComponent({
     :id="id"
     :ref="id"
     :model-value="modelValue"
-    :append-inner-icon="type === 'password' ? showPass ? mdiEye : mdiEyeOff : appendIcon"
+    :append-inner-icon="type === 'password' ? `svg:${type === 'password' ? showPass ? mdiEye : mdiEyeOff : appendIcon}` : undefined"
     density="compact"
     :type="showPass ? 'text' : type"
-    flat
+    :flat="true"
     :title="id"
     variant="outlined"
     :rules="handleRules(rules)"
-    @keyup="type === 'password' ? initProgress(inputRef, rules) : false"
     @input="$emit('update:modelValue', $event.target.value)"
     @click:append-inner="showPass = !showPass"
   >
@@ -86,7 +77,7 @@ export default defineComponent({
     >
       <slot
         :name="inputSlot"
-        v-bind="slotScope"
+        v-bind="{ ...slotScope }"
       />
     </template>
 
@@ -99,6 +90,7 @@ export default defineComponent({
       />
       <span
         data-test="input-label"
+        class="text-capitalize text-caption font-weight-bold"
         v-text="label"
       />
     </template>

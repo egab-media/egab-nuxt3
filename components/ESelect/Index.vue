@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-defineEmits(['input'])
+defineEmits(['input', 'update:modelValue'])
 const handleUpdateMenu = (open: boolean) => {
   if (open) {
     setTimeout(
@@ -29,6 +29,37 @@ export default defineComponent({
     id: {
       type: String,
       default: 'select'
+    },
+    itemValue: {
+      type: String,
+      default: undefined
+    },
+    itemText: {
+      type: String,
+      default: undefined
+    },
+    fullWidth: {
+      type: Boolean,
+      default: false
+    },
+    menuProps: {
+      type: Object,
+      default: () => ({})
+    },
+    multiple: {
+      type: Boolean,
+      default: false
+    }
+  },
+  emits: ['update:modelValue'],
+  computed: {
+    reactiveModelValue: {
+      get () {
+        return this.modelValue
+      },
+      set (value: any) {
+        this.$emit('update:modelValue', value)
+      }
     }
   }
 })
@@ -38,11 +69,11 @@ export default defineComponent({
   <v-select
     v-bind="$props"
     :id="id"
-    :model-value="modelValue"
+    :model-value="reactiveModelValue"
     :eager="true"
-    dense
     density="compact"
-    @update:model-value="$emit('input', $event)"
+    :item-value="itemValue"
+    :item-text="itemText"
     @update:menu="handleUpdateMenu"
   >
     <template
@@ -51,19 +82,20 @@ export default defineComponent({
     >
       <slot
         :name="inputSlot"
-        v-bind="slotScope"
+        v-bind="{ ...slotScope }"
       />
     </template>
 
     <template #label="{label}">
       <span
         v-if="rules.includes('required')"
-        data-test="input-asterisk"
+        data-test="select-asterisk"
         class="red--text"
         v-text="'* '"
       />
       <span
-        data-test="input-label"
+        data-test="select-label"
+        class="text-capitalize text-caption font-weight-bold"
         v-text="label"
       />
     </template>

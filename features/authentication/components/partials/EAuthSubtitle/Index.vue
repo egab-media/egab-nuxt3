@@ -50,7 +50,6 @@ export default defineComponent({
         <e-btn
           data-test="google-btn"
           rounded
-          icon-name="$vuetify.icons.custom.EIconGoogle"
           block
           :x-large="!mobile"
           outlined
